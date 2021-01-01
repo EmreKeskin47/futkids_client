@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/Card";
 import * as playerActions from "../store/players-action";
@@ -14,6 +14,9 @@ const AdminPage = (props) => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.textContainer}>
+                <Text style={styles.text}> List Of Players</Text>
+            </View>
             <FlatList
                 data={players}
                 keyExtractor={(item) => item._id}
@@ -34,6 +37,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: 50,
+    },
+    textContainer: {
+        marginTop: 20,
+        alignItems: "center",
+    },
+    text: {
+        fontSize: 20,
+        fontWeight: "bold",
     },
     centered: {
         flex: 1,
