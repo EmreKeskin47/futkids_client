@@ -6,12 +6,13 @@ import { Card, CardItem } from "native-base";
 // npm i react-native-elements
 import { Icon } from "react-native-elements";
 
-const Card = (props) => {
+const PlayerCard = (props) => {
+    const { playerName, playerPosition, overall } = props;
     return (
         <View>
             <Card style={{ marginTop: 10 }}>
                 <CardItem header bordered style={styles.cardHeader}>
-                    <Text style={styles.subheading}>Card Title</Text>
+                    <Text style={styles.subheading}>{playerName}</Text>
                 </CardItem>
                 <CardItem>
                     <View>
@@ -22,15 +23,9 @@ const Card = (props) => {
                                 marginBottom: 10,
                             }}
                         >
-                            Card Content
+                            {overall}
                         </Text>
-                        <Text>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing
-                            elit. Quaerat autem labore voluptas repudiandae
-                            voluptatem veniam tenetur facere neque omnis
-                            aperiam, nam deserunt minima ullam dolore iste eius
-                            assumenda consectetur a!
-                        </Text>
+                        <Text>{playerPosition}</Text>
                     </View>
                 </CardItem>
                 <CardItem footer bordered>
@@ -68,4 +63,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Card;
+export default PlayerCard;
