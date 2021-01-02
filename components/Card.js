@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { Card, CardItem } from "native-base";
 // npm i react-native-elements
 import { Icon } from "react-native-elements";
+import Colors from "../constants/Colors";
 
 const PlayerCard = (props) => {
     const { id, playerName, playerPosition, overall } = props;
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
         color: "#fff",
     },
     cardHeader: {
-        backgroundColor: "#6a90eb",
+        backgroundColor: Colors.primary,
     },
     footer: {
         width: "100%",

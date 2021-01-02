@@ -16,7 +16,6 @@ export default (state = initialState, action) => {
                 action.playerData.playerPosition,
                 action.playerData.overall
             );
-            console.log("new Player to add", newPlayer);
             return { players: state.players.concat(newPlayer) };
     }
     return state;
