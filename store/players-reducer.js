@@ -11,10 +11,12 @@ export default (state = initialState, action) => {
             return { players: action.players };
         case ADD_PLAYER:
             const newPlayer = new Player(
+                action.playerData.id,
                 action.playerData.playerName,
                 action.playerData.playerPosition,
                 action.playerData.overall
             );
+            console.log("new Player to add", newPlayer);
             return { players: state.players.concat(newPlayer) };
     }
     return state;

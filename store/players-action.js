@@ -58,7 +58,8 @@ export const addPlayer = (playerName, playerPosition, overall) => {
 
             dispatch({
                 type: ADD_PLAYER,
-                orderData: {
+                playerData: {
+                    id: resData.data._id,
                     playerName: playerName,
                     playerPosition: playerPosition,
                     overall: overall,
