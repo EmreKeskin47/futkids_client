@@ -13,7 +13,6 @@ export const fetchPlayers = () => {
             }
             const resData = await response.json();
             const loadedPlayers = [];
-            console.log(resData);
 
             for (const key in resData) {
                 loadedPlayers.push(
