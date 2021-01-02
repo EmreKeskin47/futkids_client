@@ -22,10 +22,10 @@ const AdminPage = (props) => {
                 keyExtractor={(item) => item._id}
                 renderItem={({ item }) => (
                     <PlayerCard
+                        id={item.id}
                         playerName={item.playerName}
                         playerPosition={item.playerPosition}
                         overall={item.overall}
-                        id={item._id}
                     />
                 )}
             />

@@ -7,7 +7,7 @@ import { Card, CardItem } from "native-base";
 import { Icon } from "react-native-elements";
 
 const PlayerCard = (props) => {
-    const { playerName, playerPosition, overall } = props;
+    const { id, playerName, playerPosition, overall } = props;
     return (
         <View>
             <Card style={{ marginTop: 10 }}>
@@ -31,7 +31,7 @@ const PlayerCard = (props) => {
                 <CardItem footer bordered>
                     <View style={styles.footer}>
                         <TouchableOpacity>
-                            <Text>Footer</Text>
+                            <Text>{id}</Text>
                         </TouchableOpacity>
                         <View style={{ flexDirection: "row" }}>
                             <TouchableOpacity style={{ marginLeft: 10 }}>

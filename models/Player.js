@@ -1,5 +1,6 @@
 class Player {
-    constructor(playerName, playerPosition, overall) {
+    constructor(id, playerName, playerPosition, overall) {
+        this.id = id;
         this.playerName = playerName;
         this.playerPosition = playerPosition;
         this.overall = overall;
