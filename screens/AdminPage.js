@@ -19,7 +19,9 @@ const AdminPage = (props) => {
         <View style={styles.container}>
             <FlatList
                 data={players}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => {
+                    return item.id;
+                }}
                 renderItem={({ item }) => (
                     <PlayerCard
                         id={item.id}
