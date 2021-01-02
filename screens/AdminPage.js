@@ -3,6 +3,9 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/Card";
 import * as playerActions from "../store/players-action";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+
+import HeaderButton from "../components/HeaderButton";
 
 const AdminPage = (props) => {
     const dispatch = useDispatch();
@@ -14,12 +17,9 @@ const AdminPage = (props) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.textContainer}>
-                <Text style={styles.text}> List Of Players</Text>
-            </View>
             <FlatList
                 data={players}
-                keyExtractor={(item) => item._id}
+                keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
                     <PlayerCard
                         id={item.id}
@@ -33,10 +33,28 @@ const AdminPage = (props) => {
     );
 };
 
+export const screenOptions = (navData) => {
+    return {
+        headerTitle: "Admin Player List",
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                    title="Menu"
+                    iconName={
+                        Platform.OS === "android" ? "md-menu" : "ios-menu"
+                    }
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }}
+                />
+            </HeaderButtons>
+        ),
+    };
+};
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 50,
     },
     textContainer: {
         marginTop: 20,
