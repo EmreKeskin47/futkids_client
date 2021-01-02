@@ -37,7 +37,7 @@ const AdminPage = (props) => {
 
 export const screenOptions = (navData) => {
     return {
-        headerTitle: "Admin Player List",
+        headerTitle: "Player List",
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
@@ -47,6 +47,21 @@ export const screenOptions = (navData) => {
                     }
                     onPress={() => {
                         navData.navigation.toggleDrawer();
+                    }}
+                />
+            </HeaderButtons>
+        ),
+        headerRight: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                    title="New"
+                    iconName={
+                        Platform.OS === "android"
+                            ? "add-circle"
+                            : "ios-add-circle"
+                    }
+                    onPress={() => {
+                        navData.navigation.navigate("New Player");
                     }}
                 />
             </HeaderButtons>

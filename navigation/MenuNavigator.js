@@ -38,6 +38,10 @@ export const PlayersAdminNavigator = () => {
                 component={AdminPage}
                 options={AdminScreenOptions}
             />
+            <MenuDrawerNavigator.Screen
+                name="New Player"
+                component={NewPlayerPage}
+            />
             <PlayersStackNavigator.Screen
                 name="Player Details"
                 component={PlayerDetailsPage}
@@ -77,10 +81,6 @@ export const MenuNavigator = () => {
             <MenuDrawerNavigator.Screen
                 name="PlayerDetails"
                 component={PlayerDetailsPage}
-            />
-            <MenuDrawerNavigator.Screen
-                name="New Player"
-                component={NewPlayerPage}
             />
         </MenuDrawerNavigator.Navigator>
     );

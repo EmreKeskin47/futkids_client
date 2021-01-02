@@ -5,7 +5,7 @@ import Colors from "../constants/Colors";
 import { useDispatch } from "react-redux";
 import * as playerActions from "../store/players-action";
 
-const NewPlayerPage = () => {
+const NewPlayerPage = (props) => {
     const [position, setPosition] = useState("GK");
     const [playerName, setPlayerName] = useState("");
     const [overall, setOverall] = useState("");
@@ -30,6 +30,7 @@ const NewPlayerPage = () => {
                 />
                 <Picker
                     selectedValue={position}
+                    itemStyle={{ color: "white" }}
                     onValueChange={(currentPosition) =>
                         setPosition(currentPosition)
                     }
@@ -43,15 +44,16 @@ const NewPlayerPage = () => {
                 <Button
                     title="Kaydet"
                     color="#fff"
-                    onPress={() =>
+                    onPress={() => {
                         dispatch(
                             playerActions.addPlayer(
                                 playerName,
                                 position,
                                 overall
                             )
-                        )
-                    }
+                        );
+                        props.navigation.pop();
+                    }}
                 />
             </View>
         </View>
