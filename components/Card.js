@@ -1,10 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-
+import { StyleSheet, Text, View } from "react-native";
 // npm i native-base
 import { Card, CardItem } from "native-base";
 // npm i react-native-elements
-import { Icon } from "react-native-elements";
 import Colors from "../constants/Colors";
 
 const PlayerCard = (props) => {
@@ -31,14 +29,7 @@ const PlayerCard = (props) => {
                 </CardItem>
                 <CardItem footer bordered>
                     <View style={styles.footer}>
-                        <TouchableOpacity>
-                            <Text>{id}</Text>
-                        </TouchableOpacity>
-                        <View style={{ flexDirection: "row" }}>
-                            <TouchableOpacity style={{ marginLeft: 10 }}>
-                                <Icon name="google" type="font-awesome" />
-                            </TouchableOpacity>
-                        </View>
+                        <Text>{id}</Text>
                     </View>
                 </CardItem>
             </Card>

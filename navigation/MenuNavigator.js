@@ -78,10 +78,6 @@ export const MenuNavigator = () => {
                 name="Admin Page"
                 component={PlayersAdminNavigator}
             />
-            <MenuDrawerNavigator.Screen
-                name="PlayerDetails"
-                component={PlayerDetailsPage}
-            />
         </MenuDrawerNavigator.Navigator>
     );
 };
