@@ -1,61 +1,28 @@
-import React, { useState } from "react";
-import { Text, StyleSheet, View, TextInput, Button } from "react-native";
-import { Picker } from "@react-native-community/picker";
+import React from "react";
+import { Text, StyleSheet, View } from "react-native";
 import Colors from "../constants/Colors";
 import { useDispatch } from "react-redux";
 import * as playerActions from "../store/players-action";
+import PlayerForm from "../components/PlayerForm";
 
 const NewPlayerPage = (props) => {
-    const [position, setPosition] = useState("GK");
-    const [playerName, setPlayerName] = useState("");
-    const [overall, setOverall] = useState("");
+    const { playerPosition, playerName, playerOverall } = props;
+
     const dispatch = useDispatch();
+    const onSave = (playerName, position, overall) => {
+        dispatch(playerActions.addPlayer(playerName, position, overall));
+        props.navigation.pop();
+    };
 
     return (
         <View style={styles.container}>
             <Text style={styles.formLabel}> Yeni Oyuncu </Text>
-            <View>
-                <TextInput
-                    placeholder="İsim"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setPlayerName(text)}
-                    defaultValue={playerName}
-                />
-                <TextInput
-                    placeholder="Puan"
-                    keyboardType="number-pad"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setOverall(text)}
-                    defaultValue={overall}
-                />
-                <Picker
-                    selectedValue={position}
-                    itemStyle={{ color: "white" }}
-                    onValueChange={(currentPosition) =>
-                        setPosition(currentPosition)
-                    }
-                >
-                    <Picker.Item label="GK" value="GK" />
-                    <Picker.Item label="DEF" value="DEF" />
-                    <Picker.Item label="MID" value="MID" />
-                    <Picker.Item label="ATT" value="ATT" />
-                </Picker>
-
-                <Button
-                    title="Kaydet"
-                    color="#fff"
-                    onPress={() => {
-                        dispatch(
-                            playerActions.addPlayer(
-                                playerName,
-                                position,
-                                overall
-                            )
-                        );
-                        props.navigation.pop();
-                    }}
-                />
-            </View>
+            <PlayerForm
+                playerPosition={playerPosition}
+                playerName={playerName}
+                playerOverall={playerOverall}
+                onSave={onSave}
+            />
         </View>
     );
 };
@@ -72,24 +39,6 @@ const styles = StyleSheet.create({
         fontSize: 30,
         margin: 30,
         color: "#fff",
-    },
-    inputStyle: {
-        marginTop: 20,
-        width: 300,
-        height: 40,
-        paddingHorizontal: 10,
-        borderRadius: 50,
-        backgroundColor: "#fff",
-    },
-    formText: {
-        alignItems: "center",
-        justifyContent: "center",
-        color: "#fff",
-        fontSize: 20,
-    },
-    text: {
-        color: "#fff",
-        fontSize: 25,
     },
 });
 

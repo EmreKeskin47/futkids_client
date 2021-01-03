@@ -1,33 +1,50 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import HeaderButton from "../components/HeaderButton";
+import { useDispatch, useSelector } from "react-redux";
+import PlayerForm from "../components/PlayerForm";
+import * as playerActions from "../store/players-action";
 
-const PlayerDetailsPage = (props) => {
-    return (
-        <View style={styles.text}>
-            <Text>Player Details Screen</Text>
-        </View>
-    );
-};
+const PlayerDetailsPage = ({ route, navigation }) => {
+    const { id } = route.params;
+    const dispatch = useDispatch();
 
-export const screenOptions = (navData) => {
-    return {
-        headerTitle: "Player Details Page",
-        headerLeft: () => (
-            <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <Item
-                    title="Menu"
-                    iconName={
-                        Platform.OS === "android" ? "md-menu" : "ios-menu"
-                    }
-                    onPress={() => {
-                        navData.navigation.toggleDrawer();
-                    }}
+    useEffect(() => {
+        dispatch(playerActions.getPlayerInfo(id));
+    }, [dispatch]);
+
+    const player = useSelector((state) => state.playerStore.selectedPlayer);
+    if (!player) {
+        return (
+            <View style={styles.text}>
+                <Text>No Player Screen</Text>
+            </View>
+        );
+    } else {
+        const { playerName, playerPosition, overall } = player;
+        const onSave = (playerName, position, overall) => {
+            dispatch(
+                playerActions.updatePlayer(id, playerName, position, overall)
+            );
+            navigation.navigate("Admin Page");
+        };
+
+        const onDelete = () => {
+            dispatch(playerActions.deletePlayer(id));
+            navigation.navigate("Admin Page");
+        };
+
+        return (
+            <View style={{ flex: 1 }}>
+                <PlayerForm
+                    playerPosition={playerPosition}
+                    playerName={playerName}
+                    playerOverall={overall}
+                    onSave={onSave}
+                    onDelete={onDelete}
                 />
-            </HeaderButtons>
-        ),
-    };
+            </View>
+        );
+    }
 };
 
 const styles = StyleSheet.create({

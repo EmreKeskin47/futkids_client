@@ -6,12 +6,19 @@ import * as playerActions from "../store/players-action";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 import HeaderButton from "../components/HeaderButton";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const AdminPage = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(playerActions.fetchPlayers());
     }, [dispatch]);
+
+    let selectedPlayerID = "";
+
+    const navigateToDetail = (id) => {
+        props.navigation.navigate("Player Details", { id: id });
+    };
 
     const players = useSelector((state) => state.playerStore.players);
 
@@ -22,14 +29,23 @@ const AdminPage = (props) => {
                 keyExtractor={(item) => {
                     return item.id;
                 }}
-                renderItem={({ item }) => (
-                    <PlayerCard
-                        id={item.id}
-                        playerName={item.playerName}
-                        playerPosition={item.playerPosition}
-                        overall={item.overall}
-                    />
-                )}
+                renderItem={({ item }) => {
+                    return (
+                        <TouchableOpacity
+                            onPress={() => {
+                                selectedPlayerID = item.id;
+                                navigateToDetail(selectedPlayerID);
+                            }}
+                        >
+                            <PlayerCard
+                                id={item.id}
+                                playerName={item.playerName}
+                                playerPosition={item.playerPosition}
+                                overall={item.overall}
+                            />
+                        </TouchableOpacity>
+                    );
+                }}
             />
         </View>
     );
