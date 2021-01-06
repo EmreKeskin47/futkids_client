@@ -14,6 +14,7 @@ import PlayerDetailsPage, {
     screenOptions as PlayerDetailScreenOptions,
 } from "../screens/PlayerDetailsPage";
 import NewPlayerPage from "../screens/NewPlayerPage";
+import StadiumTest from "../screens/StadiumTest";
 
 const defaultNavOptions = {
     headerStyle: {
@@ -78,6 +79,7 @@ export const MenuNavigator = () => {
                 name="Admin Page"
                 component={PlayersAdminNavigator}
             />
+            <MenuDrawerNavigator.Screen name="Test" component={StadiumTest} />
         </MenuDrawerNavigator.Navigator>
     );
 };
