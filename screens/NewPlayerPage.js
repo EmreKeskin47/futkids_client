@@ -16,7 +16,7 @@ const NewPlayerPage = (props) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.formLabel}> Yeni Oyuncu </Text>
+            <Text style={styles.formLabel}> ArdaYeni Oyuncu </Text>
             <PlayerForm
                 playerPosition={playerPosition}
                 playerName={playerName}
