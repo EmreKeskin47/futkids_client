@@ -4,7 +4,6 @@ import Colors from "../constants/Colors";
 import { useDispatch } from "react-redux";
 import * as playerActions from "../store/players-action";
 import PlayerForm from "../components/PlayerForm";
-//End of imports
 
 const NewPlayerPage = (props) => {
     const { playerPosition, playerName, playerOverall } = props;
