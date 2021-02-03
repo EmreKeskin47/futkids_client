@@ -14,7 +14,9 @@ import PlayerDetailsPage, {
     screenOptions as PlayerDetailScreenOptions,
 } from "../screens/PlayerDetailsPage";
 import NewPlayerPage from "../screens/NewPlayerPage";
-import ProfilePage from "../screens/ProfilePage";
+import ProfilePage, {
+    screenOptions as ProfileScreenOptions,
+} from "../screens/ProfilePage";
 import StadiumTest from "../screens/StadiumTest";
 
 const defaultNavOptions = {
@@ -94,8 +96,14 @@ export const MenuNavigator = () => {
                 name="Admin Page"
                 component={PlayersAdminNavigator}
             />
-            <MenuDrawerNavigator.Screen name="Test" component={StadiumTest} />
-            <MenuDrawerNavigator.Screen name="Profile" component={ProfilePageNavigator} />
+            <MenuDrawerNavigator.Screen
+                name="LineUp Test"
+                component={StadiumTest}
+            />
+            <MenuDrawerNavigator.Screen
+                name="Profile"
+                component={ProfilePageNavigator}
+            />
         </MenuDrawerNavigator.Navigator>
     );
 };
