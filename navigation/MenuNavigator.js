@@ -18,6 +18,9 @@ import ProfilePage, {
     screenOptions as ProfileScreenOptions,
 } from "../screens/ProfilePage";
 import StadiumTest from "../screens/StadiumTest";
+import UserPage, {
+    screenOptions as UserScreenOptions,
+} from "../screens/UserPage";
 
 const defaultNavOptions = {
     headerStyle: {
@@ -49,7 +52,6 @@ export const PlayersAdminNavigator = () => {
             <PlayersStackNavigator.Screen
                 name="Player Details"
                 component={PlayerDetailsPage}
-                options={PlayerDetailScreenOptions}
             />
         </PlayersStackNavigator.Navigator>
     );
@@ -69,20 +71,23 @@ export const HomePageNavigator = () => {
     );
 };
 
-const ProfileStackNavigator = createStackNavigator();
+const UserStackNavigator = createStackNavigator();
 
-export const ProfilePageNavigator = () => {
+export const UserNavigator = () => {
     return (
-        <ProfileStackNavigator.Navigator screenOptions={defaultNavOptions}>
-            <ProfileStackNavigator.Screen
-                name="Profile"
-                component={ProfilePage}
-                options={ProfileScreenOptions}
+        <UserStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <UserStackNavigator.Screen
+                name="User Player List"
+                component={UserPage}
+                options={UserScreenOptions}
             />
-        </ProfileStackNavigator.Navigator>
+            <UserStackNavigator.Screen
+                name="Profile Page"
+                component={ProfilePage}
+            />
+        </UserStackNavigator.Navigator>
     );
 };
-
 const MenuDrawerNavigator = createDrawerNavigator();
 
 export const MenuNavigator = () => {
@@ -101,8 +106,8 @@ export const MenuNavigator = () => {
                 component={StadiumTest}
             />
             <MenuDrawerNavigator.Screen
-                name="Profile"
-                component={ProfilePageNavigator}
+                name="NonAdmin Page"
+                component={UserNavigator}
             />
         </MenuDrawerNavigator.Navigator>
     );

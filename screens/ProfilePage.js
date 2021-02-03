@@ -1,41 +1,41 @@
-import React from "react";
-import { View, Text, Platform, StyleSheet } from "react-native";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-import HeaderButton from "../components/HeaderButton";
+//Redux
+import { useDispatch, useSelector } from "react-redux";
+import * as playerActions from "../store/players-action";
 
-const ProfilePage = (props) => {
-    return (
-        <View style={styles.text}>
-            <Text>Profile Page </Text>
-        </View>
-    );
-};
+const ProfilePage = ({ route, navigation }) => {
+    const { id } = route.params;
+    const dispatch = useDispatch();
 
-export const screenOptions = (navData) => {
-    return {
-        headerTitle: "Profile Page",
-        headerLeft: () => (
-            <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <Item
-                    title="Menu"
-                    iconName={
-                        Platform.OS === "android" ? "md-menu" : "ios-menu"
-                    }
-                    onPress={() => {
-                        navData.navigation.toggleDrawer();
-                    }}
-                />
-            </HeaderButtons>
-        ),
-    };
+    useEffect(() => {
+        dispatch(playerActions.getPlayerInfo(id));
+    }, [dispatch]);
+
+    const player = useSelector((state) => state.playerStore.selectedPlayer);
+    if (!player) {
+        return (
+            <View style={styles.root}>
+                <Text>No Player Selected</Text>
+            </View>
+        );
+    } else {
+        const { playerName, playerPosition, overall } = player;
+
+        return (
+            <View style={styles.root}>
+                <Text>{playerName}</Text>
+                <Text>{playerPosition}</Text>
+                <Text>{overall}</Text>
+            </View>
+        );
+    }
 };
 
 const styles = StyleSheet.create({
-    text: {
+    root: {
         flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
     },
 });
 export default ProfilePage;

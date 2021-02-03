@@ -1,59 +1,24 @@
-import React, { useEffect } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import PlayerCard from "../components/Card";
-import * as playerActions from "../store/players-action";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-
 import HeaderButton from "../components/HeaderButton";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import PlayerList from "../components/PlayerList";
 
 const AdminPage = (props) => {
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(playerActions.fetchPlayers());
-    }, [dispatch]);
-
-    let selectedPlayerID = "";
-
     const navigateToDetail = (id) => {
         props.navigation.navigate("Player Details", { id: id });
     };
 
-    const players = useSelector((state) => state.playerStore.players);
-
     return (
         <View style={styles.container}>
-            <FlatList
-                data={players}
-                keyExtractor={(item) => {
-                    return item.id;
-                }}
-                renderItem={({ item }) => {
-                    return (
-                        <TouchableOpacity
-                            onPress={() => {
-                                selectedPlayerID = item.id;
-                                navigateToDetail(selectedPlayerID);
-                            }}
-                        >
-                            <PlayerCard
-                                id={item.id}
-                                playerName={item.playerName}
-                                playerPosition={item.playerPosition}
-                                overall={item.overall}
-                            />
-                        </TouchableOpacity>
-                    );
-                }}
-            />
+            <PlayerList navigate={navigateToDetail} />
         </View>
     );
 };
 
 export const screenOptions = (navData) => {
     return {
-        headerTitle: "Player List",
+        headerTitle: "Admin Page ",
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
