@@ -5,7 +5,7 @@ export const DELETE_PLAYER = "DELETE_PLAYER";
 export const UPDATE_PLAYER = "UPDATE_PLAYER";
 export const GET_PLAYER = "GET_PLAYER";
 
-const BASE_URL = "http://localhost:3000/api/v1/player";
+const BASE_URL = "http://localhost:3000/api/v1/playerCard";
 
 export const fetchPlayers = () => {
     return async (dispatch) => {

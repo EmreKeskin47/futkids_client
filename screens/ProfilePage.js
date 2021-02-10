@@ -28,6 +28,7 @@ const ProfilePage = ({ route, navigation }) => {
                 <Text>{playerName}</Text>
                 <Text>{playerPosition}</Text>
                 <Text>{overall}</Text>
+                
             </View>
         );
     }

@@ -21,6 +21,7 @@ import StadiumTest from "../screens/StadiumTest";
 import UserPage, {
     screenOptions as UserScreenOptions,
 } from "../screens/UserPage";
+import PlayerProfilePage from "../screens/PlayerProfile";
 
 const defaultNavOptions = {
     headerStyle: {
@@ -108,6 +109,10 @@ export const MenuNavigator = () => {
             <MenuDrawerNavigator.Screen
                 name="NonAdmin Page"
                 component={UserNavigator}
+            />
+             <MenuDrawerNavigator.Screen
+                name="Seman Page"
+                component={PlayerProfilePage}
             />
         </MenuDrawerNavigator.Navigator>
     );
