@@ -1,20 +1,21 @@
 import React, { useEffect } from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, ImageBackground  } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerAttributes from "../components/PlayerAttributes";
 import PlayerForm from "../components/PlayerForm";
 import * as playerActions from "../store/players-action";
 
 const PlayerProfilePage = () => {
-    return <SafeAreaView style={styles.root}>
+
+    const image = require('../assets/background-image.jpg');
+
+    return <View style={styles.root}>
+        <ImageBackground source={image} style={styles.image}>
         <View style={styles.surround}>
-            <PlayerAttributes
-                style={styles.attrCard}
-
-
-            />
+            <PlayerAttributes/>
         </View>
-    </SafeAreaView>
+        </ImageBackground>
+    </View>
 };
 
 const styles = StyleSheet.create({
@@ -26,8 +27,10 @@ const styles = StyleSheet.create({
         height: 400,
         marginTop: 70
     },
-    attrCard: {
-        
+    image: {
+        flex: 1,
+        resizeMode: "cover",
+        justifyContent: "center"
     }
 
 });
