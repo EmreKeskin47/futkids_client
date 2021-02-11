@@ -1,8 +1,17 @@
-import React, { useEffect } from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import React, { useState, useCallback, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaViewStatusBar,
+  StatusBar,
+  Button,
+  SafeAreaView,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerForm from "../components/PlayerForm";
 import * as playerActions from "../store/players-action";
+import { AnimatedCircularProgress } from "react-native-circular-progress";
 
 const PlayerAttributes = () => {
   return (
@@ -11,30 +20,70 @@ const PlayerAttributes = () => {
         <View style={styles.column}>
           <Text style={styles.itemL}>Pas</Text>
           <Text style={styles.itemR}>67</Text>
+          <AnimatedCircularProgress
+            size={40}
+            width={8}
+            fill={67}
+            tintColor="#00e0ff"
+            onAnimationComplete={() => console.log("onAnimationComplete")}
+            backgroundColor="#3d5875"
+          />
         </View>
       </View>
       <View style={styles.row}>
         <View style={styles.column}>
           <Text style={styles.itemL}>Sut</Text>
           <Text style={styles.itemR}>81</Text>
+          <AnimatedCircularProgress
+            size={40}
+            width={8}
+            fill={67}
+            tintColor="#00e0ff"
+            onAnimationComplete={() => console.log("onAnimationComplete")}
+            backgroundColor="#3d5875"
+          />
         </View>
       </View>
       <View style={styles.row}>
         <View style={styles.column}>
           <Text style={styles.itemL}>Fiz</Text>
           <Text style={styles.itemR}>86</Text>
+          <AnimatedCircularProgress
+            size={40}
+            width={8}
+            fill={81}
+            tintColor="#00e0ff"
+            onAnimationComplete={() => console.log("onAnimationComplete")}
+            backgroundColor="#3d5875"
+          />
         </View>
       </View>
       <View style={styles.row}>
         <View style={styles.column}>
           <Text style={styles.itemL}>Hiz</Text>
           <Text style={styles.itemR}>73</Text>
+          <AnimatedCircularProgress
+            size={40}
+            width={8}
+            fill={73}
+            tintColor="#00e0ff"
+            onAnimationComplete={() => console.log("onAnimationComplete")}
+            backgroundColor="#3d5875"
+          />
         </View>
       </View>
       <View style={styles.row}>
         <View style={styles.column}>
           <Text style={styles.itemL}>Def</Text>
           <Text style={styles.itemR}>41</Text>
+          <AnimatedCircularProgress
+            size={40}
+            width={8}
+            fill={41}
+            tintColor="#00e0ff"
+            onAnimationComplete={() => console.log("onAnimationComplete")}
+            backgroundColor="#3d5875"
+          />
         </View>
       </View>
 
@@ -97,6 +146,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "red",
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    paddingVertical: 20,
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10,
   },
 });
 
