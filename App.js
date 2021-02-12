@@ -3,12 +3,12 @@ import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import ReduxThunk from "redux-thunk";
 import AppNavigator from "./navigation/AppNavigator";
-import playersReducer from "./store/players-reducer";
+import playerCardReducer from "./store/reducers/playerCard-reducer";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 
 const rootReducer = combineReducers({
-    playerStore: playersReducer,
+    playerStore: playerCardReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

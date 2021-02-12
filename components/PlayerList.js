@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/Card";
-import * as playerActions from "../store/players-action";
-import { HeaderButtons, Item } from "react-navigation-header-buttons";
-
-import HeaderButton from "../components/HeaderButton";
+import * as playerCardActions from "../store/actions/playerCard-action";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const PlayerList = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(playerActions.fetchPlayers());
+        dispatch(playerCardActions.fetchPlayerCards());
     }, [dispatch]);
 
     const [selectedPlayerID, setSelectedPlayerID] = useState("");
-    const players = useSelector((state) => state.playerStore.players);
+    const playerCards = useSelector((state) => state.playerStore.playerCards);
 
     return (
         <View style={styles.container}>
             <FlatList
-                data={players}
+                data={playerCards}
                 keyExtractor={(item) => {
                     return item.id;
                 }}
@@ -34,8 +31,8 @@ const PlayerList = (props) => {
                         >
                             <PlayerCard
                                 id={item.id}
-                                playerName={item.playerName}
-                                playerPosition={item.playerPosition}
+                                playerName={item.name}
+                                playerPosition={item.position}
                                 overall={item.overall}
                             />
                         </TouchableOpacity>

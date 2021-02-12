@@ -2,7 +2,7 @@ import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 import Colors from "../constants/Colors";
 import { useDispatch } from "react-redux";
-import * as playerActions from "../store/players-action";
+import * as playerCardActions from "../store/actions/playerCard-action";
 import PlayerForm from "../components/PlayerForm";
 //End of imports
 
@@ -11,7 +11,9 @@ const NewPlayerPage = (props) => {
 
     const dispatch = useDispatch();
     const onSave = (playerName, position, overall) => {
-        dispatch(playerActions.addPlayer(playerName, position, overall));
+        dispatch(
+            playerCardActions.addPlayerCard(playerName, position, overall)
+        );
         props.navigation.pop();
     };
 

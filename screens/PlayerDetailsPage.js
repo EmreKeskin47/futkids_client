@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerForm from "../components/PlayerForm";
-import * as playerActions from "../store/players-action";
+import * as playerCardActions from "../store/actions/playerCard-action";
 
 const PlayerDetailsPage = ({ route, navigation }) => {
     const { id } = route.params;
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(playerActions.getPlayerInfo(id));
+        dispatch(playerCardActions.getPlayerCardInfo(id));
     }, [dispatch]);
 
     const player = useSelector((state) => state.playerStore.selectedPlayer);
@@ -23,7 +23,12 @@ const PlayerDetailsPage = ({ route, navigation }) => {
         const { playerName, playerPosition, overall } = player;
         const onSave = (playerName, position, overall) => {
             dispatch(
-                playerActions.updatePlayer(id, playerName, position, overall)
+                playerCardActions.updatePlayerCard(
+                    id,
+                    playerName,
+                    position,
+                    overall
+                )
             );
             navigation.navigate("Admin Page");
         };
