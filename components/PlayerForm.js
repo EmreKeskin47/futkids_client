@@ -8,7 +8,7 @@ const PlayerForm = (props) => {
 
     const [position, setPosition] = useState(playerPosition);
     const [name, setName] = useState(playerName);
-    const [overall, setOverall] = useState(playerOverall.toString());
+    const [overall, setOverall] = useState(playerOverall.toString() || "");
 
     return (
         <View style={styles.container}>
