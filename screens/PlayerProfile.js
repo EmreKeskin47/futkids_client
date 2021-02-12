@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     height: 170,
     borderRadius: 8,
     backgroundColor: "black",
-    opacity: 0.5,
+    opacity: 0.7,
     flex: 1,
     margin: 20,
     justifyContent: "space-around",

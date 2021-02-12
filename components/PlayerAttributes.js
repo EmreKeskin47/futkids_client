@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-around",
     backgroundColor: "black",
-    opacity: 0.5,
+    opacity: 0.7,
     borderRadius: 8,
   },
   bar: {
@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   itemR: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "red",
+    color: "green",
   },
   container: {
     flex: 1,
