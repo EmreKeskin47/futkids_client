@@ -1,8 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-// npm i native-base
 import { Card, CardItem } from "native-base";
-// npm i react-native-elements
 import Colors from "../constants/Colors";
 
 const PlayerCard = (props) => {

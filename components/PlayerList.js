@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import PlayerCard from "../components/Card";
+import PlayerCard from "../components/PlayerCard";
 import * as playerCardActions from "../store/actions/playerCard-action";
 import { TouchableOpacity } from "react-native-gesture-handler";
 

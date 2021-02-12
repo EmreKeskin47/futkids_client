@@ -8,11 +8,7 @@ import {
     Image,
     ScrollView,
 } from "react-native";
-import { ProgressBar, Colors } from "react-native-paper";
-import { useDispatch, useSelector } from "react-redux";
 import PlayerAttributes from "../components/PlayerAttributes";
-import PlayerForm from "../components/PlayerForm";
-import * as playerCardActions from "../store/actions/playerCard-action";
 
 const PlayerProfilePage = () => {
     const image = require("../assets/background-image.jpg");

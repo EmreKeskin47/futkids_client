@@ -4,11 +4,8 @@ import Colors from "../constants/Colors";
 import { useDispatch } from "react-redux";
 import * as playerCardActions from "../store/actions/playerCard-action";
 import PlayerForm from "../components/PlayerForm";
-//End of imports
 
 const NewPlayerPage = (props) => {
-    const { playerPosition, playerName, playerOverall } = props;
-
     const dispatch = useDispatch();
     const onSave = (playerName, position, overall) => {
         dispatch(
@@ -21,9 +18,9 @@ const NewPlayerPage = (props) => {
         <View style={styles.container}>
             <Text style={styles.formLabel}> Yeni Oyuncu </Text>
             <PlayerForm
-                playerPosition={playerPosition}
-                playerName={playerName}
-                playerOverall={playerOverall}
+                playerPosition={""}
+                playerName={""}
+                playerOverall={0}
                 onSave={onSave}
             />
         </View>

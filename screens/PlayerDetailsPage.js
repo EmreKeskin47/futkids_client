@@ -6,43 +6,41 @@ import * as playerCardActions from "../store/actions/playerCard-action";
 
 const PlayerDetailsPage = ({ route, navigation }) => {
     const { id } = route.params;
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(playerCardActions.getPlayerCardInfo(id));
     }, [dispatch]);
 
-    const player = useSelector((state) => state.playerStore.selectedPlayer);
-    if (!player) {
+    const playerCard = useSelector(
+        (state) => state.playerStore.selectedPlayerCard
+    );
+    if (!playerCard) {
         return (
             <View style={styles.text}>
                 <Text>No Player Screen</Text>
             </View>
         );
     } else {
-        const { playerName, playerPosition, overall } = player;
-        const onSave = (playerName, position, overall) => {
+        const { name, position, overall } = playerCard;
+        const onSave = (name, position, overall) => {
             dispatch(
-                playerCardActions.updatePlayerCard(
-                    id,
-                    playerName,
-                    position,
-                    overall
-                )
+                playerCardActions.updatePlayerCard(id, name, position, overall)
             );
             navigation.navigate("Admin Page");
         };
 
         const onDelete = () => {
-            dispatch(playerActions.deletePlayer(id));
+            dispatch(playerCardActions.deletePlayerCard(id));
             navigation.navigate("Admin Page");
         };
 
         return (
             <View style={{ flex: 1 }}>
                 <PlayerForm
-                    playerPosition={playerPosition}
-                    playerName={playerName}
+                    playerName={name}
+                    playerPosition={position}
                     playerOverall={overall}
                     onSave={onSave}
                     onDelete={onDelete}

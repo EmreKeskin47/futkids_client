@@ -18,14 +18,14 @@ export default (state = initialState, action) => {
             return { playerCards: action.playerCards };
         case ADD_PLAYER_CARD:
             const newPlayerCard = new PlayerCard(
-                action.playerData.id,
-                action.playerData.name,
-                action.playerData.position,
-                action.playerData.overall,
-                action.playerData.image,
-                action.playerData.kitNumber,
-                action.playerData.foot,
-                action.playerData.age
+                action.playerCardData.id,
+                action.playerCardData.name,
+                action.playerCardData.position,
+                action.playerCardData.overall,
+                action.playerCardData.image,
+                action.playerCardData.kitNumber,
+                action.playerCardData.foot,
+                action.playerCardData.age
             );
             return { playerCards: state.playerCards.concat(newPlayerCard) };
         case DELETE_PLAYER_CARD:
@@ -41,13 +41,13 @@ export default (state = initialState, action) => {
             );
             const updatedPlayerCard = new PlayerCard(
                 action.pid,
-                action.playerData.name,
-                action.playerData.position,
-                action.playerData.overall,
-                action.playerData.image,
-                action.playerData.kitNumber,
-                action.playerData.foot,
-                action.playerData.age
+                action.playerCardData.name,
+                action.playerCardData.position,
+                action.playerCardData.overall,
+                action.playerCardData.image,
+                action.playerCardData.kitNumber,
+                action.playerCardData.foot,
+                action.playerCardData.age
             );
             state.playerCards[playerIndex] = updatedPlayerCard;
             return state;
