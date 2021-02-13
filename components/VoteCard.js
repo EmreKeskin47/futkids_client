@@ -15,44 +15,56 @@ const DATA = [
   {
     id: "1",
     title: "Arda",
+    position: "GK",
   },
   {
     id: "2",
     title: "Arman",
+    position: "SLK",
   },
   {
     id: "3",
     title: "Emre",
+    position: "SNT",
   },
   {
     id: "4",
     title: "Ati",
+    position: "SLB",
   },
   {
     id: "5",
     title: "Kardo",
+    position: "MOO",
   },
   {
     id: "6",
     title: "Tex",
+    position: "MO",
   },
   {
     id: "7",
     title: "Arthur",
+    position: "GK",
   },
   {
     id: "8",
     title: "Ellie",
+    position: "SRB",
   },
   {
     id: "9",
     title: "Joel",
+    position: "SLB",
   },
 ];
 
 const Item = ({ item, onPress, style }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-    <Text style={styles.title}>{item.title}</Text>
+    <View style={styles.title}>
+      <Text style={styles.name}>{item.title}</Text>
+      <Text style={styles.position}>{item.position}</Text>
+    </View>
   </TouchableOpacity>
 );
 
@@ -95,8 +107,17 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   title: {
+    justifyContent: "space-evenly",
+    flexDirection: "row",
+  },
+  name: {
     fontSize: 20,
     fontFamily: "Avenir-Medium",
+  },
+  position: {
+    fontSize: 20,
+    fontFamily: "Avenir-Medium",
+    color: "red",
   },
 });
 
