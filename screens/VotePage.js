@@ -63,9 +63,11 @@ const styles = StyleSheet.create({
     opacity: 0.8,
     fontWeight: "bold",
     fontSize: 20,
+    fontFamily: "Avenir-Medium",
   },
   dropdown: {
     marginHorizontal: 20,
+    fontFamily: "Avenir-Medium",
   },
   card: {},
   btn: {
@@ -82,6 +84,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     alignSelf: "center",
     color: "white",
+    fontFamily: "Avenir-Medium",
   },
 });
 
