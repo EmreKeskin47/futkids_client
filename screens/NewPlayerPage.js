@@ -2,7 +2,7 @@ import React from "react";
 import { Text, StyleSheet, View } from "react-native";
 import Colors from "../constants/Colors";
 import { useDispatch } from "react-redux";
-import * as playerCardActions from "../store/actions/playerCard-action";
+import * as playerCardActions from "../redux/actions/playerCard-action";
 import PlayerForm from "../components/PlayerForm";
 
 const NewPlayerPage = (props) => {

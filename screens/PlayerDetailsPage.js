@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerForm from "../components/PlayerForm";
-import * as playerCardActions from "../store/actions/playerCard-action";
+import * as playerCardActions from "../redux/actions/playerCard-action";
 
 const PlayerDetailsPage = ({ route, navigation }) => {
     const { id } = route.params;
@@ -14,7 +14,7 @@ const PlayerDetailsPage = ({ route, navigation }) => {
     }, [dispatch]);
 
     const playerCard = useSelector(
-        (state) => state.playerStore.selectedPlayerCard
+        (state) => state.playerCardStore.selectedPlayerCard
     );
     if (!playerCard) {
         return (

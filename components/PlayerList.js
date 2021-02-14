@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/PlayerCard";
-import * as playerCardActions from "../store/actions/playerCard-action";
+import * as playerCardActions from "../redux/actions/playerCard-action";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const PlayerList = (props) => {
@@ -12,7 +12,9 @@ const PlayerList = (props) => {
     }, [dispatch]);
 
     const [selectedPlayerID, setSelectedPlayerID] = useState("");
-    const playerCards = useSelector((state) => state.playerStore.playerCards);
+    const playerCards = useSelector(
+        (state) => state.playerCardStore.playerCards
+    );
 
     return (
         <View style={styles.container}>

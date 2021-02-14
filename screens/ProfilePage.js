@@ -3,41 +3,41 @@ import { View, Text, StyleSheet } from "react-native";
 
 //Redux
 import { useDispatch, useSelector } from "react-redux";
-import * as playerCardActions from "../store/actions/playerCard-action";
+import * as playerCardActions from "../redux/actions/playerCard-action";
 
 const ProfilePage = ({ route, navigation }) => {
-  const { id } = route.params;
-  const dispatch = useDispatch();
+    const { id } = route.params;
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(playerCardActions.getPlayerCardInfo(id));
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(playerCardActions.getPlayerCardInfo(id));
+    }, [dispatch]);
 
-  const playerCard = useSelector(
-    (state) => state.playerStore.selectedPlayerCard
-  );
-  if (!playerCard) {
-    return (
-      <View style={styles.root}>
-        <Text>No Player Selected</Text>
-      </View>
+    const playerCard = useSelector(
+        (state) => state.playerCardStore.selectedPlayerCard
     );
-  } else {
-    const { name, position, overall } = playerCard;
+    if (!playerCard) {
+        return (
+            <View style={styles.root}>
+                <Text>No Player Selected</Text>
+            </View>
+        );
+    } else {
+        const { name, position, overall } = playerCard;
 
-    return (
-      <View style={styles.root}>
-        <Text>{name}</Text>
-        <Text>{position}</Text>
-        <Text>{overall}</Text>
-      </View>
-    );
-  }
+        return (
+            <View style={styles.root}>
+                <Text>{name}</Text>
+                <Text>{position}</Text>
+                <Text>{overall}</Text>
+            </View>
+        );
+    }
 };
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
+    root: {
+        flex: 1,
+    },
 });
 export default ProfilePage;
