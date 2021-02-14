@@ -5,10 +5,9 @@ import Colors from "../constants/Colors";
 
 const PlayerForm = (props) => {
     const { playerPosition, playerName, playerOverall, onSave } = props;
-
     const [position, setPosition] = useState(playerPosition);
     const [name, setName] = useState(playerName);
-    const [overall, setOverall] = useState(playerOverall.toString() || "");
+    const [overall, setOverall] = useState(playerOverall);
 
     return (
         <View style={styles.container}>
@@ -21,6 +20,7 @@ const PlayerForm = (props) => {
                 />
                 <TextInput
                     placeholder="Puan"
+                    keyboardType="numeric"
                     style={styles.inputStyle}
                     onChangeText={(text) => setOverall(text)}
                     defaultValue={overall}
