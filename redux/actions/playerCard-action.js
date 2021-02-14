@@ -112,6 +112,7 @@ export const deletePlayerCard = (playerID) => {
     };
 };
 
+//Updates player card with given PlayerID
 export const updatePlayerCard = (
     playerID,
     name,
@@ -159,6 +160,7 @@ export const updatePlayerCard = (
     };
 };
 
+//Getting card details of the player with the given PlayerID
 export const getPlayerCardInfo = (playerID) => {
     return async (dispatch) => {
         const response = await fetch(`${BASE_URL}/${playerID}`);

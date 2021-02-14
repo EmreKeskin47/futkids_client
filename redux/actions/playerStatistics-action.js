@@ -81,6 +81,7 @@ export const createPlayerAttribute = (
     };
 };
 
+//Updating existing statistics of a player
 export const updatePlayerStatistics = (
     playerID,
     goals,

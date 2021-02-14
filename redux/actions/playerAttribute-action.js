@@ -25,6 +25,7 @@ export const fetchPlayerAttributes = (playerID) => {
     };
 };
 
+//Getting new attributes for a player
 export const createPlayerAttribute = (
     playerID,
     pace,
@@ -77,6 +78,7 @@ export const createPlayerAttribute = (
     };
 };
 
+//Updating existing attributes of a player
 export const updatePlayerAttribute = (
     playerID,
     pace,
