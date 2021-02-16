@@ -14,9 +14,6 @@ import PlayerDetailsPage, {
   screenOptions as PlayerDetailScreenOptions,
 } from "../screens/PlayerDetailsPage";
 import NewPlayerPage from "../screens/NewPlayerPage";
-import ProfilePage, {
-  screenOptions as ProfileScreenOptions,
-} from "../screens/ProfilePage";
 import StadiumTest from "../screens/StadiumTest";
 import UserPage, {
   screenOptions as UserScreenOptions,
@@ -80,7 +77,10 @@ export const UserNavigator = () => {
         component={UserPage}
         options={UserScreenOptions}
       />
-      <UserStackNavigator.Screen name="Profile Page" component={ProfilePage} />
+      <UserStackNavigator.Screen
+        name="Player Profile"
+        component={PlayerProfilePage}
+      />
     </UserStackNavigator.Navigator>
   );
 };
