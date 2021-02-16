@@ -10,17 +10,17 @@ import {
 } from "react-native";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 
-const PlayerAttributes = () => {
+const PlayerAttributes = (props) => {
   return (
     <SafeAreaView style={styles.root}>
       <View style={styles.row}>
         <View style={styles.column}>
-          <Text style={styles.itemL}>Pas</Text>
-          <Text style={styles.itemR}>67</Text>
+          <Text style={styles.itemL}>Pace</Text>
+          <Text style={styles.itemR}>{props.pace}</Text>
           <AnimatedCircularProgress
             size={40}
             width={8}
-            fill={67}
+            fill={props.pace / 1000}
             tintColor="#00e0ff"
             onAnimationComplete={() => console.log("onAnimationComplete")}
             backgroundColor="#3d5875"
@@ -29,12 +29,12 @@ const PlayerAttributes = () => {
       </View>
       <View style={styles.row}>
         <View style={styles.column}>
-          <Text style={styles.itemL}>Sut</Text>
-          <Text style={styles.itemR}>81</Text>
+          <Text style={styles.itemL}>Shoot</Text>
+          <Text style={styles.itemR}>{props.shooting}</Text>
           <AnimatedCircularProgress
             size={40}
             width={8}
-            fill={67}
+            fill={props.shooting / 1000}
             tintColor="#00e0ff"
             onAnimationComplete={() => console.log("onAnimationComplete")}
             backgroundColor="#3d5875"
@@ -43,12 +43,12 @@ const PlayerAttributes = () => {
       </View>
       <View style={styles.row}>
         <View style={styles.column}>
-          <Text style={styles.itemL}>Fiz</Text>
-          <Text style={styles.itemR}>86</Text>
+          <Text style={styles.itemL}>Pass</Text>
+          <Text style={styles.itemR}>{props.passing}</Text>
           <AnimatedCircularProgress
             size={40}
             width={8}
-            fill={81}
+            fill={props.passing / 1000}
             tintColor="#00e0ff"
             onAnimationComplete={() => console.log("onAnimationComplete")}
             backgroundColor="#3d5875"
@@ -57,12 +57,12 @@ const PlayerAttributes = () => {
       </View>
       <View style={styles.row}>
         <View style={styles.column}>
-          <Text style={styles.itemL}>Hiz</Text>
-          <Text style={styles.itemR}>73</Text>
+          <Text style={styles.itemL}>Drib</Text>
+          <Text style={styles.itemR}>{props.dribbling}</Text>
           <AnimatedCircularProgress
             size={40}
             width={8}
-            fill={73}
+            fill={props.dribbling / 1000}
             tintColor="#00e0ff"
             onAnimationComplete={() => console.log("onAnimationComplete")}
             backgroundColor="#3d5875"
@@ -72,11 +72,39 @@ const PlayerAttributes = () => {
       <View style={styles.row}>
         <View style={styles.column}>
           <Text style={styles.itemL}>Def</Text>
-          <Text style={styles.itemR}>41</Text>
+          <Text style={styles.itemR}>{props.defending}</Text>
           <AnimatedCircularProgress
             size={40}
             width={8}
-            fill={41}
+            fill={props.defending / 1000}
+            tintColor="#00e0ff"
+            onAnimationComplete={() => console.log("onAnimationComplete")}
+            backgroundColor="#3d5875"
+          />
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.column}>
+          <Text style={styles.itemL}>Phy</Text>
+          <Text style={styles.itemR}>{props.physical}</Text>
+          <AnimatedCircularProgress
+            size={40}
+            width={8}
+            fill={props.physical / 1000}
+            tintColor="#00e0ff"
+            onAnimationComplete={() => console.log("onAnimationComplete")}
+            backgroundColor="#3d5875"
+          />
+        </View>
+      </View>
+      <View style={styles.row}>
+        <View style={styles.column}>
+          <Text style={styles.itemL}>Gk</Text>
+          <Text style={styles.itemR}>{props.goalKeeper}</Text>
+          <AnimatedCircularProgress
+            size={40}
+            width={8}
+            fill={props.goalKeeper / 1000}
             tintColor="#00e0ff"
             onAnimationComplete={() => console.log("onAnimationComplete")}
             backgroundColor="#3d5875"

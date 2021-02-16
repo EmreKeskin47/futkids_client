@@ -16,11 +16,35 @@ const PlayerStats = (props) => {
       <Text style={styles.itemM}>Istatistik</Text>
       <View style={styles.columnInside}>
         <Text style={styles.itemL}>Gol</Text>
-        <Text style={styles.itemR}>23</Text>
+        <Text style={styles.itemR}>{props.goals}</Text>
       </View>
       <View style={styles.columnInside}>
         <Text style={styles.itemL}>Asist</Text>
-        <Text style={styles.itemR}>6</Text>
+        <Text style={styles.itemR}>{props.assists}</Text>
+      </View>
+      <View style={styles.columnInside}>
+        <Text style={styles.itemL}>Red Card</Text>
+        <Text style={styles.itemR}>{props.red}</Text>
+      </View>
+      <View style={styles.columnInside}>
+        <Text style={styles.itemL}>Yellow Card</Text>
+        <Text style={styles.itemR}>{props.yellow}</Text>
+      </View>
+      <View style={styles.columnInside}>
+        <Text style={styles.itemL}>Motm</Text>
+        <Text style={styles.itemR}>{props.motm}</Text>
+      </View>
+      <View style={styles.columnInside}>
+        <Text style={styles.itemL}>CleanSheet</Text>
+        <Text style={styles.itemR}>{props.cleanSheet}</Text>
+      </View>
+      <View style={styles.columnInside}>
+        <Text style={styles.itemL}>Form</Text>
+        <Text style={styles.itemR}>{props.form}</Text>
+      </View>
+      <View style={styles.columnInside}>
+        <Text style={styles.itemL}>PlayedMatches</Text>
+        <Text style={styles.itemR}>{props.playedMatches}</Text>
       </View>
     </View>
   );
@@ -28,7 +52,7 @@ const PlayerStats = (props) => {
 
 const styles = StyleSheet.create({
   column: {
-    height: 170,
+    height: 400,
     borderRadius: 8,
     backgroundColor: "black",
     opacity: 0.7,

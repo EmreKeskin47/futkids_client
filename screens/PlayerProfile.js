@@ -15,6 +15,7 @@ import PlayerStats from "../components/PlayerStats";
 import { useDispatch, useSelector } from "react-redux";
 import * as playerCardActions from "../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
+import * as playerStaticsActions from "../redux/actions/playerStatistics-action";
 
 const PlayerProfilePage = ({ route, navigation }) => {
   const image = require("../assets/background-image.jpg");
@@ -27,6 +28,7 @@ const PlayerProfilePage = ({ route, navigation }) => {
   useEffect(() => {
     dispatch(playerCardActions.getPlayerCardInfo(id));
     dispatch(playerAttributeActions.fetchPlayerAttributes(tempID));
+    dispatch(playerStaticsActions.fetchPlayerStatistics(tempID));
   }, [dispatch]);
 
   const playerCard = useSelector(
@@ -36,6 +38,11 @@ const PlayerProfilePage = ({ route, navigation }) => {
   const attr = useSelector(
     (state) => state.playerAttributeStore.selectedPlayerAttribute
   );
+
+  const stats = useSelector(
+    (state) => state.playerStatisticsStore.selectedPlayerStatistics
+  );
+
   if (!playerCard) {
     return (
       <View style={styles.root}>
@@ -44,6 +51,26 @@ const PlayerProfilePage = ({ route, navigation }) => {
     );
   } else {
     const { name, position, overall } = playerCard;
+    const {
+      pace,
+      shooting,
+      passing,
+      dribbling,
+      defending,
+      physical,
+      goalKeeper,
+    } = attr;
+
+    const {
+      goals,
+      assists,
+      red,
+      yellow,
+      motm,
+      cleanSheet,
+      form,
+      playedMatches,
+    } = stats;
 
     return (
       <View style={styles.root}>
@@ -51,9 +78,26 @@ const PlayerProfilePage = ({ route, navigation }) => {
           <ImageBackground source={image} style={styles.image}>
             <PlayerInfo name={name} position={position} overall={overall} />
             <View style={styles.surround}>
-              <PlayerAttributes />
+              <PlayerAttributes
+                pace={pace}
+                shooting={shooting}
+                passing={passing}
+                dribbling={dribbling}
+                defending={defending}
+                physical={physical}
+                goalKeeper={goalKeeper}
+              />
             </View>
-            <PlayerStats />
+            <PlayerStats
+              goals={goals}
+              assists={assists}
+              red={red}
+              yellow={yellow}
+              motm={motm}
+              cleanSheet={cleanSheet}
+              form={form}
+              playedMatches={playedMatches}
+            />
           </ImageBackground>
         </ScrollView>
       </View>
@@ -67,7 +111,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   surround: {
-    height: 400,
+    height: 600,
     marginTop: 40,
     marginHorizontal: 20,
   },
