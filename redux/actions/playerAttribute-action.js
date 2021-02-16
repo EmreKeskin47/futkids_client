@@ -3,6 +3,8 @@ export const CREATE_PLAYER_ATTRIBUTE = "CREATE_PLAYER_ATTRIBUTE";
 export const UPDATE_PLAYER_ATTRIBUTE = "UPDATE_PLAYER_ATTRIBUTE";
 
 import API from "../../constants/ApiUrl";
+
+import PlayerAttribute from "../../models/PlayerAttribute";
 const BASE_URL = `${API}/attributes`;
 
 //Getting attributes of specified player
@@ -15,6 +17,7 @@ export const fetchPlayerAttributes = (playerID) => {
             }
 
             const resData = await response.json();
+
             dispatch({
                 type: GET_ATTRIBUTES_OF_PLAYER,
                 selectedPlayerAttribute: resData,

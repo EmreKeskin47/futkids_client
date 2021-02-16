@@ -7,14 +7,13 @@ import {
 import PlayerAttribute from "../../models/PlayerAttribute";
 
 const initialState = {
-    selectedPlayerAttribute: null,
+    selectedPlayerAttribute: {},
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case GET_ATTRIBUTES_OF_PLAYER:
-            return (state.selectedPlayerAttribute =
-                action.selectedPlayerAttribute);
+            return { selectedPlayerAttribute: action.selectedPlayerAttribute };
         case CREATE_PLAYER_ATTRIBUTE:
             const newAttribute = new PlayerAttribute(
                 action.selectedPlayerAttribute.playerID,

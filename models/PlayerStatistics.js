@@ -21,3 +21,5 @@ class PlayerStatistics {
         this.playedMatches = playedMatches;
     }
 }
+
+export default PlayerStatistics;

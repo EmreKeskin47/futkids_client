@@ -19,3 +19,5 @@ class PlayerDetails {
         this.statisticsId = statisticsId;
     }
 }
+
+export default PlayerDetails;

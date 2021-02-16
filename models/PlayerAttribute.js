@@ -1,5 +1,6 @@
 class PlayerAttribute {
     constructor(
+        id,
         playerID,
         pace,
         shooting,
@@ -9,6 +10,7 @@ class PlayerAttribute {
         physical,
         goalKeeper
     ) {
+        this.id = id;
         this.playerID = playerID;
         this.pace = pace;
         this.shooting = shooting;
@@ -19,3 +21,5 @@ class PlayerAttribute {
         this.goalKeeper = goalKeeper;
     }
 }
+
+export default PlayerAttribute;
