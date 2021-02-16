@@ -52,7 +52,7 @@ const PlayerStats = (props) => {
 
 const styles = StyleSheet.create({
   column: {
-    height: 400,
+    height: 500,
     borderRadius: 8,
     backgroundColor: "black",
     opacity: 0.7,
