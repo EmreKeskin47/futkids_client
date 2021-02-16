@@ -12,7 +12,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case GET_DETAILS_OF_PLAYER:
-            return (state.selectedPlayerDetails = action.selectedPlayerDetails);
+            return { selectedPlayerDetails: action.selectedPlayerDetails };
         case CREATE_PLAYER_DETAILS:
             const newDetails = new PlayerDetails(
                 action.selectedPlayerDetails.playerID,
