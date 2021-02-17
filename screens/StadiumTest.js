@@ -1,6 +1,8 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, Platform, StyleSheet } from "react-native";
 import FootballField from "react-native-football-lineup";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import HeaderButton from "../components/HeaderButton";
 
 var home = {
     name: "POR",
@@ -180,6 +182,25 @@ const StadiumTest = () => {
             <FootballField home={home} away={away} />
         </View>
     );
+};
+
+export const screenOptions = (navData) => {
+    return {
+        headerTitle: "LineUp Page ",
+        headerLeft: () => (
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                    title="Menu"
+                    iconName={
+                        Platform.OS === "android" ? "md-menu" : "ios-menu"
+                    }
+                    onPress={() => {
+                        navData.navigation.toggleDrawer();
+                    }}
+                />
+            </HeaderButtons>
+        ),
+    };
 };
 
 const styles = StyleSheet.create({
