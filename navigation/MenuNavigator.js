@@ -6,22 +6,22 @@ import { Platform } from "react-native";
 import Colors from "../constants/Colors";
 import AdminPage, {
     screenOptions as AdminScreenOptions,
-} from "../screens/AdminPage";
+} from "../screens/admin/AdminPage";
 import HomePage, {
     screenOptions as HomeScreenOptions,
 } from "../screens/HomePage";
 import PlayerDetailsPage, {
     screenOptions as PlayerDetailScreenOptions,
-} from "../screens/PlayerDetailsPage";
-import NewPlayerPage from "../screens/NewPlayerPage";
+} from "../screens/admin/PlayerDetailsPage";
+import NewPlayerPage from "../screens/admin/NewPlayerPage";
 import StadiumTest, {
     screenOptions as StadiumTestScreenOptions,
 } from "../screens/StadiumTest";
 import UserPage, {
     screenOptions as UserScreenOptions,
-} from "../screens/UserPage";
-import PlayerProfilePage from "../screens/PlayerProfile";
-import VotePage from "../screens/VotePage";
+} from "../screens/user/UserPage";
+import PlayerProfilePage from "../screens/user/PlayerProfile";
+import VotePage from "../screens/user/VotePage";
 import LoginPage, {
     screenOptions as LoginScreenOptions,
 } from "../screens/LoginPage";

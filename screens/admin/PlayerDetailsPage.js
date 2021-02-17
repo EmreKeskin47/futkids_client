@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import PlayerForm from "../components/PlayerForm";
-import * as playerCardActions from "../redux/actions/playerCard-action";
+import PlayerForm from "../../components/PlayerForm";
+import * as playerCardActions from "../../redux/actions/playerCard-action";
 
 const PlayerDetailsPage = ({ route, navigation }) => {
     const { id } = route.params;
