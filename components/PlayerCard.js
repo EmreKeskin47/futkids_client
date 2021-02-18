@@ -63,6 +63,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primary,
     flexDirection: "row",
     justifyContent: "space-around",
+    marginHorizontal: 20,
+    borderRadius: 8,
+    marginTop: 10,
   },
   footer: {
     width: "100%",

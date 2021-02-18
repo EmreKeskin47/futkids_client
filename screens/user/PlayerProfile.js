@@ -20,7 +20,6 @@ import * as playerDetailsActions from "../../redux/actions/playerDetails-action"
 
 const PlayerProfilePage = ({ route, navigation }) => {
   const image = require("../../assets/background-image.jpg");
-  const profilePicture = require("../../assets/ronaldo-custom.png");
 
   const tempID = 13;
   const { id } = route.params;

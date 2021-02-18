@@ -1,10 +1,13 @@
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { ViewBase } from "react-native";
+import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
 import Colors from "../constants/Colors";
 
 const PlayerSummary = (props) => {
+  const profilePicture = require("../assets/ronaldo-custom.png");
   return (
     <SafeAreaView style={styles.root}>
+      <Image source={profilePicture} style={styles.profilePicture} />
       <View style={styles.row}>
         <View style={styles.column}>
           <Text style={styles.itemL}>Pace</Text>
@@ -44,8 +47,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-around",
-    backgroundColor: Colors.primary,
-    borderRadius: 8,
   },
   bar: {
     backgroundColor: "white",
@@ -54,6 +55,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
+    backgroundColor: Colors.primary,
+    borderRadius: 8,
+    margin: 10,
   },
   column: {
     height: 30,
@@ -75,16 +79,19 @@ const styles = StyleSheet.create({
     color: "black",
   },
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    paddingVertical: 20,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
   },
   welcome: {
     fontSize: 20,
     textAlign: "center",
     margin: 10,
+  },
+  profilePicture: {
+    height: 200,
+    width: 150,
+    alignSelf: "center",
+    margin: 20,
   },
 });
 
