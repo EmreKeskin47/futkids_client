@@ -24,9 +24,18 @@ const PlayerDetailsPage = ({ route, navigation }) => {
         );
     } else {
         const { name, position, overall } = playerCard;
-        const onSave = (name, position, overall) => {
+        const onSave = (playerCardToCreate) => {
             dispatch(
-                playerCardActions.updatePlayerCard(id, name, position, overall)
+                playerCardActions.updatePlayerCard(
+                    id,
+                    playerCardToCreate.name,
+                    playerCardToCreate.position,
+                    playerCardToCreate.overall,
+                    "image",
+                    playerCardToCreate.kitNumber,
+                    playerCardToCreate.foot,
+                    playerCardToCreate.age
+                )
             );
             navigation.navigate("Admin Page");
         };
@@ -39,9 +48,7 @@ const PlayerDetailsPage = ({ route, navigation }) => {
         return (
             <View style={{ flex: 1 }}>
                 <PlayerForm
-                    playerName={name}
-                    playerPosition={position}
-                    playerOverall={overall}
+                    playerCard={playerCard}
                     onSave={onSave}
                     onDelete={onDelete}
                 />

@@ -3,7 +3,7 @@ export const CREATE_PLAYER_STATISTICS = "CREATE_PLAYER_STATISTICS";
 export const UPDATE_PLAYER_STATISTICS = "UPDATE_PLAYER_STATISTICS";
 
 import API from "../../constants/ApiUrl";
-const BASE_URL = `${API}/statistics`;
+const BASE_URL = `${API}/statistic`;
 
 //Getting statistics of specified player
 export const fetchPlayerStatistics = (playerID) => {

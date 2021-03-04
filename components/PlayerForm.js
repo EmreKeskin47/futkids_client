@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { StyleSheet, View, TextInput, Button } from "react-native";
 import { Picker } from "@react-native-community/picker";
 import Colors from "../constants/Colors";
+import PlayerCard from "../models/PlayerCard";
 
 const PlayerForm = (props) => {
-    const { playerPosition, playerName, playerOverall, onSave } = props;
-    const [position, setPosition] = useState(playerPosition);
-    const [name, setName] = useState(playerName);
-    const [overall, setOverall] = useState(playerOverall);
+    const { playerCard, onSave } = props;
+    const [position, setPosition] = useState(playerCard.position);
+    const [name, setName] = useState(playerCard.name);
+    const [overall, setOverall] = useState(playerCard.overall);
+    const [kitNumber, setKitNumber] = useState(playerCard.kitNumber);
+    const [age, setAge] = useState(playerCard.age);
+    const [foot, setFoot] = useState(playerCard.foot);
 
     return (
         <View style={styles.container}>
@@ -20,7 +24,6 @@ const PlayerForm = (props) => {
                 />
                 <TextInput
                     placeholder="Puan"
-                    keyboardType="numeric"
                     style={styles.inputStyle}
                     onChangeText={(text) => setOverall(text)}
                     defaultValue={overall}
@@ -37,6 +40,24 @@ const PlayerForm = (props) => {
                     <Picker.Item label="MID" value="MID" />
                     <Picker.Item label="ATT" value="ATT" />
                 </Picker>
+                <TextInput
+                    placeholder="Kit Number"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setKitNumber(text)}
+                    defaultValue={kitNumber}
+                />
+                <TextInput
+                    placeholder="Foot"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setFoot(text)}
+                    defaultValue={foot}
+                />
+                <TextInput
+                    placeholder="Age"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setAge(text)}
+                    defaultValue={age}
+                />
 
                 {props.onDelete ? (
                     <View>
@@ -44,7 +65,18 @@ const PlayerForm = (props) => {
                             title="Değişiklikleri Kaydet"
                             color="#fff"
                             onPress={() => {
-                                onSave(name, position, overall);
+                                const newPlayerCard = new PlayerCard(
+                                    "",
+                                    playerCard.playerID,
+                                    name,
+                                    position,
+                                    overall,
+                                    "",
+                                    kitNumber,
+                                    foot,
+                                    age
+                                );
+                                onSave(newPlayerCard);
                             }}
                         />
                         <Button
@@ -60,7 +92,18 @@ const PlayerForm = (props) => {
                         title="Oyuncuyu Kaydet"
                         color="#fff"
                         onPress={() => {
-                            onSave(name, position, overall);
+                            const newPlayerCard = new PlayerCard(
+                                "",
+                                "",
+                                name,
+                                position,
+                                overall,
+                                "",
+                                kitNumber,
+                                foot,
+                                age
+                            );
+                            onSave(newPlayerCard);
                         }}
                     />
                 )}

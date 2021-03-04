@@ -6,7 +6,7 @@ import PlayerList from "../../components/PlayerList";
 
 const AdminPage = (props) => {
     const navigateToDetail = (id) => {
-        props.navigation.navigate("Player Details", { id: id });
+        props.navigation.push("Player Details", { id: id });
     };
 
     return (
@@ -15,7 +15,6 @@ const AdminPage = (props) => {
         </View>
     );
 };
-
 export const screenOptions = (navData) => {
     return {
         headerTitle: "Admin Page ",

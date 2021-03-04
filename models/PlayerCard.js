@@ -1,6 +1,17 @@
 class PlayerCard {
-    constructor(id, name, position, overall, image, kitNumber, foot, age) {
+    constructor(
+        id,
+        playerID,
+        name,
+        position,
+        overall,
+        image,
+        kitNumber,
+        foot,
+        age
+    ) {
         this.id = id;
+        this.playerID = playerID;
         this.name = name;
         this.position = position;
         this.overall = overall;

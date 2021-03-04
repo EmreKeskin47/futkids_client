@@ -3,7 +3,7 @@ export const CREATE_PLAYER_DETAILS = "CREATE_PLAYER_DETAILS";
 export const UPDATE_PLAYER_DETAILS = "UPDATE_PLAYER_DETAILS";
 
 import API from "../../constants/ApiUrl";
-const BASE_URL = `${API}/details`;
+const BASE_URL = `${API}/detail`;
 
 //Getting details of specified player
 export const fetchPlayerDetails = (playerID) => {

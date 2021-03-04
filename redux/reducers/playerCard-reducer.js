@@ -17,17 +17,9 @@ export default (state = initialState, action) => {
         case FETCH_PLAYER_CARD:
             return { playerCards: action.playerCards };
         case ADD_PLAYER_CARD:
-            const newPlayerCard = new PlayerCard(
-                action.playerCardData.id,
-                action.playerCardData.name,
-                action.playerCardData.position,
-                action.playerCardData.overall,
-                action.playerCardData.image,
-                action.playerCardData.kitNumber,
-                action.playerCardData.foot,
-                action.playerCardData.age
-            );
-            return { playerCards: state.playerCards.concat(newPlayerCard) };
+            return {
+                playerCards: state.playerCards.concat(action.newPlayerCard),
+            };
         case DELETE_PLAYER_CARD:
             return {
                 ...state,
@@ -40,8 +32,9 @@ export default (state = initialState, action) => {
                 (player) => player.id === action.pid
             );
             const updatedPlayerCard = new PlayerCard(
-                action.pid,
+                action.playerCardData._id,
                 action.playerCardData.name,
+                action.playerCardData.playerID,
                 action.playerCardData.position,
                 action.playerCardData.overall,
                 action.playerCardData.image,

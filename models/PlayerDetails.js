@@ -1,5 +1,6 @@
 class PlayerDetails {
     constructor(
+        id,
         playerID,
         phone,
         email,
@@ -9,6 +10,7 @@ class PlayerDetails {
         attributesId,
         statisticsId
     ) {
+        this.id = id;
         this.playerID = playerID;
         this.phone = phone;
         this.email = email;

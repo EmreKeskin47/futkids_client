@@ -4,25 +4,43 @@ import Colors from "../../constants/Colors";
 import { useDispatch } from "react-redux";
 import * as playerCardActions from "../../redux/actions/playerCard-action";
 import PlayerForm from "../../components/PlayerForm";
+import PlayerCard from "../../models/PlayerCard";
 
 const NewPlayerPage = (props) => {
     const dispatch = useDispatch();
-    const onSave = (playerName, position, overall) => {
+
+    const onSave = (playerCardToCreate) => {
         dispatch(
-            playerCardActions.addPlayerCard(playerName, position, overall)
+            playerCardActions.addPlayerCard(
+                "12",
+                playerCardToCreate.name,
+                playerCardToCreate.position,
+                playerCardToCreate.overall,
+                "image",
+                playerCardToCreate.kitNumber,
+                playerCardToCreate.foot,
+                playerCardToCreate.age
+            )
         );
         props.navigation.pop();
     };
 
+    const emptyPlayerCard = new PlayerCard(
+        "",
+        "",
+        "",
+        "ATT",
+        "",
+        "",
+        "",
+        "",
+        ""
+    );
+
     return (
         <View style={styles.container}>
             <Text style={styles.formLabel}> Yeni Oyuncu </Text>
-            <PlayerForm
-                playerPosition={""}
-                playerName={""}
-                playerOverall={0}
-                onSave={onSave}
-            />
+            <PlayerForm playerCard={emptyPlayerCard} onSave={onSave} />
         </View>
     );
 };

@@ -1,5 +1,6 @@
 class PlayerStatistics {
     constructor(
+        id,
         playerID,
         goals,
         assists,
@@ -10,6 +11,7 @@ class PlayerStatistics {
         form,
         playedMatches
     ) {
+        this.id = id;
         this.playerID = playerID;
         this.goals = goals;
         this.assists = assists;

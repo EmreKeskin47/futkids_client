@@ -49,12 +49,12 @@ export const PlayersAdminNavigator = () => {
                 options={AdminScreenOptions}
             />
             <AdminStackNavigator.Screen
-                name="New Player"
-                component={NewPlayerPage}
-            />
-            <AdminStackNavigator.Screen
                 name="Player Details"
                 component={PlayerDetailsPage}
+            />
+            <AdminStackNavigator.Screen
+                name="New Player"
+                component={NewPlayerPage}
             />
         </AdminStackNavigator.Navigator>
     );

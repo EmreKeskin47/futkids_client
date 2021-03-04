@@ -5,7 +5,7 @@ export const UPDATE_PLAYER_ATTRIBUTE = "UPDATE_PLAYER_ATTRIBUTE";
 import API from "../../constants/ApiUrl";
 
 import PlayerAttribute from "../../models/PlayerAttribute";
-const BASE_URL = `${API}/attributes`;
+const BASE_URL = `${API}/attribute`;
 
 //Getting attributes of specified player
 export const fetchPlayerAttributes = (playerID) => {
