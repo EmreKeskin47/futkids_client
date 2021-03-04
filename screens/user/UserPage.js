@@ -1,19 +1,23 @@
 import React from "react";
-import { View, Text, Platform, StyleSheet } from "react-native";
+import { View, Platform, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import HeaderButton from "../components/HeaderButton";
+import HeaderButton from "../../components/HeaderButton";
+import PlayerList from "../../components/PlayerList";
 
-const HomePage = () => {
+const UserPage = (props) => {
+    const navigateToProfile = (id) => {
+        props.navigation.navigate("Player Profile", { id: id });
+    };
     return (
         <View style={styles.root}>
-            <Text>Home Page</Text>
+            <PlayerList navigate={navigateToProfile} />
         </View>
     );
 };
 
 export const screenOptions = (navData) => {
     return {
-        headerTitle: "Home Page",
+        headerTitle: "User PlayerList Page",
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
@@ -33,8 +37,6 @@ export const screenOptions = (navData) => {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
     },
 });
-export default HomePage;
+export default UserPage;

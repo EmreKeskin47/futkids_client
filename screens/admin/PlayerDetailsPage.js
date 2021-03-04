@@ -1,44 +1,54 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import PlayerForm from "../components/PlayerForm";
-import * as playerActions from "../store/players-action";
+import PlayerForm from "../../components/PlayerForm";
+import * as playerCardActions from "../../redux/actions/playerCard-action";
 
 const PlayerDetailsPage = ({ route, navigation }) => {
     const { id } = route.params;
+
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(playerActions.getPlayerInfo(id));
+        dispatch(playerCardActions.getPlayerCardInfo(id));
     }, [dispatch]);
 
-    const player = useSelector((state) => state.playerStore.selectedPlayer);
-    if (!player) {
+    const playerCard = useSelector(
+        (state) => state.playerCardStore.selectedPlayerCard
+    );
+    if (!playerCard) {
         return (
             <View style={styles.text}>
                 <Text>No Player Screen</Text>
             </View>
         );
     } else {
-        const { playerName, playerPosition, overall } = player;
-        const onSave = (playerName, position, overall) => {
+        const { name, position, overall } = playerCard;
+        const onSave = (playerCardToCreate) => {
             dispatch(
-                playerActions.updatePlayer(id, playerName, position, overall)
+                playerCardActions.updatePlayerCard(
+                    id,
+                    playerCardToCreate.name,
+                    playerCardToCreate.position,
+                    playerCardToCreate.overall,
+                    "image",
+                    playerCardToCreate.kitNumber,
+                    playerCardToCreate.foot,
+                    playerCardToCreate.age
+                )
             );
             navigation.navigate("Admin Page");
         };
 
         const onDelete = () => {
-            dispatch(playerActions.deletePlayer(id));
+            dispatch(playerCardActions.deletePlayerCard(id));
             navigation.navigate("Admin Page");
         };
 
         return (
             <View style={{ flex: 1 }}>
                 <PlayerForm
-                    playerPosition={playerPosition}
-                    playerName={playerName}
-                    playerOverall={overall}
+                    playerCard={playerCard}
                     onSave={onSave}
                     onDelete={onDelete}
                 />

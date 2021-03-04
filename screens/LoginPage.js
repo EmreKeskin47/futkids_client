@@ -1,19 +1,20 @@
 import React from "react";
-import { View, Text, Platform, StyleSheet } from "react-native";
+import { View, Platform, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
+import AuthForm from "../components/AuthForm";
 
-const HomePage = () => {
+const LoginPage = () => {
     return (
         <View style={styles.root}>
-            <Text>Home Page</Text>
+            <AuthForm />
         </View>
     );
 };
 
 export const screenOptions = (navData) => {
     return {
-        headerTitle: "Home Page",
+        headerTitle: "Login Page",
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
@@ -33,8 +34,6 @@ export const screenOptions = (navData) => {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
     },
 });
-export default HomePage;
+export default LoginPage;

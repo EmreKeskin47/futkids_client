@@ -6,15 +6,25 @@ import { Platform } from "react-native";
 import Colors from "../constants/Colors";
 import AdminPage, {
     screenOptions as AdminScreenOptions,
-} from "../screens/AdminPage";
+} from "../screens/admin/AdminPage";
 import HomePage, {
     screenOptions as HomeScreenOptions,
 } from "../screens/HomePage";
 import PlayerDetailsPage, {
     screenOptions as PlayerDetailScreenOptions,
-} from "../screens/PlayerDetailsPage";
-import NewPlayerPage from "../screens/NewPlayerPage";
-import StadiumTest from "../screens/StadiumTest";
+} from "../screens/admin/PlayerDetailsPage";
+import NewPlayerPage from "../screens/admin/NewPlayerPage";
+import StadiumTest, {
+    screenOptions as StadiumTestScreenOptions,
+} from "../screens/StadiumTest";
+import UserPage, {
+    screenOptions as UserScreenOptions,
+} from "../screens/user/UserPage";
+import PlayerProfilePage from "../screens/user/PlayerProfile";
+import VotePage from "../screens/user/VotePage";
+import LoginPage, {
+    screenOptions as LoginScreenOptions,
+} from "../screens/LoginPage";
 
 const defaultNavOptions = {
     headerStyle: {
@@ -29,31 +39,28 @@ const defaultNavOptions = {
     headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
 };
 
-const PlayersStackNavigator = createStackNavigator();
-
+const AdminStackNavigator = createStackNavigator();
 export const PlayersAdminNavigator = () => {
     return (
-        <PlayersStackNavigator.Navigator screenOptions={defaultNavOptions}>
-            <PlayersStackNavigator.Screen
+        <AdminStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <AdminStackNavigator.Screen
                 name="Admin Page"
                 component={AdminPage}
                 options={AdminScreenOptions}
             />
-            <MenuDrawerNavigator.Screen
+            <AdminStackNavigator.Screen
+                name="Player Details"
+                component={PlayerDetailsPage}
+            />
+            <AdminStackNavigator.Screen
                 name="New Player"
                 component={NewPlayerPage}
             />
-            <PlayersStackNavigator.Screen
-                name="Player Details"
-                component={PlayerDetailsPage}
-                options={PlayerDetailScreenOptions}
-            />
-        </PlayersStackNavigator.Navigator>
+        </AdminStackNavigator.Navigator>
     );
 };
 
 const HomeStackNavigator = createStackNavigator();
-
 export const HomePageNavigator = () => {
     return (
         <HomeStackNavigator.Navigator screenOptions={defaultNavOptions}>
@@ -66,8 +73,37 @@ export const HomePageNavigator = () => {
     );
 };
 
-const MenuDrawerNavigator = createDrawerNavigator();
+const UserStackNavigator = createStackNavigator();
+export const UserNavigator = () => {
+    return (
+        <UserStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <UserStackNavigator.Screen
+                name="User Player List"
+                component={UserPage}
+                options={UserScreenOptions}
+            />
+            <UserStackNavigator.Screen
+                name="Player Profile"
+                component={PlayerProfilePage}
+            />
+        </UserStackNavigator.Navigator>
+    );
+};
 
+const AuthStackNavigator = createStackNavigator();
+export const AuthNavigator = () => {
+    return (
+        <AuthStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <AuthStackNavigator.Screen
+                name="Login Page"
+                component={LoginPage}
+                options={LoginScreenOptions}
+            />
+        </AuthStackNavigator.Navigator>
+    );
+};
+
+const MenuDrawerNavigator = createDrawerNavigator();
 export const MenuNavigator = () => {
     return (
         <MenuDrawerNavigator.Navigator screenOptions={defaultNavOptions}>
@@ -79,7 +115,20 @@ export const MenuNavigator = () => {
                 name="Admin Page"
                 component={PlayersAdminNavigator}
             />
-            <MenuDrawerNavigator.Screen name="Test" component={StadiumTest} />
+            <MenuDrawerNavigator.Screen
+                name="User Page"
+                component={UserNavigator}
+            />
+            <MenuDrawerNavigator.Screen
+                name="Login Page"
+                component={AuthNavigator}
+            />
+            <MenuDrawerNavigator.Screen
+                name="LineUp Test"
+                component={StadiumTest}
+                screenOptions={StadiumTestScreenOptions}
+            />
+            <MenuDrawerNavigator.Screen name="Vote Page" component={VotePage} />
         </MenuDrawerNavigator.Navigator>
     );
 };

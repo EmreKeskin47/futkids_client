@@ -1,17 +1,9 @@
 import React, { useState } from "react";
-import { Provider } from "react-redux";
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import ReduxThunk from "redux-thunk";
 import AppNavigator from "./navigation/AppNavigator";
-import playersReducer from "./store/players-reducer";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
-
-const rootReducer = combineReducers({
-    playerStore: playersReducer,
-});
-
-const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const fetchFonts = () => {
     return Font.loadAsync({
