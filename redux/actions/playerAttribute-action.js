@@ -1,6 +1,7 @@
 export const GET_ATTRIBUTES_OF_PLAYER = "GET_ATTRIBUTES_OF_PLAYER";
 export const CREATE_PLAYER_ATTRIBUTE = "CREATE_PLAYER_ATTRIBUTE";
 export const UPDATE_PLAYER_ATTRIBUTE = "UPDATE_PLAYER_ATTRIBUTE";
+export const DELETE_PLAYER_ATTRIBUTE = "DELETE_PLAYER_ATTRIBUTE";
 
 import API from "../../constants/ApiUrl";
 
@@ -17,10 +18,21 @@ export const fetchPlayerAttributes = (playerID) => {
             }
 
             const resData = await response.json();
+            const loadedAttribute = new PlayerAttribute(
+                resData._id,
+                resData.playerID,
+                resData.pace,
+                resData.shooting,
+                resData.passing,
+                resData.dribbling,
+                resData.defending,
+                resData.physical,
+                resData.goalKeeper
+            );
 
             dispatch({
                 type: GET_ATTRIBUTES_OF_PLAYER,
-                selectedPlayerAttribute: resData,
+                selectedPlayerAttribute: loadedAttribute,
             });
         } catch (err) {
             throw new Error("Can not SET attributes of the player");
@@ -40,6 +52,7 @@ export const createPlayerAttribute = (
     goalKeeper
 ) => {
     return async (dispatch) => {
+        playerID = "12";
         try {
             const response = await fetch(BASE_URL, {
                 method: "POST",
@@ -61,19 +74,20 @@ export const createPlayerAttribute = (
                 throw new Error("Can not POST new player attribute");
             }
             const resData = await response.json();
+            const newAttribute = new PlayerAttribute(
+                resData._id,
+                resData.playerID,
+                resData.pace,
+                resData.shooting,
+                resData.passing,
+                resData.dribbling,
+                resData.defending,
+                resData.physical,
+                resData.goalKeeper
+            );
             dispatch({
                 type: CREATE_PLAYER_ATTRIBUTE,
-                selectedPlayerAttribute: {
-                    id: resData.data._id,
-                    playerID: playerID,
-                    pace: pace,
-                    shooting: shooting,
-                    passing: passing,
-                    dribbling: dribbling,
-                    defending: defending,
-                    physical: physical,
-                    goalKeeper: goalKeeper,
-                },
+                selectedPlayerAttribute: newAttribute,
             });
         } catch (err) {
             throw new Error("Can not CREATE new player attribute");
@@ -114,22 +128,37 @@ export const updatePlayerAttribute = (
                 throw new Error("Can not PATCH player attribute");
             }
             const resData = await response.json();
+
+            const updatedAttribute = new PlayerAttribute(
+                resData._id,
+                resData.playerID,
+                resData.pace,
+                resData.shooting,
+                resData.passing,
+                resData.dribbling,
+                resData.defending,
+                resData.physical,
+                resData.goalKeeper
+            );
             dispatch({
                 type: UPDATE_PLAYER_ATTRIBUTE,
-                selectedPlayerAttribute: {
-                    id: resData.data._id,
-                    playerID: playerID,
-                    pace: pace,
-                    shooting: shooting,
-                    passing: passing,
-                    dribbling: dribbling,
-                    defending: defending,
-                    physical: physical,
-                    goalKeeper: goalKeeper,
-                },
+                selectedPlayerAttribute: updatedAttribute,
             });
         } catch (err) {
             throw new Error("Can not UPDATE new player attribute");
         }
+    };
+};
+
+//Deletes attribute for the given playerID
+export const deletePlayerAttribute = (playerID) => {
+    return async (dispatch) => {
+        const response = await fetch(`${BASE_URL}/${playerID}`, {
+            method: "DELETE",
+        });
+        if (!response.ok) {
+            throw new Error("Can not DELETE player ");
+        }
+        dispatch({ type: DELETE_PLAYER_ATTRIBUTE, pid: playerID });
     };
 };

@@ -3,9 +3,13 @@ import { StyleSheet, View, TextInput, Button } from "react-native";
 import { Picker } from "@react-native-community/picker";
 import Colors from "../constants/Colors";
 import PlayerCard from "../models/PlayerCard";
+import PlayerAttribute from "../models/PlayerAttribute";
+import { ScrollView } from "react-native-gesture-handler";
 
 const PlayerForm = (props) => {
-    const { playerCard, onSave } = props;
+    const { playerAttribute, playerCard, onSave } = props;
+
+    //Player Card
     const [position, setPosition] = useState(playerCard.position);
     const [name, setName] = useState(playerCard.name);
     const [overall, setOverall] = useState(playerCard.overall);
@@ -13,9 +17,18 @@ const PlayerForm = (props) => {
     const [age, setAge] = useState(playerCard.age);
     const [foot, setFoot] = useState(playerCard.foot);
 
+    //Player Attribute
+    const [pace, setPace] = useState(playerAttribute.pace);
+    const [shooting, setShooting] = useState(playerAttribute.shooting);
+    const [passing, setPassing] = useState(playerAttribute.passing);
+    const [dribbling, setDribbling] = useState(playerAttribute.dribbling);
+    const [defending, setDefending] = useState(playerAttribute.defending);
+    const [physical, setPhysical] = useState(playerAttribute.physical);
+    const [goalKeeper, setGoalKeeper] = useState(playerAttribute.goalKeeper);
+
     return (
         <View style={styles.container}>
-            <View>
+            <ScrollView>
                 <TextInput
                     placeholder="İsim"
                     style={styles.inputStyle}
@@ -59,8 +72,51 @@ const PlayerForm = (props) => {
                     defaultValue={age}
                 />
 
+                <TextInput
+                    placeholder="Pace"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setPace(text)}
+                    defaultValue={pace}
+                />
+                <TextInput
+                    placeholder="Shooting"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setShooting(text)}
+                    defaultValue={shooting}
+                />
+                <TextInput
+                    placeholder="Passing"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setPassing(text)}
+                    defaultValue={passing}
+                />
+                <TextInput
+                    placeholder="Physical"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setPhysical(text)}
+                    defaultValue={physical}
+                />
+                <TextInput
+                    placeholder="Defending"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setDefending(text)}
+                    defaultValue={defending}
+                />
+                <TextInput
+                    placeholder="GoalKeep"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setGoalKeeper(text)}
+                    defaultValue={goalKeeper}
+                />
+                <TextInput
+                    placeholder="Dribbling"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setDribbling(text)}
+                    defaultValue={dribbling}
+                />
+
                 {props.onDelete ? (
-                    <View>
+                    <View style={styles.button}>
                         <Button
                             title="Değişiklikleri Kaydet"
                             color="#fff"
@@ -76,7 +132,18 @@ const PlayerForm = (props) => {
                                     foot,
                                     age
                                 );
-                                onSave(newPlayerCard);
+                                const newPlayerAttribute = new PlayerAttribute(
+                                    "",
+                                    playerAttribute.playerID,
+                                    pace,
+                                    shooting,
+                                    passing,
+                                    dribbling,
+                                    defending,
+                                    physical,
+                                    goalKeeper
+                                );
+                                onSave(newPlayerCard, newPlayerAttribute);
                             }}
                         />
                         <Button
@@ -88,26 +155,39 @@ const PlayerForm = (props) => {
                         />
                     </View>
                 ) : (
-                    <Button
-                        title="Oyuncuyu Kaydet"
-                        color="#fff"
-                        onPress={() => {
-                            const newPlayerCard = new PlayerCard(
-                                "",
-                                "",
-                                name,
-                                position,
-                                overall,
-                                "",
-                                kitNumber,
-                                foot,
-                                age
-                            );
-                            onSave(newPlayerCard);
-                        }}
-                    />
+                    <View style={styles.button}>
+                        <Button
+                            title="Oyuncuyu Kaydet"
+                            color="#fff"
+                            onPress={() => {
+                                const newPlayerCard = new PlayerCard(
+                                    "",
+                                    "12",
+                                    name,
+                                    position,
+                                    overall,
+                                    "",
+                                    kitNumber,
+                                    foot,
+                                    age
+                                );
+                                const newPlayerAttribute = new PlayerAttribute(
+                                    "",
+                                    "12",
+                                    pace,
+                                    shooting,
+                                    passing,
+                                    dribbling,
+                                    defending,
+                                    physical,
+                                    goalKeeper
+                                );
+                                onSave(newPlayerCard, newPlayerAttribute);
+                            }}
+                        />
+                    </View>
                 )}
-            </View>
+            </ScrollView>
         </View>
     );
 };
@@ -136,6 +216,9 @@ const styles = StyleSheet.create({
     text: {
         color: "#fff",
         fontSize: 25,
+    },
+    button: {
+        paddingVertical: 40,
     },
 });
 

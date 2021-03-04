@@ -151,7 +151,7 @@ export const updatePlayerCard = (
         }
         const resData = await response.json();
         const updatedPlayerCard = new PlayerCard(
-            "resData._id",
+            resData._id,
             playerID,
             name,
             position,
