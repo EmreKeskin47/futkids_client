@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TextInput, Button } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
+import { TextInput } from "react-native-paper";
 import { Picker } from "@react-native-community/picker";
 import Colors from "../constants/Colors";
 import PlayerCard from "../models/PlayerCard";
@@ -30,13 +31,13 @@ const PlayerForm = (props) => {
         <View style={styles.container}>
             <ScrollView>
                 <TextInput
-                    placeholder="İsim"
+                    label=" İsim Soyisim"
                     style={styles.inputStyle}
                     onChangeText={(text) => setName(text)}
                     defaultValue={name}
                 />
                 <TextInput
-                    placeholder="Puan"
+                    label="Puan"
                     style={styles.inputStyle}
                     onChangeText={(text) => setOverall(text)}
                     defaultValue={overall}
@@ -54,65 +55,67 @@ const PlayerForm = (props) => {
                     <Picker.Item label="ATT" value="ATT" />
                 </Picker>
                 <TextInput
-                    placeholder="Kit Number"
+                    label="Forma Numarası"
                     style={styles.inputStyle}
                     onChangeText={(text) => setKitNumber(text)}
                     defaultValue={kitNumber}
                 />
                 <TextInput
-                    placeholder="Foot"
+                    label="Ayak"
                     style={styles.inputStyle}
                     onChangeText={(text) => setFoot(text)}
                     defaultValue={foot}
                 />
                 <TextInput
-                    placeholder="Age"
+                    label="Age"
                     style={styles.inputStyle}
                     onChangeText={(text) => setAge(text)}
                     defaultValue={age}
                 />
 
+                {/* Player Attributes */}
+
                 <TextInput
-                    placeholder="Pace"
+                    label="Pace"
                     style={styles.inputStyle}
                     onChangeText={(text) => setPace(text)}
-                    defaultValue={pace}
+                    defaultValue={pace + ""}
                 />
                 <TextInput
-                    placeholder="Shooting"
+                    label="Shooting"
                     style={styles.inputStyle}
                     onChangeText={(text) => setShooting(text)}
-                    defaultValue={shooting}
+                    defaultValue={shooting + ""}
                 />
                 <TextInput
-                    placeholder="Passing"
+                    label="Passing"
                     style={styles.inputStyle}
                     onChangeText={(text) => setPassing(text)}
-                    defaultValue={passing}
+                    defaultValue={passing + ""}
                 />
                 <TextInput
-                    placeholder="Physical"
+                    label="Physical"
                     style={styles.inputStyle}
                     onChangeText={(text) => setPhysical(text)}
-                    defaultValue={physical}
+                    defaultValue={physical + ""}
                 />
                 <TextInput
-                    placeholder="Defending"
+                    label="Defending"
                     style={styles.inputStyle}
                     onChangeText={(text) => setDefending(text)}
-                    defaultValue={defending}
+                    defaultValue={defending + ""}
                 />
                 <TextInput
-                    placeholder="GoalKeep"
+                    label="GoalKeep"
                     style={styles.inputStyle}
                     onChangeText={(text) => setGoalKeeper(text)}
-                    defaultValue={goalKeeper}
+                    defaultValue={goalKeeper + ""}
                 />
                 <TextInput
-                    placeholder="Dribbling"
+                    label="Dribbling"
                     style={styles.inputStyle}
                     onChangeText={(text) => setDribbling(text)}
-                    defaultValue={dribbling}
+                    defaultValue={dribbling + ""}
                 />
 
                 {props.onDelete ? (
@@ -198,14 +201,11 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.primary,
         alignItems: "center",
         justifyContent: "center",
+        paddingVertical: 35,
     },
     inputStyle: {
         marginTop: 20,
         width: 300,
-        height: 40,
-        paddingHorizontal: 10,
-        borderRadius: 50,
-        backgroundColor: "#fff",
     },
     formText: {
         alignItems: "center",
