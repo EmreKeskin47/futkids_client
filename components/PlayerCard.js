@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Card, CardItem } from "native-base";
 import Colors from "../constants/Colors";
@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
 
 const PlayerCard = (props) => {
-    const tempID = "12";
     let tempRenderCondition = false;
     const dispatch = useDispatch();
+
     useEffect(() => {
-        dispatch(playerAttributeActions.fetchPlayerAttributes(tempID));
+        dispatch(playerAttributeActions.fetchPlayerAttributes(props.playerID));
     }, [dispatch]);
     const attr = useSelector(
         (state) => state.playerAttributeStore.selectedPlayerAttribute
@@ -52,12 +52,6 @@ const PlayerCard = (props) => {
         </View>
     );
 };
-
-{
-    /**
-    
- */
-}
 
 const styles = StyleSheet.create({
     attrs: {

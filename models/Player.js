@@ -1,3 +1,8 @@
 class Player {
-    constructor(id,playerID,username,password)
+    constructor(id, email, playerCardID, playerAttributeID) {
+        this.id = id;
+        this.email = email;
+        this.playerCardID = playerCardID;
+        this.playerAttributeID = playerAttributeID;
+    }
 }

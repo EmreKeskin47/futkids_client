@@ -6,7 +6,7 @@ import {
 import PlayerStatistics from "../../models/PlayerStatistics";
 
 const initialState = {
-    selectedPlayerStatistics: null,
+    selectedPlayerStatistics: {},
 };
 
 export default (state = initialState, action) => {

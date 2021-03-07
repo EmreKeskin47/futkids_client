@@ -111,7 +111,7 @@ export const deletePlayerCard = (playerID) => {
             method: "DELETE",
         });
         if (!response.ok) {
-            throw new Error("Can not DELETE player ");
+            throw new Error("Can not DELETE player card ");
         }
         dispatch({ type: DELETE_PLAYER_CARD, pid: playerID });
     };

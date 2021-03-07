@@ -4,16 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import PlayerForm from "../../components/PlayerForm";
 import * as playerCardActions from "../../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../../redux/actions/playerAttribute-action";
+import * as playerActions from "../../redux/actions/player-actions";
 
 const PlayerDetailsPage = ({ route, navigation }) => {
     const { id } = route.params;
-    const tempID = "12";
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(playerCardActions.getPlayerCardInfo(id));
-        dispatch(playerAttributeActions.fetchPlayerAttributes(tempID));
+        dispatch(playerAttributeActions.fetchPlayerAttributes(id));
     }, [dispatch]);
 
     const playerCard = useSelector(
@@ -33,7 +33,7 @@ const PlayerDetailsPage = ({ route, navigation }) => {
         const onSave = (playerCardToCreate, attributeToCreate) => {
             dispatch(
                 playerCardActions.updatePlayerCard(
-                    id,
+                    playerCardToCreate.playerID,
                     playerCardToCreate.name,
                     playerCardToCreate.position,
                     playerCardToCreate.overall,
@@ -55,13 +55,12 @@ const PlayerDetailsPage = ({ route, navigation }) => {
                     attributeToCreate.goalKeeper
                 )
             );
-            navigation.navigate("Admin Page");
+            navigation.push("Admin Page");
         };
 
         const onDelete = () => {
-            dispatch(playerCardActions.deletePlayerCard(id));
-            dispatch(playerAttributeActions.deletePlayerAttribute(tempID));
-            navigation.navigate("Admin Page");
+            dispatch(playerActions.deletePlayer(id));
+            navigation.push("Admin Page");
         };
 
         return (

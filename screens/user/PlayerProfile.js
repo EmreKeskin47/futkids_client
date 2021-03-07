@@ -18,16 +18,13 @@ import * as playerDetailsActions from "../../redux/actions/playerDetails-action"
 
 const PlayerProfilePage = ({ route, navigation }) => {
     const image = require("../../assets/background-image.jpg");
-
-    const tempID = 13;
     const { id } = route.params;
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(playerCardActions.getPlayerCardInfo(id));
-        dispatch(playerAttributeActions.fetchPlayerAttributes(tempID));
-        dispatch(playerStaticsActions.fetchPlayerStatistics(tempID));
-        dispatch(playerDetailsActions.fetchPlayerDetails(tempID));
+        dispatch(playerAttributeActions.fetchPlayerAttributes(id));
+        dispatch(playerStaticsActions.fetchPlayerStatistics(id));
     }, [dispatch]);
 
     const playerCard = useSelector(
@@ -42,11 +39,7 @@ const PlayerProfilePage = ({ route, navigation }) => {
         (state) => state.playerStatisticsStore.selectedPlayerStatistics
     );
 
-    const details = useSelector(
-        (state) => state.playerDetailsStore.selectedPlayerDetails
-    );
-
-    if (!playerCard || !attr || !stats || !details) {
+    if (!playerCard || !attr || !stats) {
         return (
             <View style={styles.notFound}>
                 <Text>No Player Selected</Text>
@@ -76,16 +69,6 @@ const PlayerProfilePage = ({ route, navigation }) => {
             playedMatches,
         } = stats;
 
-        const {
-            phone,
-            email,
-            height,
-            weight,
-            playerCardId,
-            attributesId,
-            statisticsId,
-        } = details;
-
         return (
             <View style={styles.root}>
                 <ScrollView>
@@ -95,8 +78,6 @@ const PlayerProfilePage = ({ route, navigation }) => {
                             position={position}
                             overall={overall}
                             kitNumber={kitNumber}
-                            weight={weight}
-                            height={height}
                             age={age}
                             foot={foot}
                         />
@@ -110,17 +91,17 @@ const PlayerProfilePage = ({ route, navigation }) => {
                                 physical={physical}
                                 goalKeeper={goalKeeper}
                             />
+                            <PlayerStats
+                                goals={goals}
+                                assists={assists}
+                                red={red}
+                                yellow={yellow}
+                                motm={motm}
+                                cleanSheet={cleanSheet}
+                                form={form}
+                                playedMatches={playedMatches}
+                            />
                         </View>
-                        <PlayerStats
-                            goals={goals}
-                            assists={assists}
-                            red={red}
-                            yellow={yellow}
-                            motm={motm}
-                            cleanSheet={cleanSheet}
-                            form={form}
-                            playedMatches={playedMatches}
-                        />
                     </ImageBackground>
                 </ScrollView>
             </View>
@@ -189,4 +170,38 @@ const styles = StyleSheet.create({
     },
 });
 
+{
+    /*
+    dispatch(playerDetailsActions.fetchPlayerDetails(tempID));
+
+    const details = useSelector(
+        (state) => state.playerDetailsStore.selectedPlayerDetails
+    
+    );
+
+        const {
+            phone,
+            email,
+            height,
+            weight,
+            playerCardId,
+            attributesId,
+            statisticsId,
+        } = details;
+
+        <PlayerInfo
+                            name={name}
+                            position={position}
+                            overall={overall}
+                            kitNumber={kitNumber}
+                            weight={weight}
+                            height={height}
+                            age={age}
+                            foot={foot}
+                        />
+
+        
+
+*/
+}
 export default PlayerProfilePage;

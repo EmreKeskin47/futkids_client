@@ -35,7 +35,7 @@ export const fetchPlayerAttributes = (playerID) => {
                 selectedPlayerAttribute: loadedAttribute,
             });
         } catch (err) {
-            throw new Error("Can not SET attributes of the player");
+            throw new Error(err);
         }
     };
 };
@@ -52,7 +52,6 @@ export const createPlayerAttribute = (
     goalKeeper
 ) => {
     return async (dispatch) => {
-        playerID = "12";
         try {
             const response = await fetch(BASE_URL, {
                 method: "POST",
