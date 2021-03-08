@@ -1,6 +1,7 @@
 import {
     CREATE_PLAYER_ATTRIBUTE,
     DELETE_PLAYER_ATTRIBUTE,
+    GET_ALL_ATTRIBUTES,
     GET_ATTRIBUTES_OF_PLAYER,
     UPDATE_PLAYER_ATTRIBUTE,
 } from "../actions/playerAttribute-action";
@@ -8,11 +9,14 @@ import {
 import PlayerAttribute from "../../models/PlayerAttribute";
 
 const initialState = {
+    playerAttributes: [],
     selectedPlayerAttribute: {},
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case GET_ALL_ATTRIBUTES:
+            return { playerAttributes: action.attributes };
         case GET_ATTRIBUTES_OF_PLAYER:
             return { selectedPlayerAttribute: action.selectedPlayerAttribute };
         case CREATE_PLAYER_ATTRIBUTE:

@@ -3,17 +3,23 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/PlayerCard";
 import * as playerCardActions from "../redux/actions/playerCard-action";
+import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const PlayerList = (props) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(playerCardActions.fetchPlayerCards());
+        dispatch(playerAttributeActions.getAllAttributes());
     }, [dispatch]);
 
     const [selectedPlayerID, setSelectedPlayerID] = useState("");
     const playerCards = useSelector(
         (state) => state.playerCardStore.playerCards
+    );
+
+    const attrList = useSelector(
+        (state) => state.playerAttributeStore.playerAttributes
     );
 
     if (playerCards.length === 0) {
@@ -27,10 +33,17 @@ const PlayerList = (props) => {
             <View style={styles.container}>
                 <FlatList
                     data={playerCards}
+                    extraData={attrList}
                     keyExtractor={(item) => {
                         return item.playerID;
                     }}
                     renderItem={({ item }) => {
+                        if (attrList) {
+                            var attr = attrList.filter((attr) => {
+                                return attr.playerID === item.playerID;
+                            });
+                            attr = attr[0];
+                        }
                         return (
                             <TouchableOpacity
                                 onPress={() => {
@@ -44,6 +57,7 @@ const PlayerList = (props) => {
                                     playerName={item.name}
                                     playerPosition={item.position}
                                     overall={item.overall}
+                                    attr={attr}
                                 />
                             </TouchableOpacity>
                         );

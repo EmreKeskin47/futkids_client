@@ -2,11 +2,47 @@ export const GET_ATTRIBUTES_OF_PLAYER = "GET_ATTRIBUTES_OF_PLAYER";
 export const CREATE_PLAYER_ATTRIBUTE = "CREATE_PLAYER_ATTRIBUTE";
 export const UPDATE_PLAYER_ATTRIBUTE = "UPDATE_PLAYER_ATTRIBUTE";
 export const DELETE_PLAYER_ATTRIBUTE = "DELETE_PLAYER_ATTRIBUTE";
+export const GET_ALL_ATTRIBUTES = "GET_ALL_ATTRIBUTES";
 
 import API from "../../constants/ApiUrl";
 
 import PlayerAttribute from "../../models/PlayerAttribute";
 const BASE_URL = `${API}/attribute`;
+
+export const getAllAttributes = () => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch(BASE_URL);
+            if (!response.ok) {
+                throw new Error("Can not get attr list");
+            }
+            const resData = await response.json();
+            const playerAttrs = [];
+
+            for (const key in resData) {
+                playerAttrs.push(
+                    new PlayerAttribute(
+                        resData[key]._id,
+                        resData[key].playerID,
+                        resData[key].pace,
+                        resData[key].shooting,
+                        resData[key].passing,
+                        resData[key].dribbling,
+                        resData[key].defending,
+                        resData[key].physical,
+                        resData[key].goalKeeper
+                    )
+                );
+            }
+            dispatch({
+                type: GET_ALL_ATTRIBUTES,
+                attributes: playerAttrs,
+            });
+        } catch (err) {
+            throw new Error("Can not SET attribute list");
+        }
+    };
+};
 
 //Getting attributes of specified player
 export const fetchPlayerAttributes = (playerID) => {

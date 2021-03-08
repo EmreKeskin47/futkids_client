@@ -14,7 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import * as playerCardActions from "../../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../../redux/actions/playerAttribute-action";
 import * as playerStaticsActions from "../../redux/actions/playerStatistics-action";
-import * as playerDetailsActions from "../../redux/actions/playerDetails-action";
 
 const PlayerProfilePage = ({ route, navigation }) => {
     const image = require("../../assets/background-image.jpg");
@@ -46,61 +45,14 @@ const PlayerProfilePage = ({ route, navigation }) => {
             </View>
         );
     } else {
-        const { name, position, overall, kitNumber, foot, age } = playerCard;
-
-        const {
-            pace,
-            shooting,
-            passing,
-            dribbling,
-            defending,
-            physical,
-            goalKeeper,
-        } = attr;
-
-        const {
-            goals,
-            assists,
-            red,
-            yellow,
-            motm,
-            cleanSheet,
-            form,
-            playedMatches,
-        } = stats;
-
         return (
             <View style={styles.root}>
                 <ScrollView>
                     <ImageBackground source={image} style={styles.image}>
-                        <PlayerInfo
-                            name={name}
-                            position={position}
-                            overall={overall}
-                            kitNumber={kitNumber}
-                            age={age}
-                            foot={foot}
-                        />
+                        <PlayerInfo playerCard={playerCard} />
                         <View style={styles.surround}>
-                            <PlayerAttributes
-                                pace={pace}
-                                shooting={shooting}
-                                passing={passing}
-                                dribbling={dribbling}
-                                defending={defending}
-                                physical={physical}
-                                goalKeeper={goalKeeper}
-                            />
-                            <PlayerStats
-                                goals={goals}
-                                assists={assists}
-                                red={red}
-                                yellow={yellow}
-                                motm={motm}
-                                cleanSheet={cleanSheet}
-                                form={form}
-                                playedMatches={playedMatches}
-                            />
+                            <PlayerAttributes attr={attr} />
+                            <PlayerStats stats={stats} />
                         </View>
                     </ImageBackground>
                 </ScrollView>

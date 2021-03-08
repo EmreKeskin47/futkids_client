@@ -3,20 +3,13 @@ import { StyleSheet, Text, View } from "react-native";
 import { Card, CardItem } from "native-base";
 import Colors from "../constants/Colors";
 import PlayerSummary from "../components/PlayerSummary";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
 
 const PlayerCard = (props) => {
     let tempRenderCondition = false;
-    const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(playerAttributeActions.fetchPlayerAttributes(props.playerID));
-    }, [dispatch]);
-    const attr = useSelector(
-        (state) => state.playerAttributeStore.selectedPlayerAttribute
-    );
-    if (attr) {
+    if (props.attr) {
         tempRenderCondition = true;
     }
 
@@ -32,16 +25,7 @@ const PlayerCard = (props) => {
 
                 {tempRenderCondition ? (
                     <CardItem>
-                        <PlayerSummary
-                            pace={attr.pace}
-                            shooting={attr.shooting}
-                            passing={attr.passing}
-                            dribbling={attr.dribbling}
-                            defending={attr.defending}
-                            physical={attr.physical}
-                            goalKeeper={attr.goalKeeper}
-                            style={styles.attrs}
-                        />
+                        <PlayerSummary attr={props.attr} style={styles.attrs} />
                     </CardItem>
                 ) : (
                     <CardItem>

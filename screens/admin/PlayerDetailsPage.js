@@ -55,12 +55,12 @@ const PlayerDetailsPage = ({ route, navigation }) => {
                     attributeToCreate.goalKeeper
                 )
             );
-            navigation.push("Admin Page");
+            navigation.navigate("Admin Page");
         };
 
         const onDelete = () => {
             dispatch(playerActions.deletePlayer(id));
-            navigation.push("Admin Page");
+            navigation.navigate("Admin Page");
         };
 
         return (
