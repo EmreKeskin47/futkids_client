@@ -111,7 +111,7 @@ export const deletePlayerCard = (playerID) => {
             method: "DELETE",
         });
         if (!response.ok) {
-            throw new Error("Can not DELETE player ");
+            throw new Error("Can not DELETE player card ");
         }
         dispatch({ type: DELETE_PLAYER_CARD, pid: playerID });
     };
@@ -151,7 +151,7 @@ export const updatePlayerCard = (
         }
         const resData = await response.json();
         const updatedPlayerCard = new PlayerCard(
-            "resData._id",
+            resData._id,
             playerID,
             name,
             position,

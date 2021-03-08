@@ -2,40 +2,51 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 const PlayerStats = (props) => {
+    const {
+        goals,
+        assists,
+        red,
+        yellow,
+        motm,
+        cleanSheet,
+        form,
+        playedMatches,
+    } = props.stats;
+
     return (
         <View style={styles.column}>
             <Text style={styles.itemM}>Istatistik</Text>
             <View style={styles.columnInside}>
                 <Text style={styles.itemL}>Gol</Text>
-                <Text style={styles.itemR}>{props.goals}</Text>
+                <Text style={styles.itemR}>{goals}</Text>
             </View>
             <View style={styles.columnInside}>
                 <Text style={styles.itemL}>Asist</Text>
-                <Text style={styles.itemR}>{props.assists}</Text>
+                <Text style={styles.itemR}>{assists}</Text>
             </View>
             <View style={styles.columnInside}>
                 <Text style={styles.itemL}>Red Card</Text>
-                <Text style={styles.itemR}>{props.red}</Text>
+                <Text style={styles.itemR}>{red}</Text>
             </View>
             <View style={styles.columnInside}>
                 <Text style={styles.itemL}>Yellow Card</Text>
-                <Text style={styles.itemR}>{props.yellow}</Text>
+                <Text style={styles.itemR}>{yellow}</Text>
             </View>
             <View style={styles.columnInside}>
                 <Text style={styles.itemL}>Motm</Text>
-                <Text style={styles.itemR}>{props.motm}</Text>
+                <Text style={styles.itemR}>{motm}</Text>
             </View>
             <View style={styles.columnInside}>
                 <Text style={styles.itemL}>CleanSheet</Text>
-                <Text style={styles.itemR}>{props.cleanSheet}</Text>
+                <Text style={styles.itemR}>{cleanSheet}</Text>
             </View>
             <View style={styles.columnInside}>
                 <Text style={styles.itemL}>Form</Text>
-                <Text style={styles.itemR}>{props.form}</Text>
+                <Text style={styles.itemR}>{form}</Text>
             </View>
             <View style={styles.columnInside}>
                 <Text style={styles.itemL}>PlayedMatches</Text>
-                <Text style={styles.itemR}>{props.playedMatches}</Text>
+                <Text style={styles.itemR}>{playedMatches}</Text>
             </View>
         </View>
     );

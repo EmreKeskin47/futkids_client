@@ -26,7 +26,7 @@ export const fetchPlayerStatistics = (playerID) => {
 };
 
 //Creating new statistics
-export const createPlayerAttribute = (
+export const createPlayerStatistics = (
     playerID,
     goals,
     assists,
