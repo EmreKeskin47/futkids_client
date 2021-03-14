@@ -14,6 +14,7 @@ const PlayerList = (props) => {
     }, [dispatch]);
 
     const [selectedPlayerID, setSelectedPlayerID] = useState("");
+
     const playerCards = useSelector(
         (state) => state.playerCardStore.playerCards
     );
@@ -22,7 +23,7 @@ const PlayerList = (props) => {
         (state) => state.playerAttributeStore.playerAttributes
     );
 
-    if (playerCards.length === 0) {
+    if (playerCards.length === 0 || !attrList) {
         return (
             <View style={styles.noPlayer}>
                 <Text>No player cards exist</Text>

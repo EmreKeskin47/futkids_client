@@ -18,7 +18,8 @@ export default (state = initialState, action) => {
         case GET_ALL_ATTRIBUTES:
             return { playerAttributes: action.attributes };
         case GET_ATTRIBUTES_OF_PLAYER:
-            return { selectedPlayerAttribute: action.selectedPlayerAttribute };
+            state.selectedPlayerAttribute = action.selectedPlayerAttribute;
+            return state;
         case CREATE_PLAYER_ATTRIBUTE:
             return (state.selectedPlayerAttribute =
                 action.selectedPlayerAttribute);
