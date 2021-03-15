@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Button } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Picker } from "@react-native-community/picker";
@@ -10,22 +10,39 @@ import { ScrollView } from "react-native-gesture-handler";
 const PlayerForm = (props) => {
     const { playerAttribute, playerCard, onSave } = props;
 
+    useEffect(() => {
+        setName(playerCard.name);
+        setPosition(playerCard.position);
+        setOverall(playerCard.overall);
+        setKitNumber(playerCard.kitNumber);
+        setAge(playerCard.age);
+        setFoot(playerCard.foot);
+
+        setPace(playerAttribute.pace + "");
+        setShooting(playerAttribute.shooting + "");
+        setPassing(playerAttribute.passing + "");
+        setDribbling(playerAttribute.dribbling + "");
+        setDefending(playerAttribute.defending + "");
+        setPhysical(playerAttribute.physical + "");
+        setGoalKeeper(playerAttribute.goalKeeper + "");
+    }, [playerCard, playerAttribute]);
+
     //Player Card
-    const [position, setPosition] = useState(playerCard.position);
-    const [name, setName] = useState(playerCard.name);
-    const [overall, setOverall] = useState(playerCard.overall);
-    const [kitNumber, setKitNumber] = useState(playerCard.kitNumber);
-    const [age, setAge] = useState(playerCard.age);
-    const [foot, setFoot] = useState(playerCard.foot);
+    const [name, setName] = useState();
+    const [position, setPosition] = useState();
+    const [overall, setOverall] = useState();
+    const [kitNumber, setKitNumber] = useState();
+    const [age, setAge] = useState();
+    const [foot, setFoot] = useState();
 
     //Player Attribute
-    const [pace, setPace] = useState(playerAttribute.pace);
-    const [shooting, setShooting] = useState(playerAttribute.shooting);
-    const [passing, setPassing] = useState(playerAttribute.passing);
-    const [dribbling, setDribbling] = useState(playerAttribute.dribbling);
-    const [defending, setDefending] = useState(playerAttribute.defending);
-    const [physical, setPhysical] = useState(playerAttribute.physical);
-    const [goalKeeper, setGoalKeeper] = useState(playerAttribute.goalKeeper);
+    const [pace, setPace] = useState();
+    const [shooting, setShooting] = useState();
+    const [passing, setPassing] = useState();
+    const [dribbling, setDribbling] = useState();
+    const [defending, setDefending] = useState();
+    const [physical, setPhysical] = useState();
+    const [goalKeeper, setGoalKeeper] = useState();
 
     return (
         <View style={styles.container}>
@@ -79,43 +96,43 @@ const PlayerForm = (props) => {
                     label="Pace"
                     style={styles.inputStyle}
                     onChangeText={(text) => setPace(text)}
-                    defaultValue={pace + ""}
+                    defaultValue={pace}
                 />
                 <TextInput
                     label="Shooting"
                     style={styles.inputStyle}
                     onChangeText={(text) => setShooting(text)}
-                    defaultValue={shooting + ""}
+                    defaultValue={shooting}
                 />
                 <TextInput
                     label="Passing"
                     style={styles.inputStyle}
                     onChangeText={(text) => setPassing(text)}
-                    defaultValue={passing + ""}
+                    defaultValue={passing}
                 />
                 <TextInput
                     label="Physical"
                     style={styles.inputStyle}
                     onChangeText={(text) => setPhysical(text)}
-                    defaultValue={physical + ""}
+                    defaultValue={physical}
                 />
                 <TextInput
                     label="Defending"
                     style={styles.inputStyle}
                     onChangeText={(text) => setDefending(text)}
-                    defaultValue={defending + ""}
+                    defaultValue={defending}
                 />
                 <TextInput
                     label="GoalKeep"
                     style={styles.inputStyle}
                     onChangeText={(text) => setGoalKeeper(text)}
-                    defaultValue={goalKeeper + ""}
+                    defaultValue={goalKeeper}
                 />
                 <TextInput
                     label="Dribbling"
                     style={styles.inputStyle}
                     onChangeText={(text) => setDribbling(text)}
-                    defaultValue={dribbling + ""}
+                    defaultValue={dribbling}
                 />
 
                 {props.onDelete ? (

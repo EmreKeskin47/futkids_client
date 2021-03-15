@@ -24,25 +24,25 @@ const NewPlayerPage = (props) => {
     const emptyPlayerCard = new PlayerCard(
         "",
         "",
-        "nameTest",
-        "ATT",
-        "test",
-        "test",
-        "test",
-        "test",
-        "test"
+        "",
+        "GK",
+        "",
+        "",
+        "",
+        "",
+        ""
     );
 
     const emptyPlayerAttribute = new PlayerAttribute(
         "",
         "",
-        "12",
-        "12",
-        "12",
-        "12",
-        "12",
-        "12",
-        "12"
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
     );
 
     return (

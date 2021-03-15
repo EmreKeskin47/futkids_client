@@ -18,7 +18,8 @@ export default (state = initialState, action) => {
         case GET_ALL_ATTRIBUTES:
             return { playerAttributes: action.attributes };
         case GET_ATTRIBUTES_OF_PLAYER:
-            return { selectedPlayerAttribute: action.selectedPlayerAttribute };
+            state.selectedPlayerAttribute = action.selectedPlayerAttribute;
+            return state;
         case CREATE_PLAYER_ATTRIBUTE:
             return (state.selectedPlayerAttribute =
                 action.selectedPlayerAttribute);
@@ -26,7 +27,11 @@ export default (state = initialState, action) => {
             selectedPlayerAttribute = {};
             return state;
         case UPDATE_PLAYER_ATTRIBUTE:
+            const playerIndex = state.playerAttributes.findIndex(
+                (player) => player.id === action.pid
+            );
             const updatedAttribute = new PlayerAttribute(
+                action.selectedPlayerAttribute._id,
                 action.selectedPlayerAttribute.playerID,
                 action.selectedPlayerAttribute.pace,
                 action.selectedPlayerAttribute.shooting,
@@ -36,7 +41,8 @@ export default (state = initialState, action) => {
                 action.selectedPlayerAttribute.physical,
                 action.selectedPlayerAttribute.goalKeeper
             );
-            return (state.selectedPlayerAttribute = updatedAttribute);
+            state.playerAttributes[playerIndex] = updatedAttribute;
+            return state;
     }
     return state;
 };
