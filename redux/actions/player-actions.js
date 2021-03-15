@@ -128,12 +128,11 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
                     0
                 )
             );
-
             const newPlayer = new Player(
                 resData.data._id,
-                email,
-                playerCardID,
-                playerAttributeID
+                resData.data.email,
+                resData.data.playerCardID,
+                resData.data.playerAttributeID
             );
 
             dispatch({
@@ -142,6 +141,7 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
                 selectedPlayerID: newPlayer.id,
             });
         } catch (err) {
+            console.log(err);
             throw new Error("Can not ADD new player");
         }
     };

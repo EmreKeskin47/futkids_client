@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/PlayerCard";
@@ -8,12 +8,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 const PlayerList = (props) => {
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(playerCardActions.fetchPlayerCards());
         dispatch(playerAttributeActions.getAllAttributes());
     }, [dispatch]);
-
-    const [selectedPlayerID, setSelectedPlayerID] = useState("");
 
     const playerCards = useSelector(
         (state) => state.playerCardStore.playerCards
@@ -48,8 +47,7 @@ const PlayerList = (props) => {
                         return (
                             <TouchableOpacity
                                 onPress={() => {
-                                    setSelectedPlayerID(item.playerID);
-                                    props.navigate(selectedPlayerID);
+                                    props.navigate(item.playerID);
                                 }}
                             >
                                 <PlayerCard

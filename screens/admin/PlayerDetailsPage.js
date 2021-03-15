@@ -55,17 +55,18 @@ const PlayerDetailsPage = ({ route, navigation }) => {
                     attributeToCreate.goalKeeper
                 )
             );
-            navigation.navigate("Admin Page");
+            navigation.push("Admin Page");
         };
 
         const onDelete = () => {
             dispatch(playerActions.deletePlayer(id));
-            navigation.navigate("Admin Page");
+            navigation.push("Admin Page");
         };
 
         return (
             <View style={{ flex: 1 }}>
                 <PlayerForm
+                    playerID={id}
                     playerCard={playerCard}
                     playerAttribute={playerAttribute}
                     onSave={onSave}

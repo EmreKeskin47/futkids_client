@@ -6,3 +6,4 @@ class Player {
         this.playerAttributeID = playerAttributeID;
     }
 }
+export default Player;
