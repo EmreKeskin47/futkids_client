@@ -122,38 +122,4 @@ const styles = StyleSheet.create({
     },
 });
 
-{
-    /*
-    dispatch(playerDetailsActions.fetchPlayerDetails(tempID));
-
-    const details = useSelector(
-        (state) => state.playerDetailsStore.selectedPlayerDetails
-    
-    );
-
-        const {
-            phone,
-            email,
-            height,
-            weight,
-            playerCardId,
-            attributesId,
-            statisticsId,
-        } = details;
-
-        <PlayerInfo
-                            name={name}
-                            position={position}
-                            overall={overall}
-                            kitNumber={kitNumber}
-                            weight={weight}
-                            height={height}
-                            age={age}
-                            foot={foot}
-                        />
-
-        
-
-*/
-}
 export default PlayerProfilePage;
