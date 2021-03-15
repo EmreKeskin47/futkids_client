@@ -2,45 +2,52 @@ import {
     CREATE_PLAYER_STATISTICS,
     GET_STATISTICS_OF_PLAYER,
     UPDATE_PLAYER_STATISTICS,
+    DELETE_PLAYER_STATISTICS,
+    FETCH_PLAYER_STATISTICS,
 } from "../actions/playerStatistics-action";
 import PlayerStatistics from "../../models/PlayerStatistics";
 
 const initialState = {
+    playerStats: [],
     selectedPlayerStatistics: {},
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case GET_STATISTICS_OF_PLAYER:
-            return {
-                selectedPlayerStatistics: action.selectedPlayerStatistics,
-            };
+        case FETCH_PLAYER_STATISTICS:
+            return { playerStats: action.playerStats };
         case CREATE_PLAYER_STATISTICS:
-            const newStats = new PlayerStatistics(
-                action.selectedPlayerStatistics.playerID,
-                action.selectedPlayerStatistics.goals,
-                action.selectedPlayerStatistics.assists,
-                action.selectedPlayerStatistics.red,
-                action.selectedPlayerStatistics.yellow,
-                action.selectedPlayerStatistics.motm,
-                action.selectedPlayerStatistics.cleanSheet,
-                action.selectedPlayerStatistics.form,
-                action.selectedPlayerStatistics.playedMatches
-            );
-            return (state.selectedPlayerStatistics = newStats);
+            return {
+                playerStats: state.playerStats.concat(action.newPlayerStats),
+            };
+        case DELETE_PLAYER_STATISTICS:
+            return {
+                ...state,
+                playerStats: state.playerStats.filter(
+                    (stat) => stat.id !== action.pid
+                ),
+            };
         case UPDATE_PLAYER_STATISTICS:
-            const updatedStats = new PlayerStatistics(
-                action.selectedPlayerStatistics.playerID,
-                action.selectedPlayerStatistics.goals,
-                action.selectedPlayerStatistics.assists,
-                action.selectedPlayerStatistics.red,
-                action.selectedPlayerStatistics.yellow,
-                action.selectedPlayerStatistics.motm,
-                action.selectedPlayerStatistics.cleanSheet,
-                action.selectedPlayerStatistics.form,
-                action.selectedPlayerStatistics.playedMatches
+            const playerIndex = state.playerStats.findIndex(
+                (stat) => stat.id === action.pid
             );
-            return (state.selectedPlayerStatistics = updatedStats);
+            const updatedPlayerStats = new PlayerStatistics(
+                action.playerStatData._id,
+                action.playerStatData.playerID,
+                action.playerStatData.goals,
+                action.playerStatData.assists,
+                action.playerStatData.red,
+                action.playerStatData.yellow,
+                action.playerStatData.motm,
+                action.playerStatData.cleanSheet,
+                action.playerStatData.form,
+                action.playerStatData.playedMatches
+            );
+            state.playerStats[playerIndex] = updatedPlayerStats;
+            return state;
+        case GET_STATISTICS_OF_PLAYER:
+            state.selectedPlayerStatistics = action.selectedPlayerStatistics;
+            return state;
     }
     return state;
 };

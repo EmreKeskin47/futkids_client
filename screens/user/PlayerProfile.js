@@ -23,7 +23,7 @@ const PlayerProfilePage = ({ route, navigation }) => {
     useEffect(() => {
         dispatch(playerCardActions.getPlayerCardInfo(id));
         dispatch(playerAttributeActions.fetchPlayerAttributes(id));
-        dispatch(playerStaticsActions.fetchPlayerStatistics(id));
+        dispatch(playerStaticsActions.getStatsOfPlayer(id));
     }, [dispatch]);
 
     const playerCard = useSelector(
