@@ -11,7 +11,10 @@ import {
     createPlayerAttribute,
     deletePlayerAttribute,
 } from "./playerAttribute-action";
-import { createPlayerStatistics } from "./playerStatistics-action";
+import {
+    createPlayerStatistics,
+    deletePlayerStatistic,
+} from "./playerStatistics-action";
 
 const BASE_URL = `${API}/player`;
 
@@ -128,12 +131,11 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
                     0
                 )
             );
-
             const newPlayer = new Player(
                 resData.data._id,
-                email,
-                playerCardID,
-                playerAttributeID
+                resData.data.email,
+                resData.data.playerCardID,
+                resData.data.playerAttributeID
             );
 
             dispatch({
@@ -142,6 +144,7 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
                 selectedPlayerID: newPlayer.id,
             });
         } catch (err) {
+            console.log(err);
             throw new Error("Can not ADD new player");
         }
     };
@@ -157,6 +160,7 @@ export const deletePlayer = (playerID) => {
         }
         dispatch(deletePlayerCard(playerID));
         dispatch(deletePlayerAttribute(playerID));
+        dispatch(deletePlayerStatistic(playerID));
         dispatch({ type: DELETE_PLAYER, pid: playerID });
     };
 };

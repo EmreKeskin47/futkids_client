@@ -164,6 +164,7 @@ export const updatePlayerCard = (
 
         dispatch({
             type: UPDATE_PLAYER_CARD,
+            pid: playerID,
             playerCardData: updatedPlayerCard,
         });
     };
