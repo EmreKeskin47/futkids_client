@@ -4,6 +4,8 @@ import { useDispatch, useSelector, useState } from "react-redux";
 import PlayerForm from "../../components/PlayerForm";
 import * as playerCardActions from "../../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../../redux/actions/playerAttribute-action";
+import * as playerStatisticsActions from "../../redux/actions/playerStatistics-action";
+
 import * as playerActions from "../../redux/actions/player-actions";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
@@ -16,6 +18,7 @@ const PlayerDetailsPage = ({ route, navigation }) => {
     useEffect(() => {
         dispatch(playerCardActions.getPlayerCardInfo(id));
         dispatch(playerAttributeActions.fetchPlayerAttributes(id));
+        dispatch(playerStatisticsActions.getStatsOfPlayer(id));
     }, [dispatch]);
 
     const playerCard = useSelector(
@@ -88,6 +91,7 @@ const styles = StyleSheet.create({
 });
 
 export const screenOptions = (navData) => {
+    const id = navData.route.params.id;
     return {
         headerTitle: "Oyuncu Istatistigi ",
         headerRight: () => (

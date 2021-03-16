@@ -18,7 +18,7 @@ const NewPlayerPage = (props) => {
                 attributeToCreate
             )
         );
-        props.navigation.pop();
+        props.navigation.push("Admin Page");
     };
 
     const emptyPlayerCard = new PlayerCard(
@@ -73,32 +73,3 @@ const styles = StyleSheet.create({
 });
 
 export default NewPlayerPage;
-{
-    /**
-dispatch(
-            playerCardActions.addPlayerCard(
-                "12",
-                playerCardToCreate.name,
-                playerCardToCreate.position,
-                playerCardToCreate.overall,
-                "image",
-                playerCardToCreate.kitNumber,
-                playerCardToCreate.foot,
-                playerCardToCreate.age
-            )
-        );
-        dispatch(
-            playerAttributeActions.createPlayerAttribute(
-                attributeToCreate.playerID,
-                attributeToCreate.pace,
-                attributeToCreate.shooting,
-                attributeToCreate.passing,
-                attributeToCreate.dribbling,
-                attributeToCreate.defending,
-                attributeToCreate.physical,
-                attributeToCreate.goalKeeper
-            )
-        );
-
-*/
-}

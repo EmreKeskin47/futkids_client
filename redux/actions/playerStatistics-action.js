@@ -159,6 +159,7 @@ export const updatePlayerStatistics = (
                 throw new Error("Can not PATCH player statistics");
             }
             const resData = await response.json();
+            console.log(resData);
             updatedPlayerStats = new PlayerStatistics(
                 resData.data._id,
                 playerID,
