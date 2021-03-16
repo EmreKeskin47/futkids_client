@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
-    View,
     Text,
     StyleSheet,
     SafeAreaView,
-    ImageBackground,
-    Image,
-    ScrollView,
     TouchableOpacity,
     Alert,
 } from "react-native";
@@ -14,14 +10,16 @@ import DropDownPicker from "react-native-dropdown-picker";
 import VoteCard from "../../components/VoteCard";
 
 const VotePage = () => {
-    const clicked = () =>
+    const [position, setPosition] = useState("GK");
+
+    const clicked = () => {
         Alert.alert(
             "Oy verdiginiz icin tesekkur ederiz",
             "Oyuncularimiz her hafta cok calisiyorlar ve sizin geri bildirimlerinizle daha iyi noktlara geleceklerine inaniyoruz.",
             [{ text: "OK", onPress: () => console.log("OK Pressed") }],
             { cancelable: false }
         );
-
+    };
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.heading}>
@@ -33,18 +31,18 @@ const VotePage = () => {
             </Text>
             <DropDownPicker
                 items={[
-                    { label: "1999-2001", value: "1996-2001" },
-                    { label: "2002-2004", value: "2002-2004" },
-                    { label: "2005-2007", value: "2005-2007" },
-                    { label: "2008-20010", value: "2008-20010" },
+                    { label: "GK", value: "GK" },
+                    { label: "DEF", value: "DEF" },
+                    { label: "MID", value: "MID" },
+                    { label: "ATT", value: "ATT" },
                 ]}
                 defaultIndex={0}
                 containerStyle={{ height: 50 }}
-                onChangeItem={(item) => console.log(item.label, item.value)}
-                placeholder={"Lutfen bir yas araligi girin"}
+                onChangeItem={(item) => setPosition(item.value)}
+                placeholder={"Lutfen bir pozisyon seçiniz"}
                 style={styles.dropdown}
             />
-            <VoteCard style={styles.card} />
+            <VoteCard position={position} style={styles.card} />
             <TouchableOpacity onPress={clicked} style={styles.btn}>
                 <Text style={styles.btnText}>Gonder</Text>
             </TouchableOpacity>
