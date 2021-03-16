@@ -6,11 +6,8 @@ export const DELETE_PLAYER = "DELETE_PLAYER";
 import API from "../../constants/ApiUrl";
 import Player from "../../models/Player";
 
-import { addPlayerCard, deletePlayerCard } from "./playerCard-action";
-import {
-    createPlayerAttribute,
-    deletePlayerAttribute,
-} from "./playerAttribute-action";
+import { addPlayerCard } from "./playerCard-action";
+import { createPlayerAttribute } from "./playerAttribute-action";
 import {
     createPlayerStatistics,
     deletePlayerStatistic,
@@ -158,8 +155,6 @@ export const deletePlayer = (playerID) => {
         if (!response.ok) {
             throw new Error("Can not DELETE player ");
         }
-        dispatch(deletePlayerCard(playerID));
-        dispatch(deletePlayerAttribute(playerID));
         dispatch(deletePlayerStatistic(playerID));
         dispatch({ type: DELETE_PLAYER, pid: playerID });
     };

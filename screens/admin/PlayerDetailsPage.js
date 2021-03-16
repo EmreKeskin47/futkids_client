@@ -65,6 +65,8 @@ const PlayerDetailsPage = ({ route, navigation }) => {
 
         const onDelete = () => {
             dispatch(playerActions.deletePlayer(id));
+            dispatch(playerCardActions.deletePlayerCard(id));
+            dispatch(playerAttributeActions.deletePlayerAttribute(id));
             navigation.push("Admin Page");
         };
 

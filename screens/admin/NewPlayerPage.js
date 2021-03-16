@@ -3,6 +3,8 @@ import { Text, StyleSheet, View } from "react-native";
 import Colors from "../../constants/Colors";
 import { useDispatch } from "react-redux";
 import * as playerActions from "../../redux/actions/player-actions";
+import * as playerCardActions from "../../redux/actions/playerCard-action";
+import * as playerAttributeActions from "../../redux/actions/playerAttribute-action";
 import PlayerForm from "../../components/PlayerForm";
 import PlayerCard from "../../models/PlayerCard";
 import PlayerAttribute from "../../models/PlayerAttribute";

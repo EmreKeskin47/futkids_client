@@ -15,18 +15,18 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case FETCH_PLAYER_CARD:
-            return { playerCards: action.playerCards };
+            state.playerCards = action.playerCards;
+            return state;
         case ADD_PLAYER_CARD:
-            return {
-                playerCards: state.playerCards.concat(action.newPlayerCard),
-            };
+            state.playerCards = state.playerCards.concat(action.newPlayerCard);
+            return state;
+
         case DELETE_PLAYER_CARD:
-            return {
-                ...state,
-                playerCards: state.playerCards.filter(
-                    (player) => player.id !== action.pid
-                ),
-            };
+            state.playerCards = state.playerCards.filter(
+                (player) => player.id !== action.pid
+            );
+            return state;
+
         case UPDATE_PLAYER_CARD:
             const playerIndex = state.playerCards.findIndex(
                 (player) => player.id === action.pid

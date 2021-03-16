@@ -16,7 +16,8 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_ATTRIBUTES:
-            return { playerAttributes: action.attributes };
+            state.playerAttributes = action.attributes;
+            return state;
         case GET_ATTRIBUTES_OF_PLAYER:
             state.selectedPlayerAttribute = action.selectedPlayerAttribute;
             return state;
@@ -24,7 +25,9 @@ export default (state = initialState, action) => {
             return (state.selectedPlayerAttribute =
                 action.selectedPlayerAttribute);
         case DELETE_PLAYER_ATTRIBUTE:
-            selectedPlayerAttribute = {};
+            state.playerAttributes = state.playerAttributes.filter(
+                (attr) => attr.id !== action.pid
+            );
             return state;
         case UPDATE_PLAYER_ATTRIBUTE:
             const playerIndex = state.playerAttributes.findIndex(
