@@ -48,7 +48,7 @@ const PlayerForm = (props) => {
     <View style={styles.container}>
       <ScrollView>
         <TextInput
-          label={name}
+          label="Oyuncu Adi"
           style={styles.inputStyle}
           onChangeText={(text) => setName(text)}
           value={name}
