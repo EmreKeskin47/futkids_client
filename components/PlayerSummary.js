@@ -1,9 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
-import Colors from "../constants/Colors";
+import { View, Text, StyleSheet, SafeAreaView } from "react-native";
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 const PlayerSummary = (props) => {
-    const profilePicture = require("../assets/ronaldo-custom.png");
     const {
         pace,
         shooting,
@@ -16,35 +15,49 @@ const PlayerSummary = (props) => {
 
     return (
         <SafeAreaView style={styles.root}>
-            <Image source={profilePicture} style={styles.profilePicture} />
-            <View style={styles.row}>
-                <View style={styles.column}>
-                    <Text style={styles.itemL}>Pace</Text>
-                    <Text style={styles.itemR}>{pace}</Text>
+            <View
+                style={{
+                    borderRadius: 15,
+                    backgroundColor: "white",
+                    shadowColor: "black",
+                    shadowOffset: {
+                        width: 0,
+                        height: 12,
+                    },
+                    shadowOpacity: 0.58,
+                    shadowRadius: 16.0,
+                    elevation: 24,
+                }}
+            >
+                <View style={styles.row}>
+                    <View style={styles.column}>
+                        <Text style={styles.itemL}>PACE</Text>
+                        <Text style={styles.itemR}>{pace}</Text>
+                    </View>
+                    <View style={styles.column}>
+                        <Text style={styles.itemL}>SHT</Text>
+                        <Text style={styles.itemR}>{shooting}</Text>
+                    </View>
                 </View>
-                <View style={styles.column}>
-                    <Text style={styles.itemL}>Shoot</Text>
-                    <Text style={styles.itemR}>{shooting}</Text>
+                <View style={styles.row}>
+                    <View style={styles.column}>
+                        <Text style={styles.itemL}>PASS</Text>
+                        <Text style={styles.itemR}>{passing}</Text>
+                    </View>
+                    <View style={styles.column}>
+                        <Text style={styles.itemL}>PHY</Text>
+                        <Text style={styles.itemR}>{physical}</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={styles.row}>
-                <View style={styles.column}>
-                    <Text style={styles.itemL}>Pass</Text>
-                    <Text style={styles.itemR}>{passing}</Text>
-                </View>
-                <View style={styles.column}>
-                    <Text style={styles.itemL}>Phy</Text>
-                    <Text style={styles.itemR}>{physical}</Text>
-                </View>
-            </View>
-            <View style={styles.row}>
-                <View style={styles.column}>
-                    <Text style={styles.itemL}>Def</Text>
-                    <Text style={styles.itemR}>{defending}</Text>
-                </View>
-                <View style={styles.column}>
-                    <Text style={styles.itemL}>Gk</Text>
-                    <Text style={styles.itemR}>{goalKeeper}</Text>
+                <View style={styles.row}>
+                    <View style={styles.column}>
+                        <Text style={styles.itemL}>DEF</Text>
+                        <Text style={styles.itemR}>{defending}</Text>
+                    </View>
+                    <View style={styles.column}>
+                        <Text style={styles.itemL}>GK</Text>
+                        <Text style={styles.itemR}>{goalKeeper}</Text>
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
@@ -64,43 +77,28 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: Colors.primary,
-        borderRadius: 8,
-        margin: 10,
     },
     column: {
-        height: 30,
-        borderRadius: 8,
+        height: 20,
         flex: 1,
-        margin: 20,
+        margin: 10,
         justifyContent: "space-around",
         alignItems: "center",
         flexDirection: "row",
     },
     itemL: {
-        fontSize: 20,
-        fontWeight: "bold",
-        color: "white",
+        fontSize: RFPercentage(2),
+        color: "black",
+        textAlign: "center",
     },
     itemR: {
-        fontSize: 20,
+        fontSize: RFPercentage(2),
         fontWeight: "bold",
         color: "black",
     },
     container: {
         flexDirection: "row",
         justifyContent: "space-evenly",
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: "center",
-        margin: 10,
-    },
-    profilePicture: {
-        height: 200,
-        width: 150,
-        alignSelf: "center",
-        margin: 20,
     },
 });
 
