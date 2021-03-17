@@ -141,7 +141,6 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
                 selectedPlayerID: newPlayer.id,
             });
         } catch (err) {
-            console.log(err);
             throw new Error("Can not ADD new player");
         }
     };

@@ -6,235 +6,348 @@ import Colors from "../constants/Colors";
 import PlayerCard from "../models/PlayerCard";
 import PlayerAttribute from "../models/PlayerAttribute";
 import { ScrollView } from "react-native-gesture-handler";
-
+import { Text } from "react-native";
 const PlayerForm = (props) => {
-  const { playerAttribute, playerCard, onSave } = props;
+    const { playerAttribute, playerCard, onSave } = props;
+    const attrOptions = Array.from(Array(100).keys());
 
-  useEffect(() => {
-    setName(playerCard.name);
-    setPosition(playerCard.position);
-    setOverall(playerCard.overall);
-    setKitNumber(playerCard.kitNumber);
-    setAge(playerCard.age);
-    setFoot(playerCard.foot);
+    useEffect(() => {
+        setName(playerCard.name);
+        setPosition(playerCard.position);
+        setOverall(playerCard.overall);
+        setKitNumber(playerCard.kitNumber);
+        setAge(playerCard.age);
+        setFoot(playerCard.foot);
 
-    setPace(playerAttribute.pace + "");
-    setShooting(playerAttribute.shooting + "");
-    setPassing(playerAttribute.passing + "");
-    setDribbling(playerAttribute.dribbling + "");
-    setDefending(playerAttribute.defending + "");
-    setPhysical(playerAttribute.physical + "");
-    setGoalKeeper(playerAttribute.goalKeeper + "");
-  }, [playerCard, playerAttribute]);
+        setPace(playerAttribute.pace + "");
+        setShooting(playerAttribute.shooting + "");
+        setPassing(playerAttribute.passing + "");
+        setDribbling(playerAttribute.dribbling + "");
+        setDefending(playerAttribute.defending + "");
+        setPhysical(playerAttribute.physical + "");
+        setGoalKeeper(playerAttribute.goalKeeper + "");
+    }, [playerCard, playerAttribute]);
 
-  //Player Card
-  const [name, setName] = useState();
-  const [position, setPosition] = useState();
-  const [overall, setOverall] = useState();
-  const [kitNumber, setKitNumber] = useState();
-  const [age, setAge] = useState();
-  const [foot, setFoot] = useState();
+    //Player Card
+    const [name, setName] = useState();
+    const [position, setPosition] = useState();
+    const [overall, setOverall] = useState();
+    const [kitNumber, setKitNumber] = useState();
+    const [age, setAge] = useState();
+    const [foot, setFoot] = useState();
 
-  //Player Attribute
-  const [pace, setPace] = useState();
-  const [shooting, setShooting] = useState();
-  const [passing, setPassing] = useState();
-  const [dribbling, setDribbling] = useState();
-  const [defending, setDefending] = useState();
-  const [physical, setPhysical] = useState();
-  const [goalKeeper, setGoalKeeper] = useState();
+    //Player Attribute
+    const [pace, setPace] = useState();
+    const [shooting, setShooting] = useState();
+    const [passing, setPassing] = useState();
+    const [dribbling, setDribbling] = useState();
+    const [defending, setDefending] = useState();
+    const [physical, setPhysical] = useState();
+    const [goalKeeper, setGoalKeeper] = useState();
 
-  return (
-    <View style={styles.container}>
-      <ScrollView>
-        <TextInput
-          label="Oyuncu Adi"
-          style={styles.inputStyle}
-          onChangeText={(text) => setName(text)}
-          value={name}
-        />
-        <TextInput
-          label="Puan"
-          style={styles.inputStyle}
-          onChangeText={(text) => setOverall(text)}
-          value={overall}
-        />
-        <Picker
-          selectedValue={position}
-          itemStyle={{ color: "white" }}
-          onValueChange={(currentPosition) => setPosition(currentPosition)}
-        >
-          <Picker.Item label="GK" value="GK" />
-          <Picker.Item label="DEF" value="DEF" />
-          <Picker.Item label="MID" value="MID" />
-          <Picker.Item label="ATT" value="ATT" />
-        </Picker>
-        <TextInput
-          label="Forma Numarası"
-          style={styles.inputStyle}
-          onChangeText={(text) => setKitNumber(text)}
-          value={kitNumber}
-        />
-        <TextInput
-          label="Ayak"
-          style={styles.inputStyle}
-          onChangeText={(text) => setFoot(text)}
-          value={foot}
-        />
-        <TextInput
-          label="Age"
-          style={styles.inputStyle}
-          onChangeText={(text) => setAge(text)}
-          value={age}
-        />
+    return (
+        <View style={styles.container}>
+            <ScrollView>
+                <TextInput
+                    label="Oyuncu Adi"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setName(text)}
+                    value={name}
+                />
+                <TextInput
+                    label="Puan"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setOverall(text)}
+                    value={overall}
+                />
+                <View style={{ flexDirection: "row" }}>
+                    <View style={styles.attrPicker}>
+                        <Text style={styles.attrPickerLabel}>Position</Text>
+                        <Picker
+                            selectedValue={position}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(currentPosition) =>
+                                setPosition(currentPosition)
+                            }
+                        >
+                            <Picker.Item label="GK" value="GK" />
+                            <Picker.Item label="DEF" value="DEF" />
+                            <Picker.Item label="MID" value="MID" />
+                            <Picker.Item label="ATT" value="ATT" />
+                        </Picker>
+                    </View>
 
-        {/* Player Attributes */}
+                    <View style={styles.attrPicker}>
+                        <Text style={styles.attrPickerLabel}>Position</Text>
+                        <Picker
+                            selectedValue={foot}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(foot) => setFoot(foot)}
+                        >
+                            <Picker.Item label="R" value="R" />
+                            <Picker.Item label="L" value="L" />
+                        </Picker>
+                    </View>
+                </View>
 
-        <TextInput
-          label="Pace"
-          style={styles.inputStyle}
-          onChangeText={(text) => setPace(text)}
-          value={pace}
-        />
-        <TextInput
-          label="Shooting"
-          style={styles.inputStyle}
-          onChangeText={(text) => setShooting(text)}
-          value={shooting}
-        />
-        <TextInput
-          label="Passing"
-          style={styles.inputStyle}
-          onChangeText={(text) => setPassing(text)}
-          value={passing}
-        />
-        <TextInput
-          label="Physical"
-          style={styles.inputStyle}
-          onChangeText={(text) => setPhysical(text)}
-          value={physical}
-        />
-        <TextInput
-          label="Defending"
-          style={styles.inputStyle}
-          onChangeText={(text) => setDefending(text)}
-          value={defending}
-        />
-        <TextInput
-          label="GoalKeep"
-          style={styles.inputStyle}
-          onChangeText={(text) => setGoalKeeper(text)}
-          value={goalKeeper}
-        />
-        <TextInput
-          label="Dribbling"
-          style={styles.inputStyle}
-          onChangeText={(text) => setDribbling(text)}
-          value={dribbling}
-        />
+                <TextInput
+                    label="Forma Numarası"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setKitNumber(text)}
+                    value={kitNumber}
+                />
 
-        {props.onDelete ? (
-          <View style={styles.button}>
-            <Button
-              title="Değişiklikleri Kaydet"
-              color="#fff"
-              onPress={() => {
-                const newPlayerCard = new PlayerCard(
-                  "",
-                  playerCard.playerID,
-                  name,
-                  position,
-                  overall,
-                  "",
-                  kitNumber,
-                  foot,
-                  age
-                );
-                const newPlayerAttribute = new PlayerAttribute(
-                  "",
-                  playerAttribute.playerID,
-                  pace,
-                  shooting,
-                  passing,
-                  dribbling,
-                  defending,
-                  physical,
-                  goalKeeper
-                );
-                onSave(newPlayerCard, newPlayerAttribute);
-              }}
-            />
-            <Button
-              title="Oyuncuyu Sil"
-              color="#fff"
-              onPress={() => {
-                props.onDelete();
-              }}
-            />
-          </View>
-        ) : (
-          <View style={styles.button}>
-            <Button
-              title="Oyuncuyu Kaydet"
-              color="#fff"
-              onPress={() => {
-                const newPlayerCard = new PlayerCard(
-                  "",
-                  "12",
-                  name,
-                  position,
-                  overall,
-                  "",
-                  kitNumber,
-                  foot,
-                  age
-                );
-                const newPlayerAttribute = new PlayerAttribute(
-                  "",
-                  "12",
-                  pace,
-                  shooting,
-                  passing,
-                  dribbling,
-                  defending,
-                  physical,
-                  goalKeeper
-                );
-                onSave(newPlayerCard, newPlayerAttribute);
-              }}
-            />
-          </View>
-        )}
-      </ScrollView>
-    </View>
-  );
+                <TextInput
+                    label="Age"
+                    style={styles.inputStyle}
+                    onChangeText={(text) => setAge(text)}
+                    value={age}
+                />
+
+                {/* Player Attributes */}
+                <View style={{ flexDirection: "row" }}>
+                    <View style={styles.attrPicker}>
+                        <Text style={styles.attrPickerLabel}>Pace</Text>
+                        <Picker
+                            selectedValue={pace}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(text) => setPace(text)}
+                        >
+                            {attrOptions.map((i) => {
+                                return (
+                                    <Picker.Item
+                                        key={i}
+                                        value={i + ""}
+                                        label={i + ""}
+                                    />
+                                );
+                            })}
+                        </Picker>
+                    </View>
+                    <View style={styles.attrPicker}>
+                        <Text style={styles.attrPickerLabel}>Shooting</Text>
+                        <Picker
+                            selectedValue={shooting}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(text) => setShooting(text)}
+                        >
+                            {attrOptions.map((i) => {
+                                return (
+                                    <Picker.Item
+                                        key={i}
+                                        value={i + ""}
+                                        label={i + ""}
+                                    />
+                                );
+                            })}
+                        </Picker>
+                    </View>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                    <View style={styles.attrPicker}>
+                        <Text style={styles.attrPickerLabel}>Passing</Text>
+                        <Picker
+                            selectedValue={passing}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(text) => setPassing(text)}
+                        >
+                            {attrOptions.map((i) => {
+                                return (
+                                    <Picker.Item
+                                        key={i}
+                                        value={i + ""}
+                                        label={i + ""}
+                                    />
+                                );
+                            })}
+                        </Picker>
+                    </View>
+                    <View style={styles.attrPicker}>
+                        <Text style={styles.attrPickerLabel}>Physical</Text>
+                        <Picker
+                            selectedValue={physical}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(text) => setPhysical(text)}
+                        >
+                            {attrOptions.map((i) => {
+                                return (
+                                    <Picker.Item
+                                        key={i}
+                                        value={i + ""}
+                                        label={i + ""}
+                                    />
+                                );
+                            })}
+                        </Picker>
+                    </View>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                    <View style={styles.attrPicker}>
+                        <Text style={styles.attrPickerLabel}>Defending</Text>
+                        <Picker
+                            selectedValue={defending}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(text) => setDefending(text)}
+                        >
+                            {attrOptions.map((i) => {
+                                return (
+                                    <Picker.Item
+                                        key={i}
+                                        value={i + ""}
+                                        label={i + ""}
+                                    />
+                                );
+                            })}
+                        </Picker>
+                    </View>
+                    <View style={styles.attrPicker}>
+                        <Text style={styles.attrPickerLabel}>GoalKeep</Text>
+                        <Picker
+                            selectedValue={goalKeeper}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(text) => setGoalKeeper(text)}
+                        >
+                            {attrOptions.map((i) => {
+                                return (
+                                    <Picker.Item
+                                        key={i}
+                                        value={i + ""}
+                                        label={i + ""}
+                                    />
+                                );
+                            })}
+                        </Picker>
+                    </View>
+                </View>
+                <View style={styles.attrPicker}>
+                    <Text style={styles.attrPickerLabel}>Dribbling</Text>
+                    <Picker
+                        selectedValue={dribbling}
+                        itemStyle={{ color: "white" }}
+                        onValueChange={(text) => setDribbling(text)}
+                    >
+                        {attrOptions.map((i) => {
+                            return (
+                                <Picker.Item
+                                    key={i}
+                                    value={i + ""}
+                                    label={i + ""}
+                                />
+                            );
+                        })}
+                    </Picker>
+                </View>
+
+                {props.onDelete ? (
+                    <View style={styles.button}>
+                        <Button
+                            title="Değişiklikleri Kaydet"
+                            color="#fff"
+                            onPress={() => {
+                                const newPlayerCard = new PlayerCard(
+                                    "",
+                                    playerCard.playerID,
+                                    name,
+                                    position,
+                                    overall,
+                                    "",
+                                    kitNumber,
+                                    foot,
+                                    age
+                                );
+                                const newPlayerAttribute = new PlayerAttribute(
+                                    "",
+                                    playerAttribute.playerID,
+                                    pace,
+                                    shooting,
+                                    passing,
+                                    dribbling,
+                                    defending,
+                                    physical,
+                                    goalKeeper
+                                );
+                                onSave(newPlayerCard, newPlayerAttribute);
+                            }}
+                        />
+                        <Button
+                            title="Oyuncuyu Sil"
+                            color="#fff"
+                            onPress={() => {
+                                props.onDelete();
+                            }}
+                        />
+                    </View>
+                ) : (
+                    <View style={styles.button}>
+                        <Button
+                            title="Oyuncuyu Kaydet"
+                            color="#fff"
+                            disabled={!name || !overall || !kitNumber || !age}
+                            onPress={() => {
+                                const newPlayerCard = new PlayerCard(
+                                    "",
+                                    "12",
+                                    name,
+                                    position,
+                                    overall,
+                                    "",
+                                    kitNumber,
+                                    foot,
+                                    age
+                                );
+                                const newPlayerAttribute = new PlayerAttribute(
+                                    "",
+                                    "12",
+                                    pace,
+                                    shooting,
+                                    passing,
+                                    dribbling,
+                                    defending,
+                                    physical,
+                                    goalKeeper
+                                );
+                                onSave(newPlayerCard, newPlayerAttribute);
+                            }}
+                        />
+                    </View>
+                )}
+            </ScrollView>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.primary,
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 35,
-  },
-  inputStyle: {
-    marginTop: 20,
-    width: 300,
-  },
-  formText: {
-    alignItems: "center",
-    justifyContent: "center",
-    color: "#fff",
-    fontSize: 20,
-  },
-  text: {
-    color: "#fff",
-    fontSize: 25,
-  },
-  button: {
-    paddingVertical: 40,
-  },
+    container: {
+        flex: 1,
+        backgroundColor: Colors.primary,
+        alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 35,
+    },
+    inputStyle: {
+        marginTop: 20,
+        width: 300,
+    },
+    formText: {
+        alignItems: "center",
+        justifyContent: "center",
+        color: "#fff",
+        fontSize: 20,
+    },
+    text: {
+        color: "#fff",
+        fontSize: 25,
+    },
+    button: {
+        paddingVertical: 40,
+    },
+    attrPicker: {
+        width: "40%",
+        paddingTop: "10%",
+    },
+    attrPickerLabel: { textAlign: "center", color: "white" },
 });
 
 export default PlayerForm;
