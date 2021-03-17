@@ -1,14 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const PlayerInfo = (props) => {
-    const profilePicture = require("../assets/ronaldo-custom.png");
-
     const { name, position, overall, kitNumber, foot, age } = props.playerCard;
 
     return (
         <View style={styles.topContainer}>
-            <Image source={profilePicture} style={styles.profilePicture} />
+            <Ionicons
+                name="person-circle-sharp"
+                style={styles.profilePicture}
+            />
             <View style={styles.column}>
                 <View style={styles.columnInside}>
                     <Text style={styles.itemL}>Isim</Text>
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
         marginTop: 50,
     },
     column: {
-        height: 170,
+        height: 250,
         borderRadius: 8,
         backgroundColor: "black",
         opacity: 0.7,
@@ -74,6 +76,7 @@ const styles = StyleSheet.create({
     columnInside: {
         flexDirection: "row",
         justifyContent: "space-between",
+        paddingVertical: 55,
     },
     itemL: {
         fontSize: 20,
@@ -88,8 +91,8 @@ const styles = StyleSheet.create({
         marginRight: 10,
     },
     profilePicture: {
-        height: 200,
-        width: 150,
+        fontSize: 150,
+        marginTop: 55,
     },
 });
 

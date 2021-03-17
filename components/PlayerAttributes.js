@@ -17,49 +17,49 @@ const PlayerAttributes = (props) => {
         <SafeAreaView style={styles.root}>
             <View style={styles.row}>
                 <View style={styles.column}>
-                    <Text style={styles.itemL}>Pace</Text>
+                    <Text style={styles.itemL}>PACE</Text>
                     <Text style={styles.itemR}>{pace}</Text>
                     <CustomProgressBar progress={pace} />
                 </View>
             </View>
             <View style={styles.row}>
                 <View style={styles.column}>
-                    <Text style={styles.itemL}>Shoot</Text>
+                    <Text style={styles.itemL}>SHT</Text>
                     <Text style={styles.itemR}>{shooting}</Text>
                     <CustomProgressBar progress={shooting} />
                 </View>
             </View>
             <View style={styles.row}>
                 <View style={styles.column}>
-                    <Text style={styles.itemL}>Pass</Text>
+                    <Text style={styles.itemL}>PASS</Text>
                     <Text style={styles.itemR}>{passing}</Text>
                     <CustomProgressBar progress={passing} />
                 </View>
             </View>
             <View style={styles.row}>
                 <View style={styles.column}>
-                    <Text style={styles.itemL}>Drib</Text>
+                    <Text style={styles.itemL}>DRIB</Text>
                     <Text style={styles.itemR}>{dribbling}</Text>
                     <CustomProgressBar progress={dribbling} />
                 </View>
             </View>
             <View style={styles.row}>
                 <View style={styles.column}>
-                    <Text style={styles.itemL}>Def</Text>
+                    <Text style={styles.itemL}>DEF</Text>
                     <Text style={styles.itemR}>{defending}</Text>
                     <CustomProgressBar progress={defending} />
                 </View>
             </View>
             <View style={styles.row}>
                 <View style={styles.column}>
-                    <Text style={styles.itemL}>Phy</Text>
+                    <Text style={styles.itemL}>PHY</Text>
                     <Text style={styles.itemR}>{physical}</Text>
                     <CustomProgressBar progress={physical} />
                 </View>
             </View>
             <View style={styles.row}>
                 <View style={styles.column}>
-                    <Text style={styles.itemL}>Gk</Text>
+                    <Text style={styles.itemL}>GK</Text>
                     <Text style={styles.itemR}>{goalKeeper}</Text>
                     <CustomProgressBar progress={goalKeeper} />
                 </View>
