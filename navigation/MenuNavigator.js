@@ -42,6 +42,19 @@ const defaultNavOptions = {
   headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
 };
 
+const StadiumStackNavigator = createStackNavigator();
+export const StadiumNavigator = () => {
+  return (
+    <StadiumStackNavigator.Navigator screenOptions={defaultNavOptions}>
+      <StadiumStackNavigator.Screen
+        name="Stadium Page"
+        component={StadiumTest}
+        options={StadiumTestScreenOptions}
+      />
+    </StadiumStackNavigator.Navigator>
+  );
+};
+
 const AdminStackNavigator = createStackNavigator();
 export const PlayersAdminNavigator = () => {
   return (
@@ -121,9 +134,8 @@ export const MenuNavigator = () => {
       <MenuDrawerNavigator.Screen name="User Page" component={UserNavigator} />
       <MenuDrawerNavigator.Screen name="Login Page" component={AuthNavigator} />
       <MenuDrawerNavigator.Screen
-        name="LineUp Test"
-        component={StadiumTest}
-        screenOptions={StadiumTestScreenOptions}
+        name="Haftanın Takımı"
+        component={StadiumNavigator}
       />
       <MenuDrawerNavigator.Screen name="Vote Page" component={VotePage} />
     </MenuDrawerNavigator.Navigator>

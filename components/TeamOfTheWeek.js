@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
   },
   playerName: {
-    fontSize: RFPercentage(3),
+    fontSize: RFPercentage(2),
     color: "white",
   },
   row: {
