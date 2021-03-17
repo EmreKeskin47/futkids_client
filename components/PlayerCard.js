@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Card, CardItem } from "native-base";
 import Colors from "../constants/Colors";
