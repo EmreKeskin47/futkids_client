@@ -5,6 +5,7 @@ import {
     FETCH_PLAYER_CARD,
     GET_PLAYER_CARD,
     UPDATE_PLAYER_CARD,
+    WEEKLY_VOTE,
 } from "../actions/playerCard-action";
 
 const initialState = {
@@ -46,6 +47,9 @@ export default (state = initialState, action) => {
             return state;
         case GET_PLAYER_CARD:
             state.selectedPlayerCard = action.playerCardData;
+            return state;
+        case WEEKLY_VOTE:
+            state.selectedPlayerCard = action.res;
             return state;
     }
     return state;

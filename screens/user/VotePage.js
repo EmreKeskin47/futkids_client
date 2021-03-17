@@ -7,16 +7,25 @@ import {
     Alert,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
+import { useDispatch } from "react-redux";
 import VoteCard from "../../components/VoteCard";
+import { weeklyVote } from "../../redux/actions/playerCard-action";
 
 const VotePage = () => {
     const [position, setPosition] = useState("GK");
+    const [selectedPlayer, setSelectedPlayer] = useState();
+    const dispatch = useDispatch();
+
+    const playerSelected = (id) => {
+        setSelectedPlayer(id);
+    };
 
     const clicked = () => {
+        dispatch(weeklyVote(selectedPlayer, 1));
         Alert.alert(
             "Oy verdiginiz icin tesekkur ederiz",
             "Oyuncularimiz her hafta cok calisiyorlar ve sizin geri bildirimlerinizle daha iyi noktlara geleceklerine inaniyoruz.",
-            [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+            [{ text: "OK" }],
             { cancelable: false }
         );
     };
@@ -42,7 +51,11 @@ const VotePage = () => {
                 placeholder={"Lutfen bir pozisyon seçiniz"}
                 style={styles.dropdown}
             />
-            <VoteCard position={position} style={styles.card} />
+            <VoteCard
+                playerSelected={playerSelected}
+                position={position}
+                style={styles.card}
+            />
             <TouchableOpacity onPress={clicked} style={styles.btn}>
                 <Text style={styles.btnText}>Gonder</Text>
             </TouchableOpacity>

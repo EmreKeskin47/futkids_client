@@ -3,6 +3,7 @@ export const FETCH_PLAYER_CARD = "FETCH_PLAYER_CARD";
 export const DELETE_PLAYER_CARD = "DELETE_PLAYER_CARD";
 export const UPDATE_PLAYER_CARD = "UPDATE_PLAYER_CARD";
 export const GET_PLAYER_CARD = "GET_PLAYER_CARD";
+export const WEEKLY_VOTE = "WWEKLY_VOTE";
 
 import PlayerCard from "../../models/PlayerCard";
 
@@ -32,7 +33,8 @@ export const fetchPlayerCards = () => {
                         resData[key].image,
                         resData[key].kitNumber,
                         resData[key].foot,
-                        resData[key].age
+                        resData[key].age,
+                        resData[key].weeklyVote
                     )
                 );
             }
@@ -181,6 +183,29 @@ export const getPlayerCardInfo = (playerID) => {
         dispatch({
             type: GET_PLAYER_CARD,
             playerCardData: resData,
+        });
+    };
+};
+
+export const weeklyVote = (playerID, voteWeight) => {
+    return async (dispatch) => {
+        const response = await fetch(`${BASE_URL}/${playerID}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                voteWeight,
+            }),
+        });
+        if (!response.ok) {
+            throw new Error("Can not POST vote");
+        }
+        const resData = await response.json();
+
+        dispatch({
+            type: WEEKLY_VOTE,
+            res: resData,
         });
     };
 };

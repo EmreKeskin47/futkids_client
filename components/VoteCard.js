@@ -54,7 +54,10 @@ const VoteCard = (props) => {
         return (
             <Item
                 item={item}
-                onPress={() => setSelectedId(item.id)}
+                onPress={() => {
+                    setSelectedId(item.id);
+                    props.playerSelected(item.playerID);
+                }}
                 style={{ backgroundColor }}
             />
         );

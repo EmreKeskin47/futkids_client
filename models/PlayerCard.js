@@ -8,7 +8,8 @@ class PlayerCard {
         image,
         kitNumber,
         foot,
-        age
+        age,
+        weeklyVote
     ) {
         this.id = id;
         this.playerID = playerID;
@@ -19,6 +20,7 @@ class PlayerCard {
         this.kitNumber = kitNumber;
         this.foot = foot;
         this.age = age;
+        this.weeklyVote = weeklyVote;
     }
 }
 export default PlayerCard;
