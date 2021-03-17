@@ -35,7 +35,7 @@ export const screenOptions = (navData) => {
           title="New"
           iconName={Platform.OS === "android" ? "add-circle" : "ios-add-circle"}
           onPress={() => {
-            navData.navigation.navigate("New Player");
+            navData.navigation.push("New Player");
           }}
         />
       </HeaderButtons>
