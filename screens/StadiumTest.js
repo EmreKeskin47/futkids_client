@@ -6,7 +6,6 @@ import {
   ActivityIndicator,
   ImageBackground,
 } from "react-native";
-import FootballField from "react-native-football-lineup";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
 import { useDispatch, useSelector } from "react-redux";
