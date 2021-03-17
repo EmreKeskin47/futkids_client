@@ -24,7 +24,9 @@ import UserPage, {
   screenOptions as UserScreenOptions,
 } from "../screens/user/UserPage";
 import PlayerProfilePage from "../screens/user/PlayerProfile";
-import VotePage from "../screens/user/VotePage";
+import VotePage, {
+  screenOptions as VotePageScreenOptions,
+} from "../screens/user/VotePage";
 import LoginPage, {
   screenOptions as LoginScreenOptions,
 } from "../screens/LoginPage";
@@ -52,6 +54,19 @@ export const StadiumNavigator = () => {
         options={StadiumTestScreenOptions}
       />
     </StadiumStackNavigator.Navigator>
+  );
+};
+
+const VoteStackNavigator = createStackNavigator();
+export const VoteNavigator = () => {
+  return (
+    <VoteStackNavigator.Navigator screenOptions={defaultNavOptions}>
+      <VoteStackNavigator.Screen
+        name="Vote Page"
+        component={VotePage}
+        options={VotePageScreenOptions}
+      />
+    </VoteStackNavigator.Navigator>
   );
 };
 
@@ -137,7 +152,7 @@ export const MenuNavigator = () => {
         name="Haftanın Takımı"
         component={StadiumNavigator}
       />
-      <MenuDrawerNavigator.Screen name="Vote Page" component={VotePage} />
+      <MenuDrawerNavigator.Screen name="Oy Ver" component={VoteNavigator} />
     </MenuDrawerNavigator.Navigator>
   );
 };
