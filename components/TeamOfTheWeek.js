@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   },
   column: {
     justifyContent: "space-between",
-    color: Colors.primary,
+    //backgroundColor: Colors.primary,
     alignItems: "center",
   },
   playerImage: {
