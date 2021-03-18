@@ -31,21 +31,21 @@ const PlayerSummary = (props) => {
             >
                 <View style={styles.row}>
                     <View style={styles.column}>
-                        <Text style={styles.itemL}>PACE</Text>
+                        <Text style={styles.itemL}> HIZ</Text>
                         <Text style={styles.itemR}>{pace}</Text>
                     </View>
                     <View style={styles.column}>
-                        <Text style={styles.itemL}>SHT</Text>
+                        <Text style={styles.itemL}>ŞUT</Text>
                         <Text style={styles.itemR}>{shooting}</Text>
                     </View>
                 </View>
                 <View style={styles.row}>
                     <View style={styles.column}>
-                        <Text style={styles.itemL}>PASS</Text>
+                        <Text style={styles.itemL}>PAS</Text>
                         <Text style={styles.itemR}>{passing}</Text>
                     </View>
                     <View style={styles.column}>
-                        <Text style={styles.itemL}>PHY</Text>
+                        <Text style={styles.itemL}>FİZ</Text>
                         <Text style={styles.itemR}>{physical}</Text>
                     </View>
                 </View>
@@ -55,7 +55,7 @@ const PlayerSummary = (props) => {
                         <Text style={styles.itemR}>{defending}</Text>
                     </View>
                     <View style={styles.column}>
-                        <Text style={styles.itemL}>GK</Text>
+                        <Text style={styles.itemL}>KL</Text>
                         <Text style={styles.itemR}>{goalKeeper}</Text>
                     </View>
                 </View>

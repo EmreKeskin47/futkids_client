@@ -5,15 +5,10 @@ import Colors from "../constants/Colors";
 import PlayerSummary from "../components/PlayerSummary";
 import { Ionicons } from "@expo/vector-icons";
 import { RFPercentage } from "react-native-responsive-fontsize";
+import { ActivityIndicator } from "react-native";
 
 const PlayerCard = (props) => {
-    let tempRenderCondition = false;
-
-    if (props.attr) {
-        tempRenderCondition = true;
-    }
-
-    const { playerID, playerName, playerPosition, overall, kitNumber } = props;
+    const { playerID, name, position, overall } = props.cardData;
     return (
         <View style={{ padding: 20 }}>
             <Card style={styles.cardBackground}>
@@ -26,22 +21,18 @@ const PlayerCard = (props) => {
                             />
                         </View>
                         <View>
-                            <Text style={styles.subheading}>
-                                {playerPosition}
-                            </Text>
+                            <Text style={styles.subheading}>{position}</Text>
                             <Text style={styles.subheading}>{overall}</Text>
-                            <Text style={styles.playerName}>{playerName}</Text>
+                            <Text style={styles.playerName}>{name}</Text>
                         </View>
                     </View>
-                    {tempRenderCondition ? (
-                        <CardItem style={{ backgroundColor: Colors.primary }}>
+                    <CardItem style={{ backgroundColor: Colors.primary }}>
+                        {props.attr ? (
                             <PlayerSummary id={playerID} attr={props.attr} />
-                        </CardItem>
-                    ) : (
-                        <CardItem>
-                            <Text></Text>
-                        </CardItem>
-                    )}
+                        ) : (
+                            <ActivityIndicator size="large" />
+                        )}
+                    </CardItem>
                 </CardItem>
             </Card>
         </View>

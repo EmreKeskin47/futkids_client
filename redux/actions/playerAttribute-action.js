@@ -122,7 +122,7 @@ export const createPlayerAttribute = (
             );
             dispatch({
                 type: CREATE_PLAYER_ATTRIBUTE,
-                selectedPlayerAttribute: newAttribute,
+                newAttribute: newAttribute,
             });
         } catch (err) {
             throw new Error("Can not CREATE new player attribute");

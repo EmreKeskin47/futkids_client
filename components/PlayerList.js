@@ -44,13 +44,7 @@ const PlayerList = (props) => {
                     props.navigate(item.playerID);
                 }}
             >
-                <PlayerCard
-                    playerID={item.playerID}
-                    playerName={item.name}
-                    playerPosition={item.position}
-                    overall={item.overall}
-                    attr={attr}
-                />
+                <PlayerCard cardData={item} attr={attr} />
             </TouchableOpacity>
         );
     };
@@ -93,8 +87,4 @@ const styles = StyleSheet.create({
     },
 });
 
-const mapStateToProps = (state) => ({
-    cards: state.playerCardStore.playerCards,
-    attr: state.playerAttributeStore.playerAttributes,
-});
-export default connect(mapStateToProps)(PlayerList);
+export default PlayerList;

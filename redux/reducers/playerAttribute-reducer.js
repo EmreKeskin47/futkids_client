@@ -22,8 +22,12 @@ export default (state = initialState, action) => {
             state.selectedPlayerAttribute = action.selectedPlayerAttribute;
             return state;
         case CREATE_PLAYER_ATTRIBUTE:
-            return (state.selectedPlayerAttribute =
-                action.selectedPlayerAttribute);
+            state.playerAttributes = state.playerAttributes.concat(
+                action.newAttribute
+            );
+            state.selectedPlayerAttribute = action.newAttribute;
+            return state;
+
         case DELETE_PLAYER_ATTRIBUTE:
             state.playerAttributes = state.playerAttributes.filter(
                 (attr) => attr.id !== action.pid
