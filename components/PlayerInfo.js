@@ -13,10 +13,10 @@ const PlayerInfo = (props) => {
           <Text style={styles.itemL}>İsim</Text>
           <Text style={styles.itemR}>{name}</Text>
         </View>
-        <View style={styles.columnInside}>
+        {/* <View style={styles.columnInside}>
           <Text style={styles.itemL}>Takım</Text>
           <Text style={styles.itemR}>Galatasaray</Text>
-        </View>
+        </View> */}
         <View style={styles.columnInside}>
           <Text style={styles.itemL}>Mevki</Text>
           <Text style={styles.itemR}>{position}</Text>
