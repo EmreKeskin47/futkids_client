@@ -17,7 +17,7 @@ const UserPage = (props) => {
 
 export const screenOptions = (navData) => {
     return {
-        headerTitle: "User PlayerList Page",
+        headerTitle: "Player List",
         headerLeft: () => (
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item

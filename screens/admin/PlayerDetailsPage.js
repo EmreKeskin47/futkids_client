@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 export const screenOptions = (navData) => {
     const id = navData.route.params.id;
     return {
-        headerTitle: "Oyuncu Istatistigi ",
+        headerTitle: "Oyuncu Düzenle ",
         headerRight: () => (
             <Ionicons
                 name={"bar-chart-outline"}
