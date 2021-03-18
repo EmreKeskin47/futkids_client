@@ -26,21 +26,25 @@ const TeamOfTheWeek = ({ team, subs }) => {
     if (item.position == "ATT") {
       if (att.length < 2) {
         const newPlayer = item;
+        newPlayer.name = newPlayer.name.split(" ")[0];
         setAtt((oldArray) => [...oldArray, newPlayer]);
       }
     } else if (item.position == "MID") {
       if (mid.length < 4) {
         const newPlayer2 = item;
+        newPlayer2.name = newPlayer2.name.split(" ")[0];
         setMid((oldArray) => [...oldArray, newPlayer2]);
       }
     } else if (item.position == "DEF") {
       if (def.length < 4) {
         const newPlayer3 = item;
+        newPlayer3.name = newPlayer3.name.split(" ")[0];
         setDef((oldArray) => [...oldArray, newPlayer3]);
       }
     } else if (item.position == "GK") {
       if (gk.length < 1) {
         const newPlayer4 = item;
+        newPlayer4.name = newPlayer4.name.split(" ")[0];
         setGk((oldArray) => [...oldArray, newPlayer4]);
       }
     }
