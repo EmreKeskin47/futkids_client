@@ -7,7 +7,7 @@ import {
   ImageBackground,
   SafeAreaView,
 } from "react-native";
-import { Card, CardItem } from "native-base";
+import { Ionicons } from "@expo/vector-icons";
 import Colors from "../constants/Colors";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
@@ -55,51 +55,84 @@ const TeamOfTheWeek = ({ team, subs }) => {
       <ScrollView>
         <View style={styles.att}>
           <View style={styles.row}>
-            <Text style={styles.playerName}>
-              {att[0] == undefined ? "Bos" : att[0].name}
-            </Text>
-            <Text style={styles.playerName}>
-              {att[1] == undefined ? "Bos" : att[1].name}
-            </Text>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {att[0] == undefined ? "Bos" : att[0].name}
+              </Text>
+            </View>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {att[1] == undefined ? "Bos" : att[1].name}
+              </Text>
+            </View>
           </View>
         </View>
         <View style={styles.mid}>
           <View style={styles.row}>
-            <Text style={styles.playerName}>
-              {mid[0] == undefined ? "Bos" : mid[0].name}
-            </Text>
-            <Text style={styles.playerName}>
-              {mid[1] == undefined ? "Bos" : mid[1].name}
-            </Text>
-            <Text style={styles.playerName}>
-              {mid[2] == undefined ? "Bos" : mid[2].name}
-            </Text>
-            <Text style={styles.playerName}>
-              {mid[3] == undefined ? "Bos" : mid[3].name}
-            </Text>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {mid[0] == undefined ? "Bos" : mid[0].name}
+              </Text>
+            </View>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {mid[1] == undefined ? "Bos" : mid[1].name}
+              </Text>
+            </View>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {mid[2] == undefined ? "Bos" : mid[2].name}
+              </Text>
+            </View>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {mid[3] == undefined ? "Bos" : mid[3].name}
+              </Text>
+            </View>
           </View>
         </View>
         <View style={styles.def}>
           <View style={styles.row}>
-            <Text style={styles.playerName}>
-              {def[0] == undefined ? "Bos" : def[0].name}
-            </Text>
-            <Text style={styles.playerName}>
-              {def[1] == undefined ? "Bos" : def[1].name}
-            </Text>
-            <Text style={styles.playerName}>
-              {def[2] == undefined ? "Bos" : def[2].name}
-            </Text>
-            <Text style={styles.playerName}>
-              {def[3] == undefined ? "Bos" : def[3].name}
-            </Text>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {def[0] == undefined ? "Bos" : def[0].name}
+              </Text>
+            </View>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {def[1] == undefined ? "Bos" : def[1].name}
+              </Text>
+            </View>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {def[2] == undefined ? "Bos" : def[2].name}
+              </Text>
+            </View>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {def[3] == undefined ? "Bos" : def[3].name}
+              </Text>
+            </View>
           </View>
         </View>
         <View style={styles.gk}>
           <View style={styles.row}>
-            <Text style={styles.playerName}>
-              {gk[0] == undefined ? "Bos" : gk[0].name}
-            </Text>
+            <View style={styles.column}>
+              <Ionicons name="person-circle-sharp" style={styles.playerImage} />
+              <Text style={styles.playerName}>
+                {gk[0] == undefined ? "Bos" : gk[0].name}
+              </Text>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -121,16 +154,24 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   att: {
-    paddingTop: 100,
+    paddingTop: 80,
   },
   mid: {
-    paddingTop: 200,
+    paddingTop: 130,
   },
   def: {
-    paddingTop: 250,
+    paddingTop: 180,
   },
   gk: {
     paddingTop: 80,
+  },
+  column: {
+    justifyContent: "space-between",
+    color: Colors.primary,
+    alignItems: "center",
+  },
+  playerImage: {
+    fontSize: 40,
   },
 });
 
