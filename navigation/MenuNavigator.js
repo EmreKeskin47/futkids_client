@@ -30,6 +30,9 @@ import VotePage, {
 import LoginPage, {
   screenOptions as LoginScreenOptions,
 } from "../screens/LoginPage";
+import LiveTvPage, {
+  screenOptions as LiveTvScreenOptions,
+} from "../screens/LiveTv";
 
 const defaultNavOptions = {
   headerStyle: {
@@ -54,6 +57,19 @@ export const StadiumNavigator = () => {
         options={StadiumTestScreenOptions}
       />
     </StadiumStackNavigator.Navigator>
+  );
+};
+
+const LiveTvStackNavigator = createStackNavigator();
+export const LiveTvNavigator = () => {
+  return (
+    <LiveTvStackNavigator.Navigator screenOptions={defaultNavOptions}>
+      <LiveTvStackNavigator.Screen
+        name="LiveTv Page"
+        component={LiveTvPage}
+        options={LiveTvScreenOptions}
+      />
+    </LiveTvStackNavigator.Navigator>
   );
 };
 
@@ -153,6 +169,10 @@ export const MenuNavigator = () => {
         component={StadiumNavigator}
       />
       <MenuDrawerNavigator.Screen name="Oy Ver" component={VoteNavigator} />
+      <MenuDrawerNavigator.Screen
+        name="Canlı Yayın"
+        component={LiveTvNavigator}
+      />
     </MenuDrawerNavigator.Navigator>
   );
 };
