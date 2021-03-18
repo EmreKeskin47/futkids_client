@@ -17,7 +17,7 @@ const AdminPage = (props) => {
 };
 export const screenOptions = (navData) => {
   return {
-    headerTitle: "Admin Page ",
+    headerTitle: "Oyuncu Listesi ",
     headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
@@ -35,7 +35,7 @@ export const screenOptions = (navData) => {
           title="New"
           iconName={Platform.OS === "android" ? "add-circle" : "ios-add-circle"}
           onPress={() => {
-            navData.navigation.push("New Player");
+            navData.navigation.push("Yeni Oyuncu");
           }}
         />
       </HeaderButtons>

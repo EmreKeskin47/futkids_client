@@ -5,38 +5,36 @@ import HeaderButton from "../../components/HeaderButton";
 import PlayerList from "../../components/PlayerList";
 
 const UserPage = (props) => {
-    const navigateToProfile = (id) => {
-        props.navigation.navigate("Player Profile", { id: id });
-    };
-    return (
-        <View style={styles.root}>
-            <PlayerList navigate={navigateToProfile} />
-        </View>
-    );
+  const navigateToProfile = (id) => {
+    props.navigation.navigate("Oyuncu Profili", { id: id });
+  };
+  return (
+    <View style={styles.root}>
+      <PlayerList navigate={navigateToProfile} />
+    </View>
+  );
 };
 
 export const screenOptions = (navData) => {
-    return {
-        headerTitle: "Player List",
-        headerLeft: () => (
-            <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <Item
-                    title="Menu"
-                    iconName={
-                        Platform.OS === "android" ? "md-menu" : "ios-menu"
-                    }
-                    onPress={() => {
-                        navData.navigation.toggleDrawer();
-                    }}
-                />
-            </HeaderButtons>
-        ),
-    };
+  return {
+    headerTitle: "Oyuncular",
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName={Platform.OS === "android" ? "md-menu" : "ios-menu"}
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    ),
+  };
 };
 
 const styles = StyleSheet.create({
-    root: {
-        flex: 1,
-    },
+  root: {
+    flex: 1,
+  },
 });
 export default UserPage;

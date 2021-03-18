@@ -59,7 +59,7 @@ const VotePage = () => {
         style={styles.card}
       />
       <TouchableOpacity onPress={clicked} style={styles.btn}>
-        <Text style={styles.btnText}>Gonder</Text>
+        <Text style={styles.btnText}>Gönder</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

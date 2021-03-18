@@ -101,11 +101,14 @@ export const PlayersAdminNavigator = () => {
         options={PlayerDetailScreenOptions}
       />
       <AdminStackNavigator.Screen
-        name="Player Statics"
+        name="Oyuncu İstatistikleri"
         component={PlayerStaticsForm}
         options={PlayerStaticsFormScreenOptions}
       />
-      <AdminStackNavigator.Screen name="New Player" component={NewPlayerPage} />
+      <AdminStackNavigator.Screen
+        name="Yeni Oyuncu"
+        component={NewPlayerPage}
+      />
     </AdminStackNavigator.Navigator>
   );
 };
@@ -115,7 +118,7 @@ export const HomePageNavigator = () => {
   return (
     <HomeStackNavigator.Navigator screenOptions={defaultNavOptions}>
       <HomeStackNavigator.Screen
-        name="Home"
+        name="Ana Sayfa"
         component={HomePage}
         options={HomeScreenOptions}
       />
@@ -128,12 +131,12 @@ export const UserNavigator = () => {
   return (
     <UserStackNavigator.Navigator screenOptions={defaultNavOptions}>
       <UserStackNavigator.Screen
-        name="User Player List"
+        name="Oyuncular"
         component={UserPage}
         options={UserScreenOptions}
       />
       <UserStackNavigator.Screen
-        name="Player Profile"
+        name="Oyuncu Profili"
         component={PlayerProfilePage}
       />
     </UserStackNavigator.Navigator>
@@ -157,13 +160,16 @@ const MenuDrawerNavigator = createDrawerNavigator();
 export const MenuNavigator = () => {
   return (
     <MenuDrawerNavigator.Navigator screenOptions={defaultNavOptions}>
-      <MenuDrawerNavigator.Screen name="Home" component={HomePageNavigator} />
       <MenuDrawerNavigator.Screen
-        name="Admin Page"
+        name="Ana Sayfa"
+        component={HomePageNavigator}
+      />
+      <MenuDrawerNavigator.Screen
+        name="Admin"
         component={PlayersAdminNavigator}
       />
-      <MenuDrawerNavigator.Screen name="User Page" component={UserNavigator} />
-      <MenuDrawerNavigator.Screen name="Login Page" component={AuthNavigator} />
+      <MenuDrawerNavigator.Screen name="Kullanıcı" component={UserNavigator} />
+      <MenuDrawerNavigator.Screen name="Giriş" component={AuthNavigator} />
       <MenuDrawerNavigator.Screen
         name="Haftanın Takımı"
         component={StadiumNavigator}

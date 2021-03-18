@@ -56,7 +56,7 @@ const StadiumTest = () => {
 
 export const screenOptions = (navData) => {
   return {
-    headerTitle: "LineUp Page ",
+    headerTitle: "Haftanın Takımı ",
     headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
