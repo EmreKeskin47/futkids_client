@@ -41,7 +41,7 @@ const PlayerProfilePage = ({ route, navigation }) => {
   if (!playerCard || !attr || !stats) {
     return (
       <View style={styles.notFound}>
-        <Text>No Player Selected</Text>
+        <Text>Oyuncu Seçilmedi</Text>
       </View>
     );
   } else {
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   surround: {
-    height: 600,
+    height: 750,
     marginTop: 40,
     marginHorizontal: 20,
   },
