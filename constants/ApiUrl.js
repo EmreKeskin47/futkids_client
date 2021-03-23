@@ -1,1 +1,2 @@
-export default API = "http://localhost:3000/api/v1";
+export default API =
+    "https://us-central1-futkids-912bc.cloudfunctions.net/server/api/v1";
