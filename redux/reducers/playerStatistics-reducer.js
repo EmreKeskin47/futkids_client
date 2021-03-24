@@ -15,7 +15,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case FETCH_PLAYER_STATISTICS:
-            playerStats = action.playerStats;
+            state.playerStats = action.playerStats;
             return state;
         case CREATE_PLAYER_STATISTICS:
             return {

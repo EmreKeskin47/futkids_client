@@ -38,12 +38,10 @@ export const fetchPlayerStatistics = () => {
             }
 
             dispatch({
-                type: FETCH_PLAYER_CARD,
+                type: FETCH_PLAYER_STATISTICS,
                 playerStats: loadedPlayerStats,
             });
-        } catch (err) {
-            throw new Error("Can not SET player cards");
-        }
+        } catch (err) {}
     };
 };
 

@@ -8,9 +8,9 @@ import {
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useDispatch } from "react-redux";
-import VoteCard from "../../components/VoteCard";
-import { weeklyVote } from "../../redux/actions/playerCard-action";
-import HeaderButton from "../../components/HeaderButton";
+import VoteCard from "../components/VoteCard";
+import { weeklyVote } from "../redux/actions/playerCard-action";
+import HeaderButton from "../components/HeaderButton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 const VotePage = () => {
@@ -26,7 +26,7 @@ const VotePage = () => {
         dispatch(weeklyVote(selectedPlayer, 1));
         Alert.alert(
             "Oy verdiginiz icin tesekkur ederiz",
-            "Oyuncularimiz her hafta cok calisiyorlar ve sizin geri bildirimlerinizle daha iyi noktlara geleceklerine inaniyoruz.",
+            "Oyuncularimiz her hafta cok calisiyorlar ve sizin geri bildirimlerinizle daha iyi noktalara geleceklerine inaniyoruz.",
             [{ text: "OK" }],
             { cancelable: false }
         );
