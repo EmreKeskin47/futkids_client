@@ -63,7 +63,7 @@ function HomePageTabNavigator() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      activeColor="#e91e63"
+      activeColor="#C2185B"
       barStyle={{ backgroundColor: "#fff" }}
     >
       <Tab.Screen
