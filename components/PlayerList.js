@@ -6,18 +6,18 @@ import * as playerCardActions from "../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ActivityIndicator } from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
 
 const PlayerList = (props) => {
     const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(false);
+    const [position, setPosition] = useState("");
+
     const attrList = useSelector(
         (state) => state.playerAttributeStore.playerAttributes
     );
-    const playerCards = useSelector(
-        (state) => state.playerCardStore.playerCards
-    );
-
-    const [isLoading, setIsLoading] = useState(false);
-    getPlayerList = () => {
+    var playerCards = useSelector((state) => state.playerCardStore.playerCards);
+    const getPlayerListOnRefresh = () => {
         dispatch(playerAttributeActions.getAllAttributes())
             .then(dispatch(playerCardActions.fetchPlayerCards()))
             .then(() => setIsLoading(false))
@@ -26,7 +26,7 @@ const PlayerList = (props) => {
 
     onRefresh = () => {
         setIsLoading(true);
-        getPlayerList();
+        getPlayerListOnRefresh();
     };
 
     const renderItem = ({ item }) => {
@@ -66,8 +66,29 @@ const PlayerList = (props) => {
     } else {
         return (
             <View style={styles.container}>
+                <DropDownPicker
+                    items={[
+                        { label: "GK", value: "GK" },
+                        { label: "DEF", value: "DEF" },
+                        { label: "MID", value: "MID" },
+                        { label: "ATT", value: "ATT" },
+                    ]}
+                    defaultIndex={0}
+                    containerStyle={{ height: 50 }}
+                    placeholder={"Lutfen bir pozisyon seçiniz"}
+                    onChangeItem={(item) => {
+                        setPosition(item.value);
+                    }}
+                    style={styles.dropdown}
+                />
                 <FlatList
-                    data={playerCards}
+                    data={
+                        position
+                            ? playerCards.filter(
+                                  (item) => item.position === position
+                              )
+                            : playerCards
+                    }
                     extraData={attrList}
                     keyExtractor={(item) => {
                         return item.playerID;
@@ -89,6 +110,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+    },
+    dropdown: {
+        marginHorizontal: 20,
+        fontFamily: "Avenir-Medium",
     },
 });
 
