@@ -4,19 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/PlayerCard";
 import * as playerCardActions from "../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { ActivityIndicator } from "react-native";
-import DropDownPicker from "react-native-dropdown-picker";
+import { Button } from "react-native";
+import Colors from "../constants/Colors";
 
 const PlayerList = (props) => {
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(false);
     const [position, setPosition] = useState("");
+    const [name, setName] = useState("");
 
     const attrList = useSelector(
         (state) => state.playerAttributeStore.playerAttributes
     );
     var playerCards = useSelector((state) => state.playerCardStore.playerCards);
+
     const getPlayerListOnRefresh = () => {
         dispatch(playerAttributeActions.getAllAttributes())
             .then(dispatch(playerCardActions.fetchPlayerCards()))
@@ -66,27 +69,40 @@ const PlayerList = (props) => {
     } else {
         return (
             <View style={styles.container}>
-                <DropDownPicker
-                    items={[
-                        { label: "GK", value: "GK" },
-                        { label: "DEF", value: "DEF" },
-                        { label: "MID", value: "MID" },
-                        { label: "ATT", value: "ATT" },
-                    ]}
-                    defaultIndex={0}
-                    containerStyle={{ height: 50 }}
-                    placeholder={"Lutfen bir pozisyon seçiniz"}
-                    onChangeItem={(item) => {
-                        setPosition(item.value);
+                <View
+                    style={{
+                        backgroundColor: "#fff",
+                        padding: 10,
+                        marginVertical: 10,
+                        borderRadius: 20,
+                        height: 40,
                     }}
-                    style={styles.dropdown}
-                />
+                >
+                    <TextInput
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        clearButtonMode="always"
+                        value={name}
+                        onChangeText={(text) => {
+                            setName(text.toLowerCase());
+                        }}
+                        placeholder="İsim Ara"
+                        style={{
+                            backgroundColor: "#fff",
+                        }}
+                    />
+                </View>
                 <FlatList
                     data={
                         position
-                            ? playerCards.filter(
-                                  (item) => item.position === position
-                              )
+                            ? name
+                                ? playerCards.filter((item) => {
+                                      item.name.toLowerCase().includes(name) &&
+                                          item.position === position;
+                                  })
+                                : playerCards.filter(
+                                      (item) => item.position === position
+                                  )
                             : playerCards
                     }
                     extraData={attrList}
@@ -97,6 +113,43 @@ const PlayerList = (props) => {
                     onRefresh={() => onRefresh()}
                     refreshing={isLoading}
                 />
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-around",
+                    }}
+                >
+                    <Button
+                        title="GK"
+                        color={Colors.primary}
+                        style={{ height: 40 }}
+                        onPress={() => setPosition("GK")}
+                    />
+                    <Button
+                        title="DEF"
+                        color={Colors.primary}
+                        style={{ height: 40 }}
+                        onPress={() => setPosition("DEF")}
+                    />
+                    <Button
+                        title="MID"
+                        color={Colors.primary}
+                        style={{ height: 40 }}
+                        onPress={() => setPosition("MID")}
+                    />
+                    <Button
+                        title="ATT"
+                        color={Colors.primary}
+                        style={{ height: 40 }}
+                        onPress={() => setPosition("ATT")}
+                    />
+                    <Button
+                        title="Hepsi"
+                        color={Colors.primary}
+                        size={20}
+                        onPress={() => setPosition("")}
+                    />
+                </View>
             </View>
         );
     }
@@ -118,3 +171,20 @@ const styles = StyleSheet.create({
 });
 
 export default PlayerList;
+
+/*
+position
+                            ? name
+                                ? playerCards.filter((item) => {
+                                      item.name.toLowerCase().includes(name) &&
+                                          item.position === position;
+                                  })
+                                : playerCards.filter((item) =>
+                                      playerCards.filter(
+                                          item.position === position
+                                      )
+                                  )
+                            : playerCards
+
+                            
+*/
