@@ -174,9 +174,7 @@ export const updatePlayerStatistics = (
                 pid: playerID,
                 playerStatData: updatedPlayerStats,
             });
-        } catch (err) {
-            throw new Error("Can not UPDATE new player statistics");
-        }
+        } catch (err) {}
     };
 };
 

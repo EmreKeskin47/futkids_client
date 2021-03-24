@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/PlayerCard";
 import * as playerCardActions from "../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
@@ -17,14 +17,17 @@ const PlayerList = (props) => {
     );
 
     const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        setIsLoading(true);
+    getPlayerList = () => {
         dispatch(playerAttributeActions.getAllAttributes())
             .then(dispatch(playerCardActions.fetchPlayerCards()))
             .then(() => setIsLoading(false))
             .catch(() => setIsLoading(false));
-    }, [dispatch]);
+    };
+
+    onRefresh = () => {
+        setIsLoading(true);
+        getPlayerList();
+    };
 
     const renderItem = ({ item }) => {
         if (attrList) {
@@ -70,6 +73,8 @@ const PlayerList = (props) => {
                         return item.playerID;
                     }}
                     renderItem={renderItem}
+                    onRefresh={() => onRefresh()}
+                    refreshing={isLoading}
                 />
             </View>
         );

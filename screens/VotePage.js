@@ -12,9 +12,10 @@ import VoteCard from "../components/VoteCard";
 import { weeklyVote } from "../redux/actions/playerCard-action";
 import HeaderButton from "../components/HeaderButton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 const VotePage = () => {
-    const [position, setPosition] = useState("GK");
+    const [position, setPosition] = useState("");
     const [selectedPlayer, setSelectedPlayer] = useState();
     const dispatch = useDispatch();
 
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
         color: "black",
         opacity: 0.8,
         fontWeight: "bold",
-        fontSize: 20,
+        fontSize: RFPercentage(2),
         fontFamily: "Avenir-Medium",
     },
     dropdown: {
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
     },
     btnText: {
         fontWeight: "bold",
-        fontSize: 20,
+        fontSize: RFPercentage(3),
         alignSelf: "center",
         color: "white",
         fontFamily: "Avenir-Medium",

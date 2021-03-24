@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useDispatch, useSelector, useState } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PlayerForm from "../../components/PlayerForm";
 import * as playerCardActions from "../../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../../redux/actions/playerAttribute-action";
@@ -11,102 +11,104 @@ import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
 
 const PlayerDetailsPage = ({ route, navigation }) => {
-  const { id } = route.params;
+    const { id } = route.params;
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(playerCardActions.getPlayerCardInfo(id));
-    dispatch(playerAttributeActions.fetchPlayerAttributes(id));
-    dispatch(playerStatisticsActions.getStatsOfPlayer(id));
-  }, [dispatch]);
+    useEffect(() => {
+        dispatch(playerCardActions.getPlayerCardInfo(id));
+        dispatch(playerAttributeActions.fetchPlayerAttributes(id));
+        dispatch(playerStatisticsActions.getStatsOfPlayer(id));
+    }, [dispatch]);
 
-  const playerCard = useSelector(
-    (state) => state.playerCardStore.selectedPlayerCard
-  );
-  const playerAttribute = useSelector(
-    (state) => state.playerAttributeStore.selectedPlayerAttribute
-  );
-
-  if (!playerCard || !playerAttribute) {
-    return (
-      <View style={styles.text}>
-        <Text>No Player Screen</Text>
-      </View>
+    const playerCard = useSelector(
+        (state) => state.playerCardStore.selectedPlayerCard
     );
-  } else {
-    const onSave = (playerCardToCreate, attributeToCreate) => {
-      dispatch(
-        playerCardActions.updatePlayerCard(
-          playerCardToCreate.playerID,
-          playerCardToCreate.name,
-          playerCardToCreate.position,
-          playerCardToCreate.overall,
-          "image",
-          playerCardToCreate.kitNumber,
-          playerCardToCreate.foot,
-          playerCardToCreate.age
-        )
-      );
-      dispatch(
-        playerAttributeActions.updatePlayerAttribute(
-          attributeToCreate.playerID,
-          attributeToCreate.pace,
-          attributeToCreate.shooting,
-          attributeToCreate.passing,
-          attributeToCreate.dribbling,
-          attributeToCreate.defending,
-          attributeToCreate.physical,
-          attributeToCreate.goalKeeper
-        )
-      );
-      navigation.push("Admin Page");
-    };
-
-    const onDelete = () => {
-      dispatch(playerActions.deletePlayer(id));
-      dispatch(playerCardActions.deletePlayerCard(id));
-      dispatch(playerAttributeActions.deletePlayerAttribute(id));
-      navigation.push("Admin Page");
-    };
-
-    return (
-      <View style={{ flex: 1 }}>
-        <PlayerForm
-          playerID={id}
-          playerCard={playerCard}
-          playerAttribute={playerAttribute}
-          onSave={onSave}
-          onDelete={onDelete}
-        />
-      </View>
+    const playerAttribute = useSelector(
+        (state) => state.playerAttributeStore.selectedPlayerAttribute
     );
-  }
+
+    if (!playerCard || !playerAttribute) {
+        return (
+            <View style={styles.text}>
+                <Text>No Player Screen</Text>
+            </View>
+        );
+    } else {
+        const onSave = (playerCardToCreate, attributeToCreate) => {
+            dispatch(
+                playerCardActions.updatePlayerCard(
+                    playerCardToCreate.playerID,
+                    playerCardToCreate.name,
+                    playerCardToCreate.position,
+                    playerCardToCreate.overall,
+                    "image",
+                    playerCardToCreate.kitNumber,
+                    playerCardToCreate.foot,
+                    playerCardToCreate.age
+                )
+            );
+            dispatch(
+                playerAttributeActions.updatePlayerAttribute(
+                    attributeToCreate.playerID,
+                    attributeToCreate.pace,
+                    attributeToCreate.shooting,
+                    attributeToCreate.passing,
+                    attributeToCreate.dribbling,
+                    attributeToCreate.defending,
+                    attributeToCreate.physical,
+                    attributeToCreate.goalKeeper
+                )
+            );
+            navigation.push("Admin Page");
+        };
+
+        const onDelete = () => {
+            dispatch(playerActions.deletePlayer(id));
+            dispatch(playerCardActions.deletePlayerCard(id));
+            dispatch(playerAttributeActions.deletePlayerAttribute(id));
+            navigation.push("Admin Page");
+        };
+
+        return (
+            <View style={{ flex: 1 }}>
+                <PlayerForm
+                    playerID={id}
+                    playerCard={playerCard}
+                    playerAttribute={playerAttribute}
+                    onSave={onSave}
+                    onDelete={onDelete}
+                />
+            </View>
+        );
+    }
 };
 
 const styles = StyleSheet.create({
-  text: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+    text: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    },
 });
 
 export const screenOptions = (navData) => {
-  const id = navData.route.params.id;
-  return {
-    headerTitle: "Oyuncu Detayları ",
-    headerRight: () => (
-      <Ionicons
-        name={"bar-chart-outline"}
-        size={25}
-        color={Colors.primary}
-        style={{ marginRight: 20 }}
-        onPress={() => {
-          navData.navigation.navigate("Oyuncu İstatistikleri", { id: id });
-        }}
-      />
-    ),
-  };
+    const id = navData.route.params.id;
+    return {
+        headerTitle: "Oyuncu Detayları ",
+        headerRight: () => (
+            <Ionicons
+                name={"bar-chart-outline"}
+                size={25}
+                color={Colors.primary}
+                style={{ marginRight: 20 }}
+                onPress={() => {
+                    navData.navigation.push("Oyuncu İstatistikleri", {
+                        id: id,
+                    });
+                }}
+            />
+        ),
+    };
 };
 export default PlayerDetailsPage;

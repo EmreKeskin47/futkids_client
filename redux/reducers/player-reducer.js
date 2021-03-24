@@ -12,7 +12,8 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case FETCH_PLAYERS:
-            return { players: action.players };
+            state.players = action.players;
+            return state;
         case CREATE_PLAYER:
             return { players: state.players.concat(action.newPlayer) };
         case DELETE_PLAYER:

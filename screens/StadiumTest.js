@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
     View,
     Platform,
@@ -8,29 +8,16 @@ import {
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import TeamOfTheWeek from "../components/TeamOfTheWeek";
-import * as playerCardActions from "../redux/actions/playerCard-action";
 
 const StadiumTest = () => {
-    const dispatch = useDispatch();
     const image = require("../assets/background-image.jpg");
-
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setLoading(true);
-        dispatch(playerCardActions.fetchPlayerCards());
-        if (playerCardList) {
-            setLoading(false);
-        }
-    }, [dispatch, playerCardList]);
-
     const playerCardList = useSelector(
         (state) => state.playerCardStore.playerCards
     );
 
-    if (loading) {
+    if (!playerCardList) {
         return (
             <View style={styles.centered}>
                 <ActivityIndicator size="large" />

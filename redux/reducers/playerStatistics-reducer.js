@@ -18,9 +18,8 @@ export default (state = initialState, action) => {
             state.playerStats = action.playerStats;
             return state;
         case CREATE_PLAYER_STATISTICS:
-            return {
-                playerStats: state.playerStats.concat(action.newPlayerStats),
-            };
+            state.playerStats = state.playerStats.concat(action.newPlayerStats);
+            return state;
         case DELETE_PLAYER_STATISTICS:
             return {
                 ...state,

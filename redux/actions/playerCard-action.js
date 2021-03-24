@@ -43,9 +43,7 @@ export const fetchPlayerCards = () => {
                 type: FETCH_PLAYER_CARD,
                 playerCards: loadedPlayerCards,
             });
-        } catch (err) {
-            throw new Error("Can not SET player cards");
-        }
+        } catch (err) {}
     };
 };
 
