@@ -65,6 +65,7 @@ function HomePageTabNavigator() {
       initialRouteName="Home"
       activeColor="#C2185B"
       barStyle={{ backgroundColor: "#fff" }}
+      shifting={true}
     >
       <Tab.Screen
         name="Home"
