@@ -100,7 +100,7 @@ export const screenOptions = (navData) => {
             <Ionicons
                 name={"bar-chart-outline"}
                 size={25}
-                color={Colors.primary}
+                color={"white"}
                 style={{ marginRight: 20 }}
                 onPress={() => {
                     navData.navigation.push("Oyuncu İstatistikleri", {

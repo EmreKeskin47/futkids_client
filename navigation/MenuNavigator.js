@@ -37,19 +37,26 @@ import LiveTvPage, {
 } from "../screens/LiveTv";
 import TopScorerPage from "../screens/TopScorerTab";
 import TopAsistPage from "../screens/TopAsistPage";
-import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
+
+const GradientHeader = (props) => (
+    <LinearGradient
+        colors={["#90a3a6", "#537895"]}
+        style={{ flex: 1 }}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+    />
+);
 
 const defaultNavOptions = {
-    headerStyle: {
-        backgroundColor: Platform.OS === "android" ? Colors.primary : "",
-    },
+    headerBackground: GradientHeader,
     headerTitleStyle: {
         fontFamily: "open-sans-bold",
     },
     headerBackTitleStyle: {
         fontFamily: "open-sans",
     },
-    headerTintColor: Platform.OS === "android" ? "white" : Colors.primary,
+    headerTintColor: Platform.OS === "android" ? "white" : "white",
 };
 
 const Tab = createMaterialBottomTabNavigator();
