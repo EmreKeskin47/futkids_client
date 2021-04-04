@@ -2,6 +2,7 @@ export const FETCH_PLAYERS = "FETCH_PLAYERS";
 export const CREATE_PLAYER = "CREATE_PLAYER";
 export const UPDATE_PLAYER = "UPDATE_PLAYER";
 export const DELETE_PLAYER = "DELETE_PLAYER";
+export const GET_PLAYER = "GET_PLAYER";
 
 import API from "../../constants/ApiUrl";
 import Player from "../../models/Player";
@@ -156,5 +157,55 @@ export const deletePlayer = (playerID) => {
         }
         dispatch(deletePlayerStatistic(playerID));
         dispatch({ type: DELETE_PLAYER, pid: playerID });
+    };
+};
+
+//Getting card details of the player with the given PlayerID
+export const getInfo = (playerID) => {
+    return async (dispatch) => {
+        const response = await fetch(`${BASE_URL}/${playerID}`);
+        if (!response.ok) {
+            throw new Error("Can not GET detailed player info");
+        }
+        const resData = await response.json();
+        dispatch({
+            type: GET_PLAYER,
+            playerData: resData,
+        });
+    };
+};
+
+//update player
+export const updatePlayer = (playerID, email, cardID, attributeID) => {
+    return async (dispatch) => {
+        const response = await fetch(`${BASE_URL}/${playerID}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                playerID,
+                email,
+                cardID,
+                attributeID,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error("Can not PATCH player");
+        }
+        const resData = await response.json();
+        const updatedPlayer = new Player(
+            resData._id,
+            email,
+            cardID,
+            attributeID
+        );
+
+        dispatch({
+            type: UPDATE_PLAYER,
+            pid: resData._id,
+            playerData: updatedPlayer,
+        });
     };
 };

@@ -2,11 +2,14 @@ import {
     CREATE_PLAYER,
     DELETE_PLAYER,
     FETCH_PLAYERS,
+    GET_PLAYER,
+    UPDATE_PLAYER,
 } from "../actions/player-actions";
 
 const initialState = {
     players: [],
     selectedPlayerID: "",
+    selectedPlayer: {},
 };
 
 export default (state = initialState, action) => {
@@ -23,6 +26,15 @@ export default (state = initialState, action) => {
                     (player) => player.id !== action.pid
                 ),
             };
+        case GET_PLAYER:
+            state.selectedPlayer = action.playerData;
+            return state;
+        case UPDATE_PLAYER:
+            const playerIndex = state.players.findIndex(
+                (player) => player.id === action.pid
+            );
+            state.players[playerIndex] = action.PlayerData;
+            return state;
     }
     return state;
 };

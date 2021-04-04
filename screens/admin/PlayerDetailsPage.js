@@ -5,7 +5,6 @@ import PlayerForm from "../../components/PlayerForm";
 import * as playerCardActions from "../../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../../redux/actions/playerAttribute-action";
 import * as playerStatisticsActions from "../../redux/actions/playerStatistics-action";
-
 import * as playerActions from "../../redux/actions/player-actions";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "../../constants/Colors";
@@ -19,6 +18,7 @@ const PlayerDetailsPage = ({ route, navigation }) => {
         dispatch(playerCardActions.getPlayerCardInfo(id));
         dispatch(playerAttributeActions.fetchPlayerAttributes(id));
         dispatch(playerStatisticsActions.getStatsOfPlayer(id));
+        dispatch(playerActions.getInfo(id));
     }, [dispatch]);
 
     const playerCard = useSelector(
@@ -27,6 +27,7 @@ const PlayerDetailsPage = ({ route, navigation }) => {
     const playerAttribute = useSelector(
         (state) => state.playerAttributeStore.selectedPlayerAttribute
     );
+    const player = useSelector((state) => state.playerStore.selectedPlayer);
 
     if (!playerCard || !playerAttribute) {
         return (
@@ -35,7 +36,7 @@ const PlayerDetailsPage = ({ route, navigation }) => {
             </View>
         );
     } else {
-        const onSave = (playerCardToCreate, attributeToCreate) => {
+        const onSave = (player, playerCardToCreate, attributeToCreate) => {
             dispatch(
                 playerCardActions.updatePlayerCard(
                     playerCardToCreate.playerID,
@@ -60,6 +61,14 @@ const PlayerDetailsPage = ({ route, navigation }) => {
                     attributeToCreate.goalKeeper
                 )
             );
+            dispatch(
+                playerActions.updatePlayer(
+                    playerCardToCreate.playerID,
+                    player.email,
+                    "",
+                    ""
+                )
+            );
             navigation.push("Admin Page");
         };
 
@@ -76,6 +85,7 @@ const PlayerDetailsPage = ({ route, navigation }) => {
                     playerID={id}
                     playerCard={playerCard}
                     playerAttribute={playerAttribute}
+                    player={player}
                     onSave={onSave}
                     onDelete={onDelete}
                 />
