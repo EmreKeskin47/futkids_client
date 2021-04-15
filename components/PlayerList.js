@@ -32,6 +32,19 @@ const PlayerList = (props) => {
         getPlayerListOnRefresh();
     };
 
+    playerListData = () => {
+        if (name != "") {
+            var filtered = playerCards.filter((item) => {
+                if (item.name.toLowerCase().includes(name)) {
+                    console.log(item);
+                }
+            });
+            return filtered;
+        } else {
+            return playerCards;
+        }
+    };
+
     const renderItem = ({ item }) => {
         if (attrList) {
             var attr = attrList.filter((attr) => {
@@ -95,15 +108,14 @@ const PlayerList = (props) => {
                 <FlatList
                     data={
                         position
-                            ? name
-                                ? playerCards.filter((item) => {
+                            ? playerCards.filter(
+                                  (item) =>
                                       item.name.toLowerCase().includes(name) &&
-                                          item.position === position;
-                                  })
-                                : playerCards.filter(
-                                      (item) => item.position === position
-                                  )
-                            : playerCards
+                                      item.position == position
+                              )
+                            : playerCards.filter((item) =>
+                                  item.name.toLowerCase().includes(name)
+                              )
                     }
                     extraData={attrList}
                     keyExtractor={(item) => {
