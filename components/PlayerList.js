@@ -32,19 +32,6 @@ const PlayerList = (props) => {
         getPlayerListOnRefresh();
     };
 
-    playerListData = () => {
-        if (name != "") {
-            var filtered = playerCards.filter((item) => {
-                if (item.name.toLowerCase().includes(name)) {
-                    console.log(item);
-                }
-            });
-            return filtered;
-        } else {
-            return playerCards;
-        }
-    };
-
     const renderItem = ({ item }) => {
         if (attrList) {
             var attr = attrList.filter((attr) => {
@@ -82,15 +69,7 @@ const PlayerList = (props) => {
     } else {
         return (
             <View style={styles.container}>
-                <View
-                    style={{
-                        backgroundColor: "#fff",
-                        padding: 10,
-                        marginVertical: 10,
-                        borderRadius: 20,
-                        height: 40,
-                    }}
-                >
+                <View style={styles.searchField}>
                     <TextInput
                         autoCapitalize="none"
                         autoCorrect={false}
@@ -125,12 +104,7 @@ const PlayerList = (props) => {
                     onRefresh={() => onRefresh()}
                     refreshing={isLoading}
                 />
-                <View
-                    style={{
-                        flexDirection: "row",
-                        justifyContent: "space-around",
-                    }}
-                >
+                <View style={styles.buttons}>
                     <Button
                         title="GK"
                         color={Colors.primary}
@@ -180,23 +154,17 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         fontFamily: "Avenir-Medium",
     },
+    buttons: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+    },
+    searchField: {
+        backgroundColor: "#fff",
+        padding: 10,
+        marginVertical: 10,
+        borderRadius: 20,
+        height: 40,
+    },
 });
 
 export default PlayerList;
-
-/*
-position
-                            ? name
-                                ? playerCards.filter((item) => {
-                                      item.name.toLowerCase().includes(name) &&
-                                          item.position === position;
-                                  })
-                                : playerCards.filter((item) =>
-                                      playerCards.filter(
-                                          item.position === position
-                                      )
-                                  )
-                            : playerCards
-
-                            
-*/
