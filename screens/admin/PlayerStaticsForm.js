@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Button } from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 import { TextInput } from "react-native-paper";
 import Colors from "../../constants/Colors";
 import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import * as playerStatisticsActions from "../../redux/actions/playerStatistics-action";
+import { Picker } from "@react-native-community/picker";
 
 const PlayerStaticsForm = (props) => {
     const dispatch = useDispatch();
+    const formOptions = Array.from(Array(10).keys());
 
     const playerStatistics = useSelector(
         (state) => state.playerStatisticsStore.selectedPlayerStatistics
@@ -72,18 +74,31 @@ const PlayerStaticsForm = (props) => {
                     onChangeText={(text) => setCleanSheet(text)}
                     value={cleanSheet}
                 />
-                <TextInput
-                    label="Form"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setForm(text)}
-                    value={form}
-                />
+
                 <TextInput
                     label="Oynanan Maçlar"
                     style={styles.inputStyle}
                     onChangeText={(text) => setPlayedMatches(text)}
                     value={playedMatches}
                 />
+                <View>
+                    <Text style={styles.attrPickerLabel}>Form</Text>
+                    <Picker
+                        selectedValue={form}
+                        itemStyle={{ color: "white" }}
+                        onValueChange={(text) => setForm(text)}
+                    >
+                        {formOptions.map((i) => {
+                            return (
+                                <Picker.Item
+                                    key={i}
+                                    value={i + ""}
+                                    label={i + ""}
+                                />
+                            );
+                        })}
+                    </Picker>
+                </View>
                 <View style={styles.button}>
                     <Button
                         title="Değişiklikleri Kaydet"
@@ -136,6 +151,7 @@ const styles = StyleSheet.create({
     button: {
         paddingVertical: 40,
     },
+    attrPickerLabel: { textAlign: "center", color: "white", paddingTop: 30 },
 });
 
 export default PlayerStaticsForm;
