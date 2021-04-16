@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/PlayerCard";
 import * as playerCardActions from "../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
-import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import {
+    TextInput,
+    TouchableOpacity,
+    TouchableHighlight,
+} from "react-native-gesture-handler";
 import { ActivityIndicator } from "react-native";
 import { Button } from "react-native";
 import Colors from "../constants/Colors";
@@ -105,36 +109,102 @@ const PlayerList = (props) => {
                     refreshing={isLoading}
                 />
                 <View style={styles.buttons}>
-                    <Button
-                        title="GK"
-                        color={Colors.primary}
-                        style={{ height: 40 }}
+                    <TouchableOpacity
+                        style={{
+                            marginTop: position == "GK" ? -20 : 0,
+                            height: 40,
+                        }}
                         onPress={() => setPosition("GK")}
-                    />
-                    <Button
-                        title="DEF"
-                        color={Colors.primary}
-                        style={{ height: 40 }}
+                    >
+                        <Text
+                            style={{
+                                color:
+                                    position == "GK"
+                                        ? Colors.accent
+                                        : Colors.primary,
+                                height: 40,
+                            }}
+                        >
+                            GK
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: position == "DEF" ? -15 : 0,
+                            height: 40,
+                        }}
                         onPress={() => setPosition("DEF")}
-                    />
-                    <Button
-                        title="MID"
-                        color={Colors.primary}
-                        style={{ height: 40 }}
+                    >
+                        <Text
+                            style={{
+                                color:
+                                    position == "DEF"
+                                        ? Colors.accent
+                                        : Colors.primary,
+                                height: 40,
+                            }}
+                        >
+                            DEF
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: position == "MID" ? -15 : 0,
+                            height: 40,
+                        }}
                         onPress={() => setPosition("MID")}
-                    />
-                    <Button
-                        title="ATT"
-                        color={Colors.primary}
-                        style={{ height: 40 }}
+                    >
+                        <Text
+                            style={{
+                                color:
+                                    position == "MID"
+                                        ? Colors.accent
+                                        : Colors.primary,
+                                height: 40,
+                            }}
+                        >
+                            MID
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: position == "ATT" ? -15 : 0,
+                            height: 40,
+                        }}
                         onPress={() => setPosition("ATT")}
-                    />
-                    <Button
-                        title="Hepsi"
-                        color={Colors.primary}
+                    >
+                        <Text
+                            style={{
+                                color:
+                                    position == "ATT"
+                                        ? Colors.accent
+                                        : Colors.primary,
+                                height: 40,
+                            }}
+                        >
+                            ATT
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: position == "" ? -15 : 0,
+                            height: 40,
+                        }}
                         size={20}
                         onPress={() => setPosition("")}
-                    />
+                    >
+                        <Text
+                            style={{
+                                color:
+                                    position == ""
+                                        ? Colors.accent
+                                        : Colors.primary,
+                                height: 40,
+                            }}
+                        >
+                            HEPSİ
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -157,6 +227,7 @@ const styles = StyleSheet.create({
     buttons: {
         flexDirection: "row",
         justifyContent: "space-around",
+        padding: 30,
     },
     searchField: {
         backgroundColor: "#fff",
