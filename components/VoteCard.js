@@ -8,6 +8,7 @@ import {
     FlatList,
 } from "react-native";
 import { useSelector } from "react-redux";
+import Colors from "../constants/Colors";
 
 const Item = ({ item, onPress, style }) => (
     <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
@@ -46,7 +47,8 @@ const VoteCard = (props) => {
     };
 
     const renderItem = ({ item }) => {
-        const backgroundColor = item.id === selectedId ? "#6e3b6e" : "#f9c2ff";
+        const backgroundColor =
+            item.id === selectedId ? Colors.accent : Colors.primary;
 
         return (
             <Item
@@ -97,6 +99,7 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 20,
         fontFamily: "Avenir-Medium",
+        color: "white",
     },
     position: {
         fontSize: 20,

@@ -111,7 +111,7 @@ const PlayerList = (props) => {
                 <View style={styles.buttons}>
                     <TouchableOpacity
                         style={{
-                            marginTop: position == "GK" ? -20 : 0,
+                            marginTop: position == "GK" ? -5 : 0,
                             height: 40,
                         }}
                         onPress={() => setPosition("GK")}
@@ -130,7 +130,7 @@ const PlayerList = (props) => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{
-                            marginTop: position == "DEF" ? -15 : 0,
+                            marginTop: position == "DEF" ? -5 : 0,
                             height: 40,
                         }}
                         onPress={() => setPosition("DEF")}
@@ -149,7 +149,7 @@ const PlayerList = (props) => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{
-                            marginTop: position == "MID" ? -15 : 0,
+                            marginTop: position == "MID" ? -5 : 0,
                             height: 40,
                         }}
                         onPress={() => setPosition("MID")}
@@ -168,7 +168,7 @@ const PlayerList = (props) => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{
-                            marginTop: position == "ATT" ? -15 : 0,
+                            marginTop: position == "ATT" ? -5 : 0,
                             height: 40,
                         }}
                         onPress={() => setPosition("ATT")}
@@ -187,7 +187,7 @@ const PlayerList = (props) => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={{
-                            marginTop: position == "" ? -15 : 0,
+                            marginTop: position == "" ? -5 : 0,
                             height: 40,
                         }}
                         size={20}
@@ -227,7 +227,8 @@ const styles = StyleSheet.create({
     buttons: {
         flexDirection: "row",
         justifyContent: "space-around",
-        padding: 30,
+        padding: 15,
+        paddingBottom: 0,
     },
     searchField: {
         backgroundColor: "#fff",
