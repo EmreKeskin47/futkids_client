@@ -2,12 +2,18 @@ import React from "react";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
 import { View, Text, Platform, StyleSheet } from "react-native";
+import { WebView } from "react-native-webview";
+import { render } from "react-dom";
 
 const LiveTvPage = () => {
   return (
-    <View style={styles.root}>
-      <Text>Live Tv</Text>
-    </View>
+    <WebView
+      style={{ flex: 1 }}
+      javaScriptEnabled={true}
+      source={{
+        uri: "http://192.168.1.12.:5080/LiveApp/play.html?name=stream1",
+      }}
+    />
   );
 };
 
