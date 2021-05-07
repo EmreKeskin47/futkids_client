@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/PlayerCard";
 import * as playerCardActions from "../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
-import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import {
+    TextInput,
+    TouchableOpacity,
+    TouchableHighlight,
+} from "react-native-gesture-handler";
 import { ActivityIndicator } from "react-native";
 import { Button } from "react-native";
 import Colors from "../constants/Colors";
@@ -69,15 +73,7 @@ const PlayerList = (props) => {
     } else {
         return (
             <View style={styles.container}>
-                <View
-                    style={{
-                        backgroundColor: "#fff",
-                        padding: 10,
-                        marginVertical: 10,
-                        borderRadius: 20,
-                        height: 40,
-                    }}
-                >
+                <View style={styles.searchField}>
                     <TextInput
                         autoCapitalize="none"
                         autoCorrect={false}
@@ -95,15 +91,14 @@ const PlayerList = (props) => {
                 <FlatList
                     data={
                         position
-                            ? name
-                                ? playerCards.filter((item) => {
+                            ? playerCards.filter(
+                                  (item) =>
                                       item.name.toLowerCase().includes(name) &&
-                                          item.position === position;
-                                  })
-                                : playerCards.filter(
-                                      (item) => item.position === position
-                                  )
-                            : playerCards
+                                      item.position == position
+                              )
+                            : playerCards.filter((item) =>
+                                  item.name.toLowerCase().includes(name)
+                              )
                     }
                     extraData={attrList}
                     keyExtractor={(item) => {
@@ -113,42 +108,103 @@ const PlayerList = (props) => {
                     onRefresh={() => onRefresh()}
                     refreshing={isLoading}
                 />
-                <View
-                    style={{
-                        flexDirection: "row",
-                        justifyContent: "space-around",
-                    }}
-                >
-                    <Button
-                        title="GK"
-                        color={Colors.primary}
-                        style={{ height: 40 }}
+                <View style={styles.buttons}>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: position == "GK" ? -5 : 0,
+                            height: 40,
+                        }}
                         onPress={() => setPosition("GK")}
-                    />
-                    <Button
-                        title="DEF"
-                        color={Colors.primary}
-                        style={{ height: 40 }}
+                    >
+                        <Text
+                            style={{
+                                color:
+                                    position == "GK"
+                                        ? Colors.accent
+                                        : Colors.primary,
+                                height: 40,
+                            }}
+                        >
+                            GK
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: position == "DEF" ? -5 : 0,
+                            height: 40,
+                        }}
                         onPress={() => setPosition("DEF")}
-                    />
-                    <Button
-                        title="MID"
-                        color={Colors.primary}
-                        style={{ height: 40 }}
+                    >
+                        <Text
+                            style={{
+                                color:
+                                    position == "DEF"
+                                        ? Colors.accent
+                                        : Colors.primary,
+                                height: 40,
+                            }}
+                        >
+                            DEF
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: position == "MID" ? -5 : 0,
+                            height: 40,
+                        }}
                         onPress={() => setPosition("MID")}
-                    />
-                    <Button
-                        title="ATT"
-                        color={Colors.primary}
-                        style={{ height: 40 }}
+                    >
+                        <Text
+                            style={{
+                                color:
+                                    position == "MID"
+                                        ? Colors.accent
+                                        : Colors.primary,
+                                height: 40,
+                            }}
+                        >
+                            MID
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: position == "ATT" ? -5 : 0,
+                            height: 40,
+                        }}
                         onPress={() => setPosition("ATT")}
-                    />
-                    <Button
-                        title="Hepsi"
-                        color={Colors.primary}
+                    >
+                        <Text
+                            style={{
+                                color:
+                                    position == "ATT"
+                                        ? Colors.accent
+                                        : Colors.primary,
+                                height: 40,
+                            }}
+                        >
+                            ATT
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            marginTop: position == "" ? -5 : 0,
+                            height: 40,
+                        }}
                         size={20}
                         onPress={() => setPosition("")}
-                    />
+                    >
+                        <Text
+                            style={{
+                                color:
+                                    position == ""
+                                        ? Colors.accent
+                                        : Colors.primary,
+                                height: 40,
+                            }}
+                        >
+                            HEPSİ
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         );
@@ -168,23 +224,19 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         fontFamily: "Avenir-Medium",
     },
+    buttons: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        padding: 15,
+        paddingBottom: 0,
+    },
+    searchField: {
+        backgroundColor: "#fff",
+        padding: 10,
+        marginVertical: 10,
+        borderRadius: 20,
+        height: 40,
+    },
 });
 
 export default PlayerList;
-
-/*
-position
-                            ? name
-                                ? playerCards.filter((item) => {
-                                      item.name.toLowerCase().includes(name) &&
-                                          item.position === position;
-                                  })
-                                : playerCards.filter((item) =>
-                                      playerCards.filter(
-                                          item.position === position
-                                      )
-                                  )
-                            : playerCards
-
-                            
-*/

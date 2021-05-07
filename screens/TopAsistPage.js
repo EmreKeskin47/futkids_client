@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
 import { Card } from "react-native-elements";
+import Leaderboard from "react-native-leaderboard";
 
 const TopAssistPage = () => {
     const playerCardList = useSelector(
@@ -23,19 +24,11 @@ const TopAssistPage = () => {
             <Card>
                 <Card.Title>ASSİST KRALLIĞI</Card.Title>
                 <Card.Divider />
-
-                {topAssist.map((u, i) => {
-                    if (u.assists > 0) {
-                        return (
-                            <View key={i}>
-                                <Text>{u.name}</Text>
-                                <Text>{u.assists}</Text>
-                                <Text>{u.overall}</Text>
-                                <Card.Divider />
-                            </View>
-                        );
-                    }
-                })}
+                <Leaderboard
+                    data={topAssist.slice(0, 10)}
+                    sortBy="assists"
+                    labelBy="name"
+                />
             </Card>
         </View>
     );

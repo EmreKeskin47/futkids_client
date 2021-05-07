@@ -13,6 +13,7 @@ import { weeklyVote } from "../redux/actions/playerCard-action";
 import HeaderButton from "../components/HeaderButton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+import Colors from "../constants/Colors";
 
 const VotePage = () => {
     const [position, setPosition] = useState("");
@@ -35,11 +36,11 @@ const VotePage = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Text style={styles.heading}>
-                Yas araligini girdiginiz oyuncular asagida goruntulenecektir.
+                Yaş aralığını girdiğiniz oyuncular aşağıda görüntülenecektir.
                 {"\n"}
                 {"\n"}
-                Bu hafta dikkatinizi ceken oyuncunun uzerine tiklayip, asagidaki
-                gonder butonuna basarak, oyuncuya oy verebilirsiniz.
+                Bu hafta dikkatinizi çeken oyuncunun üzerine tıklayıp, aşağıdaki
+                gönder butonuna basarak, oyuncuya oy verebilirsiniz.
             </Text>
             <DropDownPicker
                 items={[
@@ -103,13 +104,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         fontFamily: "Avenir-Medium",
     },
-    card: {},
     btn: {
         alignSelf: "center",
-        backgroundColor: "#6e3b6e",
-        margin: 10,
+        backgroundColor: Colors.primary,
+        margin: 15,
         height: 50,
-        width: 100,
+        width: 150,
         justifyContent: "center",
         borderRadius: 5,
     },

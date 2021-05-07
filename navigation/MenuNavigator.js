@@ -41,7 +41,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const GradientHeader = (props) => (
     <LinearGradient
-        colors={["#90a3a6", "#537895"]}
+        colors={["#e0e0eb", "#404040"]}
         style={{ flex: 1 }}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}

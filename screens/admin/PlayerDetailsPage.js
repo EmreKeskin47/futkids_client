@@ -7,7 +7,6 @@ import * as playerAttributeActions from "../../redux/actions/playerAttribute-act
 import * as playerStatisticsActions from "../../redux/actions/playerStatistics-action";
 import * as playerActions from "../../redux/actions/player-actions";
 import { Ionicons } from "@expo/vector-icons";
-import Colors from "../../constants/Colors";
 
 const PlayerDetailsPage = ({ route, navigation }) => {
     const { id } = route.params;

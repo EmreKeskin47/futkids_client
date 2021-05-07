@@ -8,9 +8,11 @@ import PlayerAttribute from "../models/PlayerAttribute";
 import { ScrollView } from "react-native-gesture-handler";
 import { Text } from "react-native";
 import Player from "../models/Player";
+
 const PlayerForm = (props) => {
     const { player, playerAttribute, playerCard, onSave } = props;
     const attrOptions = Array.from(Array(100).keys());
+    const ageOptions = Array.from(Array(20).keys());
 
     useEffect(() => {
         setName(playerCard.name);
@@ -59,14 +61,9 @@ const PlayerForm = (props) => {
                     onChangeText={(text) => setName(text)}
                     value={name}
                 />
-                <TextInput
-                    label="Güç"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setOverall(text)}
-                    value={overall}
-                />
+
                 <View style={{ flexDirection: "row" }}>
-                    <View style={styles.attrPicker}>
+                    <View style={styles.threePicker}>
                         <Text style={styles.attrPickerLabel}>Pozisyon</Text>
                         <Picker
                             selectedValue={position}
@@ -82,7 +79,7 @@ const PlayerForm = (props) => {
                         </Picker>
                     </View>
 
-                    <View style={styles.attrPicker}>
+                    <View style={styles.threePicker}>
                         <Text style={styles.attrPickerLabel}>Ayak</Text>
                         <Picker
                             selectedValue={foot}
@@ -93,21 +90,26 @@ const PlayerForm = (props) => {
                             <Picker.Item label="L" value="L" />
                         </Picker>
                     </View>
+
+                    <View style={styles.threePicker}>
+                        <Text style={styles.attrPickerLabel}>Güç</Text>
+                        <Picker
+                            selectedValue={overall}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(text) => setOverall(text)}
+                        >
+                            {attrOptions.map((i) => {
+                                return (
+                                    <Picker.Item
+                                        key={i}
+                                        value={i + ""}
+                                        label={i + ""}
+                                    />
+                                );
+                            })}
+                        </Picker>
+                    </View>
                 </View>
-
-                <TextInput
-                    label="Forma Numarası"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setKitNumber(text)}
-                    value={kitNumber}
-                />
-
-                <TextInput
-                    label="Yaş"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setAge(text)}
-                    value={age}
-                />
 
                 <TextInput
                     label="email adresi"
@@ -116,9 +118,45 @@ const PlayerForm = (props) => {
                     value={email}
                 />
 
-                {/* Player Attributes */}
                 <View style={{ flexDirection: "row" }}>
-                    <View style={styles.attrPicker}>
+                    <View style={styles.threePicker}>
+                        <Text style={styles.attrPickerLabel}>Yaş</Text>
+                        <Picker
+                            selectedValue={age}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(text) => setAge(text)}
+                        >
+                            {ageOptions.map((i) => {
+                                return (
+                                    <Picker.Item
+                                        key={i}
+                                        value={i + ""}
+                                        label={i + ""}
+                                    />
+                                );
+                            })}
+                        </Picker>
+                    </View>
+
+                    <View style={styles.threePicker}>
+                        <Text style={styles.attrPickerLabel}>Forma No</Text>
+                        <Picker
+                            selectedValue={kitNumber}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(text) => setKitNumber(text)}
+                        >
+                            {attrOptions.map((i) => {
+                                return (
+                                    <Picker.Item
+                                        key={i}
+                                        value={i + ""}
+                                        label={i + ""}
+                                    />
+                                );
+                            })}
+                        </Picker>
+                    </View>
+                    <View style={styles.threePicker}>
                         <Text style={styles.attrPickerLabel}>Hız</Text>
                         <Picker
                             selectedValue={pace}
@@ -136,7 +174,29 @@ const PlayerForm = (props) => {
                             })}
                         </Picker>
                     </View>
-                    <View style={styles.attrPicker}>
+                </View>
+
+                {/* Player Attributes */}
+                <View style={{ flexDirection: "row" }}>
+                    <View style={styles.threePicker}>
+                        <Text style={styles.attrPickerLabel}>Dripling</Text>
+                        <Picker
+                            selectedValue={dribbling}
+                            itemStyle={{ color: "white" }}
+                            onValueChange={(text) => setDribbling(text)}
+                        >
+                            {attrOptions.map((i) => {
+                                return (
+                                    <Picker.Item
+                                        key={i}
+                                        value={i + ""}
+                                        label={i + ""}
+                                    />
+                                );
+                            })}
+                        </Picker>
+                    </View>
+                    <View style={styles.threePicker}>
                         <Text style={styles.attrPickerLabel}>Şut</Text>
                         <Picker
                             selectedValue={shooting}
@@ -154,10 +214,7 @@ const PlayerForm = (props) => {
                             })}
                         </Picker>
                     </View>
-                </View>
-
-                <View style={{ flexDirection: "row" }}>
-                    <View style={styles.attrPicker}>
+                    <View style={styles.threePicker}>
                         <Text style={styles.attrPickerLabel}>Pas</Text>
                         <Picker
                             selectedValue={passing}
@@ -175,7 +232,10 @@ const PlayerForm = (props) => {
                             })}
                         </Picker>
                     </View>
-                    <View style={styles.attrPicker}>
+                </View>
+
+                <View style={{ flexDirection: "row" }}>
+                    <View style={styles.threePicker}>
                         <Text style={styles.attrPickerLabel}>Fizik</Text>
                         <Picker
                             selectedValue={physical}
@@ -193,10 +253,8 @@ const PlayerForm = (props) => {
                             })}
                         </Picker>
                     </View>
-                </View>
 
-                <View style={{ flexDirection: "row" }}>
-                    <View style={styles.attrPicker}>
+                    <View style={styles.threePicker}>
                         <Text style={styles.attrPickerLabel}>Defans</Text>
                         <Picker
                             selectedValue={defending}
@@ -214,7 +272,7 @@ const PlayerForm = (props) => {
                             })}
                         </Picker>
                     </View>
-                    <View style={styles.attrPicker}>
+                    <View style={styles.threePicker}>
                         <Text style={styles.attrPickerLabel}>Kalecilik</Text>
                         <Picker
                             selectedValue={goalKeeper}
@@ -232,24 +290,6 @@ const PlayerForm = (props) => {
                             })}
                         </Picker>
                     </View>
-                </View>
-                <View style={styles.attrPicker}>
-                    <Text style={styles.attrPickerLabel}>Dripling</Text>
-                    <Picker
-                        selectedValue={dribbling}
-                        itemStyle={{ color: "white" }}
-                        onValueChange={(text) => setDribbling(text)}
-                    >
-                        {attrOptions.map((i) => {
-                            return (
-                                <Picker.Item
-                                    key={i}
-                                    value={i + ""}
-                                    label={i + ""}
-                                />
-                            );
-                        })}
-                    </Picker>
                 </View>
 
                 {props.onDelete ? (
@@ -363,6 +403,11 @@ const styles = StyleSheet.create({
     attrPicker: {
         width: "40%",
         paddingTop: "10%",
+    },
+    threePicker: {
+        width: "28%",
+        paddingTop: "10%",
+        height: 250,
     },
     attrPickerLabel: { textAlign: "center", color: "white" },
 });
