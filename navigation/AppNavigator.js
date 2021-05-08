@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import * as playerCardActions from "../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
 import * as playerStatisticsActions from "../redux/actions/playerStatistics-action";
+import * as postActions from "../redux/actions/post-actions";
 
 const AppNavigator = (props) => {
     const dispatch = useDispatch();

@@ -55,6 +55,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             <Text style={styles.playerName}>
                                 {att[0] == undefined ? "Bos" : att[0].name}
                             </Text>
+                            <Text style={styles.playerName}>
+                                {att[0] == undefined ? "Bos" : att[0].overall}
+                            </Text>
                         </View>
                         <View style={styles.column}>
                             <Ionicons
@@ -63,6 +66,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             />
                             <Text style={styles.playerName}>
                                 {att[1] == undefined ? "Bos" : att[1].name}
+                            </Text>
+                            <Text style={styles.playerName}>
+                                {att[0] == undefined ? "Bos" : att[1].overall}
                             </Text>
                         </View>
                     </View>
@@ -77,6 +83,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             <Text style={styles.playerName}>
                                 {mid[0] == undefined ? "Bos" : mid[0].name}
                             </Text>
+                            <Text style={styles.playerName}>
+                                {mid[0] == undefined ? "Bos" : mid[0].overall}
+                            </Text>
                         </View>
                         <View style={styles.column}>
                             <Ionicons
@@ -85,6 +94,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             />
                             <Text style={styles.playerName}>
                                 {mid[1] == undefined ? "Bos" : mid[1].name}
+                            </Text>
+                            <Text style={styles.playerName}>
+                                {mid[0] == undefined ? "Bos" : mid[1].overall}
                             </Text>
                         </View>
                         <View style={styles.column}>
@@ -95,6 +107,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             <Text style={styles.playerName}>
                                 {mid[2] == undefined ? "Bos" : mid[2].name}
                             </Text>
+                            <Text style={styles.playerName}>
+                                {mid[0] == undefined ? "Bos" : mid[2].overall}
+                            </Text>
                         </View>
                         <View style={styles.column}>
                             <Ionicons
@@ -103,6 +118,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             />
                             <Text style={styles.playerName}>
                                 {mid[3] == undefined ? "Bos" : mid[3].name}
+                            </Text>
+                            <Text style={styles.playerName}>
+                                {mid[0] == undefined ? "Bos" : mid[3].overall}
                             </Text>
                         </View>
                     </View>
@@ -117,6 +135,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             <Text style={styles.playerName}>
                                 {def[0] == undefined ? "Bos" : def[0].name}
                             </Text>
+                            <Text style={styles.playerName}>
+                                {def[0] == undefined ? "Bos" : def[0].overall}
+                            </Text>
                         </View>
                         <View style={styles.column}>
                             <Ionicons
@@ -125,6 +146,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             />
                             <Text style={styles.playerName}>
                                 {def[1] == undefined ? "Bos" : def[1].name}
+                            </Text>
+                            <Text style={styles.playerName}>
+                                {def[0] == undefined ? "Bos" : def[1].overall}
                             </Text>
                         </View>
                         <View style={styles.column}>
@@ -135,6 +159,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             <Text style={styles.playerName}>
                                 {def[2] == undefined ? "Bos" : def[2].name}
                             </Text>
+                            <Text style={styles.playerName}>
+                                {def[0] == undefined ? "Bos" : def[2].overall}
+                            </Text>
                         </View>
                         <View style={styles.column}>
                             <Ionicons
@@ -143,6 +170,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             />
                             <Text style={styles.playerName}>
                                 {def[3] == undefined ? "Bos" : def[3].name}
+                            </Text>
+                            <Text style={styles.playerName}>
+                                {def[0] == undefined ? "Bos" : def[3].overall}
                             </Text>
                         </View>
                     </View>
@@ -156,6 +186,9 @@ const TeamOfTheWeek = ({ team, subs }) => {
                             />
                             <Text style={styles.playerName}>
                                 {gk[0] == undefined ? "Bos" : gk[0].name}
+                            </Text>
+                            <Text style={styles.playerName}>
+                                {gk[0] == undefined ? "Bos" : gk[1].overall}
                             </Text>
                         </View>
                     </View>
@@ -179,20 +212,19 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     att: {
-        paddingTop: 80,
+        paddingTop: RFValue(50),
     },
     mid: {
-        paddingTop: 130,
+        paddingTop: RFValue(90),
     },
     def: {
-        paddingTop: 180,
+        paddingTop: RFValue(115),
     },
     gk: {
-        paddingTop: 80,
+        paddingTop: RFValue(70),
     },
     column: {
         justifyContent: "space-between",
-        //backgroundColor: Colors.primary,
         alignItems: "center",
     },
     playerImage: {

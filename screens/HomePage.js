@@ -1,12 +1,23 @@
-import React from "react";
-import { View, Text, Platform, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import { View, Platform, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { useDispatch } from "react-redux";
 import HeaderButton from "../components/HeaderButton";
+import PostList from "../components/PostList";
+import * as postActions from "../redux/actions/post-actions";
 
 const HomePage = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(postActions.fetchPosts());
+    });
+    const postPressed = (item) => {
+        console.log("homepage post pressed - expand");
+    };
     return (
-        <View style={styles.root}>
-            <Text>Home Page</Text>
+        <View>
+            <PostList onPress={postPressed} />
         </View>
     );
 };
@@ -35,6 +46,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        width: "100%",
     },
 });
 export default HomePage;

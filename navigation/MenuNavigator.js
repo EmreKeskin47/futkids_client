@@ -4,8 +4,6 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Platform, StyleSheet } from "react-native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
-import Colors from "../constants/Colors";
 import AdminPage, {
     screenOptions as AdminScreenOptions,
 } from "../screens/admin/AdminPage";
@@ -38,6 +36,15 @@ import LiveTvPage, {
 import TopScorerPage from "../screens/TopScorerTab";
 import TopAsistPage from "../screens/TopAsistPage";
 import { LinearGradient } from "expo-linear-gradient";
+import CreatePost, {
+    screenOptions as CreatePostScreenOptions,
+} from "../screens/admin/post/CreatePost";
+import AdminPostList, {
+    screenOptions as PostListScreenOptions,
+} from "../screens/admin/post/AdminPostList";
+import PostDetailsPage, {
+    screenOptions as PostDetailsScreenOptions,
+} from "../screens/admin/post/PostDetailsPage";
 
 const GradientHeader = (props) => (
     <LinearGradient
@@ -185,6 +192,29 @@ export const PlayersAdminNavigator = () => {
     );
 };
 
+const AdminPostStackNavigator = createStackNavigator();
+export const PostsAdminNavigator = () => {
+    return (
+        <AdminPostStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <AdminPostStackNavigator.Screen
+                name="Post List"
+                component={AdminPostList}
+                options={PostListScreenOptions}
+            />
+            <AdminPostStackNavigator.Screen
+                name="Create Post"
+                component={CreatePost}
+                options={CreatePostScreenOptions}
+            />
+            <AdminPostStackNavigator.Screen
+                name="Post Details"
+                component={PostDetailsPage}
+                options={PostDetailsScreenOptions}
+            />
+        </AdminPostStackNavigator.Navigator>
+    );
+};
+
 const HomeStackNavigator = createStackNavigator();
 export const HomePageNavigator = () => {
     return (
@@ -259,6 +289,10 @@ export const MenuNavigator = () => {
             <MenuDrawerNavigator.Screen
                 name="Canlı Yayın"
                 component={LiveTvNavigator}
+            />
+            <MenuDrawerNavigator.Screen
+                name="Admin Haber"
+                component={PostsAdminNavigator}
             />
         </MenuDrawerNavigator.Navigator>
     );

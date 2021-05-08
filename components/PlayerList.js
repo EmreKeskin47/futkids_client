@@ -4,13 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import PlayerCard from "../components/PlayerCard";
 import * as playerCardActions from "../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";
-import {
-    TextInput,
-    TouchableOpacity,
-    TouchableHighlight,
-} from "react-native-gesture-handler";
+import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { ActivityIndicator } from "react-native";
-import { Button } from "react-native";
 import Colors from "../constants/Colors";
 
 const PlayerList = (props) => {
