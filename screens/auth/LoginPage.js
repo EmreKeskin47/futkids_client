@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Alert,
+  ImageBackground,
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { NavigationActions } from "react-navigation";
 import * as firebase from "firebase";
+import colors from "../../constants/Colors";
+import AnimatedTypeWriter from "react-native-animated-typewriter";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -29,40 +37,109 @@ const Login = (props) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Sign in to your account:</Text>
+    <ImageBackground
+      source={require("../../assets/loginBackground.jpg")}
+      style={styles.image}
+    >
+      <View style={styles.container}>
+        <Text style={styles.header}>futkids</Text>
 
-      <TextInput
-        style={styles.formInput}
-        placeholder="Enter your email"
-        value={email}
-        onChangeText={(email) => setEmail(email)}
-        autoCapitalize="none"
-      />
-      <TextInput
-        style={styles.formInput}
-        placeholder="Enter your password"
-        value={password}
-        onChangeText={(password) => setPassword(password)}
-        secureTextEntry={true}
-      />
+        <AnimatedTypeWriter
+          text={"Hesabınıza Giriş Yapın :"}
+          containerStyle={styles.textContainer}
+          style={styles.text}
+          timeBetweenLetter={80}
+        />
+        <View style={styles.form}>
+          <TextInput
+            style={styles.formInput}
+            placeholder="Mail"
+            value={email}
+            onChangeText={(email) => setEmail(email)}
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={styles.formInput}
+            placeholder="Şifre"
+            value={password}
+            onChangeText={(password) => setPassword(password)}
+            secureTextEntry={true}
+          />
 
-      <TouchableOpacity style={styles.button} onPress={onLoginPress}>
-        <Text style={styles.buttonText}>Sumbit</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={onCreateAccountPress}>
-        <Text style={styles.buttonText}>Create Account</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={onForgotPasswordPress}>
-        <Text style={styles.buttonText}>ForgotPassword?</Text>
-      </TouchableOpacity>
-    </View>
+          <TouchableOpacity style={styles.button} onPress={onLoginPress}>
+            <Text style={styles.buttonText}>Giriş</Text>
+          </TouchableOpacity>
+          <View style={styles.secondaryActions}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={onCreateAccountPress}
+            >
+              <Text style={styles.buttonText}>Hesap Açın</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={onForgotPasswordPress}
+            >
+              <Text style={styles.buttonText}>Şifremi Unuttum</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  header: {
+    fontSize: 60,
+    color: "white",
+    marginBottom: 50,
+    paddingBottom: 50,
+  },
+  form: {
+    backgroundColor: "rgba(52, 52, 52, 0.8)",
+    borderRadius: 5,
+    alignItems: "center",
+    padding: 20,
+  },
+  formInput: {
+    padding: 10,
+    margin: 20,
+    width: 200,
+    borderRadius: 5,
+    backgroundColor: "white",
+    opacity: 0.8,
+  },
   button: {
     margin: 20,
+  },
+  buttonText: {
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 15,
+  },
+  textContainer: {
+    margin: 20,
+    backgroundColor: "rgba(52, 52, 52, 0.8)",
+  },
+  text: {
+    color: "white",
+    fontSize: 30,
+    margin: 10,
+  },
+  secondaryActions: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
   },
 });
 
