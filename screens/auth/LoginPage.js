@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Alert,
   ImageBackground,
+  Image,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as firebase from "firebase";
@@ -43,6 +44,11 @@ const Login = (props) => {
     >
       <View style={styles.container}>
         <Text style={styles.header}>futkids</Text>
+
+        <Image
+          source={require("../../assets/ball-bouncing.gif")}
+          style={styles.gif}
+        />
 
         <AnimatedTypeWriter
           text={"Hesabınıza Giriş Yapın :"}
@@ -98,8 +104,7 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 60,
     color: "white",
-    marginBottom: 50,
-    paddingBottom: 50,
+    paddingBottom: 20,
   },
   form: {
     backgroundColor: "rgba(52, 52, 52, 0.8)",
@@ -140,6 +145,10 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
+  },
+  gif: {
+    width: 100,
+    height: 100,
   },
 });
 
