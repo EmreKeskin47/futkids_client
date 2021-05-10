@@ -8,7 +8,6 @@ import * as playerStatisticsActions from "../redux/actions/playerStatistics-acti
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
-
 const AppNavigator = (props) => {
   const dispatch = useDispatch();
   dispatch(playerCardActions.fetchPlayerCards());
