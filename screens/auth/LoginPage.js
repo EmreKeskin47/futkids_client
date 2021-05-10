@@ -12,6 +12,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import * as firebase from "firebase";
 import colors from "../../constants/Colors";
 import AnimatedTypeWriter from "react-native-animated-typewriter";
+// import { translate } from "translate-js";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");

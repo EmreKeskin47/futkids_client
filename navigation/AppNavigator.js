@@ -17,7 +17,11 @@ const AppNavigator = (props) => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         <Stack.Screen name={"Futkids"} component={MenuNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
