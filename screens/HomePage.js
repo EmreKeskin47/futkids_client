@@ -2,24 +2,11 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Platform, StyleSheet, Button } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButton";
-import * as firebase from "firebase";
 
 const HomePage = () => {
-  const [user, setUser] = useState();
-
-  const currentUser = firebase.auth().currentUser;
-
-  useEffect(() => {});
-
-  const Logout = () => {
-    console.log(currentUser.email + " has logged out.");
-    firebase.auth().signOut();
-  };
-
   return (
     <View style={styles.root}>
-      <Text>{"Hosgeldin " + currentUser.email}</Text>
-      <Button onPress={Logout} title="Log Out" />
+      <Text>{"Hosgeldin bacim"}</Text>
     </View>
   );
 };

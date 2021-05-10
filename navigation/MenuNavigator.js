@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Platform, StyleSheet } from "react-native";
+import { Platform, StyleSheet, View, Text, Button } from "react-native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AdminPage, {
@@ -33,6 +33,12 @@ import LiveTvPage, {
 import TopScorerPage from "../screens/TopScorerTab";
 import TopAsistPage from "../screens/TopAsistPage";
 import { LinearGradient } from "expo-linear-gradient";
+import * as firebase from "firebase";
+import {
+  DrawerContentScrollView,
+  DrawerItemList,
+  DrawerItem,
+} from "@react-navigation/drawer";
 
 const GradientHeader = (props) => (
   <LinearGradient
@@ -200,8 +206,29 @@ export const UserNavigator = () => {
 
 const MenuDrawerNavigator = createDrawerNavigator();
 export const MenuNavigator = () => {
+  const [user, setUser] = useState();
+
+  const currentUser = firebase.auth().currentUser;
+
+  useEffect(() => {});
+
+  const Logout = () => {
+    console.log(currentUser.email + " has logged out.");
+    firebase.auth().signOut();
+  };
   return (
-    <MenuDrawerNavigator.Navigator screenOptions={defaultNavOptions}>
+    <MenuDrawerNavigator.Navigator
+      screenOptions={defaultNavOptions}
+      drawerContent={(props) => {
+        return (
+          <DrawerContentScrollView {...props}>
+            <DrawerItemList {...props} />
+            <DrawerItem label={currentUser.email} style={styles.logout} />
+            <DrawerItem label="Çıkış" onPress={Logout} />
+          </DrawerContentScrollView>
+        );
+      }}
+    >
       {/* <MenuDrawerNavigator.Screen name="Giris" component={AuthNavigator} /> */}
       <MenuDrawerNavigator.Screen
         name="Ana Sayfa"
@@ -225,3 +252,13 @@ export const MenuNavigator = () => {
     </MenuDrawerNavigator.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  root: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logout: {
+    marginTop: 50,
+  },
+});
