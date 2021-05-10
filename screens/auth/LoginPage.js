@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
   },
   form: {
     backgroundColor: "rgba(52, 52, 52, 0.8)",
-    borderRadius: 5,
+    borderRadius: 7,
     alignItems: "center",
     padding: 20,
   },
