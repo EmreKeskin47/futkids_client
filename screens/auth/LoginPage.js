@@ -6,6 +6,8 @@ import {
     Alert,
     ImageBackground,
     Image,
+    KeyboardAvoidingView,
+    TextInput,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as firebase from "firebase";
@@ -41,7 +43,10 @@ const Login = (props) => {
             source={require("../../assets/loginBackground.jpg")}
             style={styles.image}
         >
-            <View style={styles.container}>
+            <KeyboardAvoidingView
+                style={styles.container}
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+            >
                 <Text style={styles.header}>futkids</Text>
 
                 <Image
@@ -62,6 +67,7 @@ const Login = (props) => {
                         value={email}
                         onChangeText={(email) => setEmail(email)}
                         autoCapitalize="none"
+                        autoCorrect={false}
                     />
                     <TextInput
                         style={styles.formInput}
@@ -94,7 +100,7 @@ const Login = (props) => {
                         </TouchableOpacity>
                     </View>
                 </View>
-            </View>
+            </KeyboardAvoidingView>
         </ImageBackground>
     );
 };

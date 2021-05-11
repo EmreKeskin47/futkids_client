@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Button } from "react-native";
+import { StyleSheet, View, Button, KeyboardAvoidingView } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Picker } from "@react-native-community/picker";
 import Colors from "../constants/Colors";
@@ -53,7 +53,10 @@ const PlayerForm = (props) => {
     const [email, setEmail] = useState();
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView
+            style={styles.container}
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
             <ScrollView>
                 <TextInput
                     label="Oyuncu Adi"
@@ -254,128 +257,100 @@ const PlayerForm = (props) => {
                         </Picker>
                     </View>
 
-                    <View style={styles.threePicker}>
-                        <Text style={styles.attrPickerLabel}>Defans</Text>
-                        <Picker
-                            selectedValue={defending}
-                            itemStyle={{ color: "white" }}
-                            onValueChange={(text) => setDefending(text)}
-                        >
-                            {attrOptions.map((i) => {
-                                return (
-                                    <Picker.Item
-                                        key={i}
-                                        value={i + ""}
-                                        label={i + ""}
-                                    />
-                                );
-                            })}
-                        </Picker>
-                    </View>
-                    <View style={styles.threePicker}>
-                        <Text style={styles.attrPickerLabel}>Kalecilik</Text>
-                        <Picker
-                            selectedValue={goalKeeper}
-                            itemStyle={{ color: "white" }}
-                            onValueChange={(text) => setGoalKeeper(text)}
-                        >
-                            {attrOptions.map((i) => {
-                                return (
-                                    <Picker.Item
-                                        key={i}
-                                        value={i + ""}
-                                        label={i + ""}
-                                    />
-                                );
-                            })}
-                        </Picker>
-                    </View>
+                    {props.onDelete ? (
+                        <View style={styles.button}>
+                            <Button
+                                title="Değişiklikleri Kaydet"
+                                color="#fff"
+                                onPress={() => {
+                                    const player = new Player(
+                                        "",
+                                        email,
+                                        "",
+                                        ""
+                                    );
+                                    const newPlayerCard = new PlayerCard(
+                                        "",
+                                        playerCard.playerID,
+                                        name,
+                                        position,
+                                        overall,
+                                        "",
+                                        kitNumber,
+                                        foot,
+                                        age
+                                    );
+                                    const newPlayerAttribute =
+                                        new PlayerAttribute(
+                                            "",
+                                            playerAttribute.playerID,
+                                            pace,
+                                            shooting,
+                                            passing,
+                                            dribbling,
+                                            defending,
+                                            physical,
+                                            goalKeeper
+                                        );
+                                    onSave(
+                                        player,
+                                        newPlayerCard,
+                                        newPlayerAttribute
+                                    );
+                                }}
+                            />
+                            <Button
+                                title="Oyuncuyu Sil"
+                                color="#fff"
+                                onPress={() => {
+                                    props.onDelete();
+                                }}
+                            />
+                        </View>
+                    ) : (
+                        <View style={styles.button}>
+                            <Button
+                                title="Oyuncuyu Kaydet"
+                                color="#fff"
+                                disabled={
+                                    !name || !overall || !kitNumber || !age
+                                }
+                                onPress={() => {
+                                    const newPlayerCard = new PlayerCard(
+                                        "",
+                                        "12",
+                                        name,
+                                        position,
+                                        overall,
+                                        "",
+                                        kitNumber,
+                                        foot,
+                                        age
+                                    );
+                                    const newPlayerAttribute =
+                                        new PlayerAttribute(
+                                            "",
+                                            "12",
+                                            pace,
+                                            shooting,
+                                            passing,
+                                            dribbling,
+                                            defending,
+                                            physical,
+                                            goalKeeper
+                                        );
+                                    onSave(
+                                        email,
+                                        newPlayerCard,
+                                        newPlayerAttribute
+                                    );
+                                }}
+                            />
+                        </View>
+                    )}
                 </View>
-
-                {props.onDelete ? (
-                    <View style={styles.button}>
-                        <Button
-                            title="Değişiklikleri Kaydet"
-                            color="#fff"
-                            onPress={() => {
-                                const player = new Player("", email, "", "");
-                                const newPlayerCard = new PlayerCard(
-                                    "",
-                                    playerCard.playerID,
-                                    name,
-                                    position,
-                                    overall,
-                                    "",
-                                    kitNumber,
-                                    foot,
-                                    age
-                                );
-                                const newPlayerAttribute = new PlayerAttribute(
-                                    "",
-                                    playerAttribute.playerID,
-                                    pace,
-                                    shooting,
-                                    passing,
-                                    dribbling,
-                                    defending,
-                                    physical,
-                                    goalKeeper
-                                );
-                                onSave(
-                                    player,
-                                    newPlayerCard,
-                                    newPlayerAttribute
-                                );
-                            }}
-                        />
-                        <Button
-                            title="Oyuncuyu Sil"
-                            color="#fff"
-                            onPress={() => {
-                                props.onDelete();
-                            }}
-                        />
-                    </View>
-                ) : (
-                    <View style={styles.button}>
-                        <Button
-                            title="Oyuncuyu Kaydet"
-                            color="#fff"
-                            disabled={!name || !overall || !kitNumber || !age}
-                            onPress={() => {
-                                const newPlayerCard = new PlayerCard(
-                                    "",
-                                    "12",
-                                    name,
-                                    position,
-                                    overall,
-                                    "",
-                                    kitNumber,
-                                    foot,
-                                    age
-                                );
-                                const newPlayerAttribute = new PlayerAttribute(
-                                    "",
-                                    "12",
-                                    pace,
-                                    shooting,
-                                    passing,
-                                    dribbling,
-                                    defending,
-                                    physical,
-                                    goalKeeper
-                                );
-                                onSave(
-                                    email,
-                                    newPlayerCard,
-                                    newPlayerAttribute
-                                );
-                            }}
-                        />
-                    </View>
-                )}
             </ScrollView>
-        </View>
+        </KeyboardAvoidingView>
     );
 };
 
