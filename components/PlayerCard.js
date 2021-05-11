@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { Card, CardItem } from "native-base";
 import Colors from "../constants/Colors";
 import PlayerSummary from "../components/PlayerSummary";
@@ -8,17 +8,24 @@ import { RFPercentage } from "react-native-responsive-fontsize";
 import { ActivityIndicator } from "react-native";
 
 const PlayerCard = (props) => {
-    const { playerID, name, position, overall } = props.cardData;
+    const { playerID, name, position, overall, image } = props.cardData;
     return (
         <View style={{ padding: 20 }}>
             <Card style={styles.cardBackground}>
                 <CardItem header bordered style={styles.cardHeader}>
                     <View style={styles.imageContainer}>
                         <View>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
+                            {image == "" ? (
+                                <Ionicons
+                                    name="person-circle-sharp"
+                                    style={styles.playerImageIcon}
+                                />
+                            ) : (
+                                <Image
+                                    source={{ uri: image }}
+                                    style={styles.playerImage}
+                                />
+                            )}
                         </View>
                         <View>
                             <Text style={styles.subheading}>{position}</Text>
@@ -67,8 +74,13 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         marginTop: 10,
     },
-    playerImage: {
+    playerImageIcon: {
         fontSize: 80,
+    },
+    playerImage: {
+        width: 80,
+        height: 80,
+        borderRadius: 100,
     },
 });
 

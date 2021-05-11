@@ -13,10 +13,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as playerCardActions from "../../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../../redux/actions/playerAttribute-action";
 import * as playerStaticsActions from "../../redux/actions/playerStatistics-action";
-import * as playerProfileActions from "../../redux/actions/userProfile-actions";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/HeaderButton";
-import { auth } from "../../constants/firebase/config";
 import { Ionicons } from "@expo/vector-icons";
 
 const MyProfile = ({ route, navigation }) => {

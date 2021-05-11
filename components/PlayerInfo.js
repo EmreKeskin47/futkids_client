@@ -1,16 +1,22 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 const PlayerInfo = (props) => {
-    const { name, position, overall, kitNumber, foot, age } = props.playerCard;
+    const { name, position, overall, kitNumber, foot, age, image } =
+        props.playerCard;
 
     return (
         <View style={styles.topContainer}>
-            <Ionicons
-                name="person-circle-sharp"
-                style={styles.profilePicture}
-            />
+            {image == "" ? (
+                <Ionicons
+                    name="person-circle-sharp"
+                    style={styles.profilePictureIcon}
+                />
+            ) : (
+                <Image source={{ uri: image }} style={styles.playerImage} />
+            )}
+
             <View style={styles.column}>
                 <View style={styles.columnInside}>
                     <Text style={styles.itemL}>İsim</Text>
@@ -82,9 +88,16 @@ const styles = StyleSheet.create({
         color: "yellow",
         marginRight: 10,
     },
-    profilePicture: {
+    profilePictureIcon: {
         fontSize: 150,
         marginTop: 55,
+    },
+    playerImage: {
+        width: 120,
+        height: 120,
+        borderRadius: 100,
+        marginLeft: 15,
+        marginTop: 25,
     },
 });
 

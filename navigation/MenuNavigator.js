@@ -288,7 +288,7 @@ export const MenuNavigator = () => {
                 return (
                     <DrawerContentScrollView {...props}>
                         <DrawerItemList {...props} />
-                        <DrawerItem label={username} style={styles.logout} />
+                        {/* <DrawerItem label={username} style={styles.logout} /> */}
                         <DrawerItem label="Çıkış" onPress={Logout} />
                     </DrawerContentScrollView>
                 );

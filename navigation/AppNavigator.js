@@ -1,6 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { MenuNavigator, SwitchNavigator } from "./MenuNavigator";
+import { MenuNavigator } from "./MenuNavigator";
 import { useDispatch } from "react-redux";
 import * as playerCardActions from "../redux/actions/playerCard-action";
 import * as playerAttributeActions from "../redux/actions/playerAttribute-action";

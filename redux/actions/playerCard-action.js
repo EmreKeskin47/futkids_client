@@ -8,6 +8,7 @@ export const WEEKLY_VOTE = "WWEKLY_VOTE";
 import PlayerCard from "../../models/PlayerCard";
 
 import API from "../../constants/ApiUrl";
+import { useDispatch, useSelector } from "react-redux";
 const BASE_URL = `${API}/playerCard`;
 
 //Getting all the player cards in the database
@@ -204,4 +205,28 @@ export const weeklyVote = (playerID, voteWeight) => {
             res: resData,
         });
     };
+};
+
+export const updateImage = (id) => {
+    let url =
+        "https://firebasestorage.googleapis.com/v0/b/futkids-client.appspot.com/o/players%2";
+    url = url + "F609a83d33e861c6b8595064e";
+    url = url + "?alt=media";
+    const dispatch = useDispatch();
+    const cards = useSelector((state) => state.playerCardStore.playerCards);
+    let card = cards.filter((item) => item.playerID == id);
+    if (card.name) {
+        dispatch(
+            updatePlayerCard(
+                id,
+                card.name,
+                card.position,
+                card.overall,
+                url,
+                card.kitNumber,
+                card.foot,
+                card.age
+            )
+        );
+    }
 };

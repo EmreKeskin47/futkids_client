@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { View, Alert, Button, Image, Platform, StyleSheet } from "react-native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Colors from "../../constants/Colors";
-import * as postActions from "../../redux/actions/userProfile-actions";
 import * as ImagePicker from "expo-image-picker";
 import * as firebase from "firebase";
+import * as playerProfileActions from "../../redux/actions/userProfile-actions";
 
 const EditProfilePicture = (props) => {
     const [image, setImage] = useState(null);
     const dispatch = useDispatch();
+    var playerID = useSelector(
+        (state) => state.playerProfileStore.user.playerID
+    );
 
     useEffect(() => {
         (async () => {
@@ -23,6 +26,7 @@ const EditProfilePicture = (props) => {
             }
         })();
     }, []);
+    playerProfileActions.updatePlayerImage(playerID);
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -44,20 +48,16 @@ const EditProfilePicture = (props) => {
             .storage()
             .ref()
             .child("players/" + imageName);
+
         return ref.put(blob);
     };
 
-    const onSave = (title, desc) => {
-        let url =
-            "https://firebasestorage.googleapis.com/v0/b/futkids-client.appspot.com/o/posts%2F";
-        let titleString = encodeURIComponent(title.trim());
-        url = url.concat(titleString);
-        url = url.concat("?alt=media");
-        uploadImage(image, title)
+    const onSave = () => {
+        uploadImage(image, playerID)
             .then(() => {
-                dispatch(postActions.createPost(title, desc, url));
-                Alert.alert("Başarıyla oluşturuldu");
-                props.navigation.navigate("Post List");
+                dispatch(playerProfileActions.updatePlayerImage(playerID));
+                Alert.alert("Başarıyla kaydedildi");
+                props.navigation.goBack();
             })
             .catch((error) => {
                 Alert.alert(error);
