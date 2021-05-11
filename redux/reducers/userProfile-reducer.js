@@ -1,13 +1,13 @@
 import { GET_PROFILE } from "../actions/userProfile-actions";
 
 const initialState = {
-    id: " ",
+    user: {},
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case GET_PROFILE:
-            state.id = action.pid;
+            state.user = action.user;
             return state;
     }
     return state;

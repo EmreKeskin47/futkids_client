@@ -9,22 +9,22 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();
 const AppNavigator = (props) => {
-  const dispatch = useDispatch();
-  dispatch(playerCardActions.fetchPlayerCards());
-  dispatch(playerAttributeActions.getAllAttributes());
-  dispatch(playerStatisticsActions.fetchPlayerStatistics());
+    const dispatch = useDispatch();
+    dispatch(playerCardActions.fetchPlayerCards());
+    dispatch(playerAttributeActions.getAllAttributes());
+    dispatch(playerStatisticsActions.fetchPlayerStatistics());
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name={"Futkids"} component={MenuNavigator} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator
+                screenOptions={{
+                    headerShown: false,
+                }}
+            >
+                <Stack.Screen name={"Futkids"} component={MenuNavigator} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 };
 
 export default AppNavigator;

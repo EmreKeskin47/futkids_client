@@ -17,15 +17,16 @@ import * as playerProfileActions from "../../redux/actions/userProfile-actions";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/HeaderButton";
 import { auth } from "../../constants/firebase/config";
+import { Ionicons } from "@expo/vector-icons";
 
 const MyProfile = ({ route, navigation }) => {
-    const currentUser = auth.currentUser;
     const image = require("../../assets/background-image.jpg");
     const dispatch = useDispatch();
-    var playerID = useSelector((state) => state.playerProfileStore.id);
+    var playerID = useSelector(
+        (state) => state.playerProfileStore.user.playerID
+    );
 
     useEffect(() => {
-        dispatch(playerProfileActions.getPlayer(currentUser.email));
         dispatch(playerCardActions.getPlayerCardInfo(playerID));
         dispatch(playerAttributeActions.fetchPlayerAttributes(playerID));
         dispatch(playerStaticsActions.getStatsOfPlayer(playerID));
@@ -141,6 +142,17 @@ export const screenOptions = (navData) => {
                     }}
                 />
             </HeaderButtons>
+        ),
+        headerRight: () => (
+            <Ionicons
+                name={"camera-outline"}
+                size={25}
+                color={"white"}
+                style={{ marginRight: 20 }}
+                onPress={() => {
+                    navData.navigation.push("Profil Resmi");
+                }}
+            />
         ),
     };
 };

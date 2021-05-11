@@ -1,5 +1,6 @@
 export const GET_PROFILE = "GET_PROFILE";
 import { db } from "../../constants/firebase/config";
+import { UserProfile } from "../../models/UserProfile";
 
 export const getPlayer = (email) => {
     return async (dispatch) => {
@@ -9,9 +10,16 @@ export const getPlayer = (email) => {
                 .get()
                 .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
+                        let user = new UserProfile(
+                            doc.id,
+                            doc.data().email,
+                            doc.data().image,
+                            doc.data().name,
+                            doc.data().playerID
+                        );
                         dispatch({
                             type: GET_PROFILE,
-                            pid: doc.data().playerID,
+                            user: user,
                         });
                     });
                 })

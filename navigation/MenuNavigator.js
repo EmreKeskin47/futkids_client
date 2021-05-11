@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Platform, StyleSheet, View, Text, Button } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AdminPage, {
@@ -51,7 +51,11 @@ import PostDetailsPage, {
 import MyProfile, {
     screenOptions as MyProfileScreenOptions,
 } from "../screens/user/Profile";
-
+import EditProfilePicture, {
+    screenOptions as ProfilePictureScreenOptions,
+} from "../screens/user/EditProfilePicture";
+import { useDispatch, useSelector } from "react-redux";
+import * as playerProfileActions from "../redux/actions/userProfile-actions";
 const GradientHeader = (props) => (
     <LinearGradient
         colors={["#e0e0eb", "#404040"]}
@@ -245,7 +249,7 @@ export const UserNavigator = () => {
             />
             <UserStackNavigator.Screen
                 name="Oyuncu Profili"
-                component={PlayerProfilePage}
+                component={EditProfilePicture}
             />
         </UserStackNavigator.Navigator>
     );
@@ -260,17 +264,20 @@ export const UserProfileNavigator = () => {
                 component={MyProfile}
                 options={MyProfileScreenOptions}
             />
+            <UserProfileStackNavigator.Screen
+                name="Profil Resmi"
+                component={EditProfilePicture}
+                options={ProfilePictureScreenOptions}
+            />
         </UserProfileStackNavigator.Navigator>
     );
 };
 
 const MenuDrawerNavigator = createDrawerNavigator();
 export const MenuNavigator = () => {
-    const [user, setUser] = useState();
-    const currentUser = firebase.auth().currentUser;
-
-    useEffect(() => {});
-
+    const dispatch = useDispatch();
+    dispatch(playerProfileActions.getPlayer(firebase.auth().currentUser.email));
+    var username = useSelector((state) => state.playerProfileStore.user.name);
     const Logout = () => {
         firebase.auth().signOut();
     };
@@ -281,10 +288,7 @@ export const MenuNavigator = () => {
                 return (
                     <DrawerContentScrollView {...props}>
                         <DrawerItemList {...props} />
-                        <DrawerItem
-                            label={currentUser.email}
-                            style={styles.logout}
-                        />
+                        <DrawerItem label={username} style={styles.logout} />
                         <DrawerItem label="Çıkış" onPress={Logout} />
                     </DrawerContentScrollView>
                 );
