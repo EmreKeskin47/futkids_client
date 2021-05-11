@@ -32,7 +32,7 @@ const PlayerList = (props) => {
       .catch(() => setIsLoading(false));
   };
 
-  onRefresh = () => {
+  const onRefresh = () => {
     setIsLoading(true);
     getPlayerListOnRefresh();
   };
