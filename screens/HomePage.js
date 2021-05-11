@@ -13,7 +13,7 @@ const HomePage = () => {
         dispatch(postActions.fetchPosts());
     });
     const postPressed = (item) => {
-        console.log("homepage post pressed - expand");
+        //console.log("homepage post pressed - expand");
     };
     return (
         <View>

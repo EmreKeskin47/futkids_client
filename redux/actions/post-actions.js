@@ -57,7 +57,7 @@ export const deletePost = (id) => {
                 .doc(id)
                 .delete()
                 .then(() => {
-                    console.log("Document successfully deleted!");
+                    //console.log("Document successfully deleted!");
                 })
                 .catch((error) => {
                     console.error("Error removing document: ", error);
