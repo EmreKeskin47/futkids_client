@@ -257,7 +257,6 @@ export const MenuNavigator = () => {
     useEffect(() => {});
 
     const Logout = () => {
-        console.log(currentUser.email + " has logged out.");
         firebase.auth().signOut();
     };
     return (

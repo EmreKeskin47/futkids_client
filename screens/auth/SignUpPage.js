@@ -42,7 +42,7 @@ const SignUp = (props) => {
       .createUserWithEmailAndPassword(email, password)
       .then(
         () => {
-          console.log(email + " has successfully registered.");
+          //console.log(email + " has successfully registered.");
         },
         (error) => {
           Alert.alert(error.message);
