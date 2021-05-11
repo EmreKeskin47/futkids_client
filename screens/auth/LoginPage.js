@@ -7,7 +7,6 @@ import {
     ImageBackground,
     Image,
     KeyboardAvoidingView,
-    TextInput,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as firebase from "firebase";
