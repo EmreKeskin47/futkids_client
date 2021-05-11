@@ -59,9 +59,7 @@ export const getStatsOfPlayer = (playerID) => {
                 type: GET_STATISTICS_OF_PLAYER,
                 selectedPlayerStatistics: resData,
             });
-        } catch (err) {
-            throw new Error("Can not SET statistics of the player");
-        }
+        } catch (err) {}
     };
 };
 

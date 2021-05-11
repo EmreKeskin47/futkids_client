@@ -48,6 +48,9 @@ import AdminPostList, {
 import PostDetailsPage, {
     screenOptions as PostDetailsScreenOptions,
 } from "../screens/admin/post/PostDetailsPage";
+import MyProfile, {
+    screenOptions as MyProfileScreenOptions,
+} from "../screens/user/Profile";
 
 const GradientHeader = (props) => (
     <LinearGradient
@@ -248,10 +251,22 @@ export const UserNavigator = () => {
     );
 };
 
+const UserProfileStackNavigator = createStackNavigator();
+export const UserProfileNavigator = () => {
+    return (
+        <UserProfileStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <UserProfileStackNavigator.Screen
+                name="Profilim"
+                component={MyProfile}
+                options={MyProfileScreenOptions}
+            />
+        </UserProfileStackNavigator.Navigator>
+    );
+};
+
 const MenuDrawerNavigator = createDrawerNavigator();
 export const MenuNavigator = () => {
     const [user, setUser] = useState();
-
     const currentUser = firebase.auth().currentUser;
 
     useEffect(() => {});
@@ -304,6 +319,10 @@ export const MenuNavigator = () => {
             <MenuDrawerNavigator.Screen
                 name="Admin Haber"
                 component={PostsAdminNavigator}
+            />
+            <MenuDrawerNavigator.Screen
+                name="Profilim"
+                component={UserProfileNavigator}
             />
         </MenuDrawerNavigator.Navigator>
     );

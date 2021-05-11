@@ -38,9 +38,7 @@ export const getAllAttributes = () => {
                 type: GET_ALL_ATTRIBUTES,
                 attributes: playerAttrs,
             });
-        } catch (err) {
-            throw new Error("Can not SET attribute list");
-        }
+        } catch (err) {}
     };
 };
 
@@ -70,9 +68,7 @@ export const fetchPlayerAttributes = (playerID) => {
                 type: GET_ATTRIBUTES_OF_PLAYER,
                 selectedPlayerAttribute: loadedAttribute,
             });
-        } catch (err) {
-            throw new Error(err);
-        }
+        } catch (err) {}
     };
 };
 
@@ -124,9 +120,7 @@ export const createPlayerAttribute = (
                 type: CREATE_PLAYER_ATTRIBUTE,
                 newAttribute: newAttribute,
             });
-        } catch (err) {
-            throw new Error("Can not CREATE new player attribute");
-        }
+        } catch (err) {}
     };
 };
 
@@ -179,9 +173,7 @@ export const updatePlayerAttribute = (
                 type: UPDATE_PLAYER_ATTRIBUTE,
                 selectedPlayerAttribute: updatedAttribute,
             });
-        } catch (err) {
-            throw new Error("Can not UPDATE new player attribute");
-        }
+        } catch (err) {}
     };
 };
 

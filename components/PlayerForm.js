@@ -30,7 +30,7 @@ const PlayerForm = (props) => {
         setPhysical(playerAttribute.physical + "");
         setGoalKeeper(playerAttribute.goalKeeper + "");
 
-        setEmail(player.email + "");
+        setEmail(player.email);
     }, [player, playerCard, playerAttribute]);
 
     //Player Card
@@ -365,7 +365,11 @@ const PlayerForm = (props) => {
                                     physical,
                                     goalKeeper
                                 );
-                                onSave(newPlayerCard, newPlayerAttribute);
+                                onSave(
+                                    email,
+                                    newPlayerCard,
+                                    newPlayerAttribute
+                                );
                             }}
                         />
                     </View>

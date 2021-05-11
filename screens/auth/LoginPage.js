@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
     View,
     Text,
-    TextInput,
     StyleSheet,
     Alert,
     ImageBackground,
@@ -11,6 +10,7 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as firebase from "firebase";
 import AnimatedTypeWriter from "react-native-animated-typewriter";
+import { TextInput } from "react-native-paper";
 
 const Login = (props) => {
     const [email, setEmail] = useState("");

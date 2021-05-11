@@ -13,6 +13,7 @@ import {
     createPlayerStatistics,
     deletePlayerStatistic,
 } from "./playerStatistics-action";
+import { db } from "../../constants/firebase/config";
 
 const BASE_URL = `${API}/player`;
 
@@ -51,15 +52,8 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
         try {
             let playerCardID = "";
             let playerAttributeID = "";
-            const {
-                name,
-                position,
-                overall,
-                image,
-                kitNumber,
-                foot,
-                age,
-            } = playerCard;
+            const { name, position, overall, image, kitNumber, foot, age } =
+                playerCard;
 
             const {
                 pace,
@@ -84,7 +78,7 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
             });
 
             if (!response.ok) {
-                throw new Error("Can not POST new player");
+                throw new Error("Can not POST new player", response);
             }
 
             //Creating player card
@@ -116,6 +110,7 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
                 )
             );
 
+            //Creating player Statistics
             dispatch(
                 createPlayerStatistics(
                     resData.data._id,
@@ -125,13 +120,23 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
                     0,
                     0,
                     0,
-                    "harika",
+                    "0",
                     0
                 )
             );
+
+            //Creating player profile in firebase
+            const profileData = db.collection("/user-profile");
+            const data = await profileData.add({
+                name: name,
+                email: email,
+                image: "",
+                playerID: resData.data._id,
+            });
+
             const newPlayer = new Player(
                 resData.data._id,
-                resData.data.email,
+                email,
                 resData.data.playerCardID,
                 resData.data.playerAttributeID
             );
@@ -142,7 +147,7 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
                 selectedPlayerID: newPlayer.id,
             });
         } catch (err) {
-            throw new Error("Can not ADD new player");
+            throw new Error(err);
         }
     };
 };

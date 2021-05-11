@@ -98,9 +98,7 @@ export const addPlayerCard = (
                 type: ADD_PLAYER_CARD,
                 newPlayerCard: playerCard,
             });
-        } catch (err) {
-            throw new Error("Can not add new player card");
-        }
+        } catch (err) {}
     };
 };
 

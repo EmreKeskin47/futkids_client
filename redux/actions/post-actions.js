@@ -9,7 +9,7 @@ export const fetchPosts = () => {
     return async (dispatch) => {
         try {
             let postArray = [];
-            const response = db.collection("/haber");
+            const response = db.collection("haber");
             const data = await response.get();
             data.docs.forEach((item) => {
                 postArray.push(
@@ -27,9 +27,7 @@ export const fetchPosts = () => {
                 type: FETCH_POSTS,
                 posts: postArray,
             });
-        } catch (err) {
-            throw new Error("Can not GET posts", err);
-        }
+        } catch (err) {}
     };
 };
 
