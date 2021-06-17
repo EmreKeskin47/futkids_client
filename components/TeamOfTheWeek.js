@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, ScrollView, SafeAreaView } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    View,
+    ScrollView,
+    SafeAreaView,
+    Image,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
@@ -47,150 +54,250 @@ const TeamOfTheWeek = ({ team, subs }) => {
             <ScrollView>
                 <View style={styles.att}>
                     <View style={styles.row}>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {att[0] == undefined ? "Bos" : att[0].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {att[0] == undefined ? "Bos" : att[0].overall}
-                            </Text>
-                        </View>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {att[1] == undefined ? "Bos" : att[1].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {att[0] == undefined ? "Bos" : att[1].overall}
-                            </Text>
-                        </View>
+                        {att[0] != undefined && (
+                            <View style={styles.column}>
+                                {att[0].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: att[0].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {att[0].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {att[0].overall}
+                                </Text>
+                            </View>
+                        )}
+
+                        {att[1] != undefined && (
+                            <View style={styles.column}>
+                                {att[1].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: att[1].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {att[1].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {att[1].overall}
+                                </Text>
+                            </View>
+                        )}
                     </View>
                 </View>
                 <View style={styles.mid}>
                     <View style={styles.row}>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {mid[0] == undefined ? "Bos" : mid[0].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {mid[0] == undefined ? "Bos" : mid[0].overall}
-                            </Text>
-                        </View>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {mid[1] == undefined ? "Bos" : mid[1].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {mid[0] == undefined ? "Bos" : mid[1].overall}
-                            </Text>
-                        </View>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {mid[2] == undefined ? "Bos" : mid[2].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {mid[0] == undefined ? "Bos" : mid[2].overall}
-                            </Text>
-                        </View>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {mid[3] == undefined ? "Bos" : mid[3].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {mid[0] == undefined ? "Bos" : mid[3].overall}
-                            </Text>
-                        </View>
+                        {mid[0] != undefined && (
+                            <View style={styles.column}>
+                                {mid[0].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: mid[0].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {mid[0].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {mid[0].overall}
+                                </Text>
+                            </View>
+                        )}
+                        {mid[1] != undefined && (
+                            <View style={styles.column}>
+                                {mid[1].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: mid[1].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {mid[1].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {mid[1].overall}
+                                </Text>
+                            </View>
+                        )}
+                        {mid[2] != undefined && (
+                            <View style={styles.column}>
+                                {mid[2].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: mid[2].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {mid[2].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {mid[2].overall}
+                                </Text>
+                            </View>
+                        )}
+                        {mid[3] != undefined && (
+                            <View style={styles.column}>
+                                {mid[3].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: mid[3].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {mid[3].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {mid[3].overall}
+                                </Text>
+                            </View>
+                        )}
                     </View>
                 </View>
                 <View style={styles.def}>
                     <View style={styles.row}>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {def[0] == undefined ? "Bos" : def[0].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {def[0] == undefined ? "Bos" : def[0].overall}
-                            </Text>
-                        </View>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {def[1] == undefined ? "Bos" : def[1].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {def[0] == undefined ? "Bos" : def[1].overall}
-                            </Text>
-                        </View>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {def[2] == undefined ? "Bos" : def[2].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {def[0] == undefined ? "Bos" : def[2].overall}
-                            </Text>
-                        </View>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {def[3] == undefined ? "Bos" : def[3].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {def[0] == undefined ? "Bos" : def[3].overall}
-                            </Text>
-                        </View>
+                        {def[0] != undefined && (
+                            <View style={styles.column}>
+                                {def[0].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: def[0].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {def[0].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {def[0].overall}
+                                </Text>
+                            </View>
+                        )}
+                        {def[1] != undefined && (
+                            <View style={styles.column}>
+                                {def[1].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: def[1].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {def[1].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {def[1].overall}
+                                </Text>
+                            </View>
+                        )}
+                        {def[2] != undefined && (
+                            <View style={styles.column}>
+                                {def[2].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: def[2].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {def[2].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {def[2].overall}
+                                </Text>
+                            </View>
+                        )}
+                        {def[3] != undefined && (
+                            <View style={styles.column}>
+                                {def[3].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: def[3].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {def[3].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {def[3].overall}
+                                </Text>
+                            </View>
+                        )}
                     </View>
                 </View>
                 <View style={styles.gk}>
                     <View style={styles.row}>
-                        <View style={styles.column}>
-                            <Ionicons
-                                name="person-circle-sharp"
-                                style={styles.playerImage}
-                            />
-                            <Text style={styles.playerName}>
-                                {gk[0] == undefined ? "Bos" : gk[0].name}
-                            </Text>
-                            <Text style={styles.playerName}>
-                                {gk[0] == undefined ? "Bos" : gk[1].overall}
-                            </Text>
-                        </View>
+                        {gk[0] != undefined && (
+                            <View style={styles.column}>
+                                {gk[0].image == "" ? (
+                                    <Ionicons
+                                        name="person-circle-sharp"
+                                        style={styles.playerImageIcon}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={{ uri: gk[0].image }}
+                                        style={styles.playerImage}
+                                    />
+                                )}
+                                <Text style={styles.playerName}>
+                                    {gk[0].name}
+                                </Text>
+                                <Text style={styles.playerName}>
+                                    {gk[0].overall}
+                                </Text>
+                            </View>
+                        )}
                     </View>
                 </View>
             </ScrollView>
@@ -215,20 +322,26 @@ const styles = StyleSheet.create({
         paddingTop: RFValue(50),
     },
     mid: {
-        paddingTop: RFValue(90),
+        paddingTop: RFValue(70),
     },
     def: {
-        paddingTop: RFValue(115),
+        paddingTop: RFValue(95),
     },
     gk: {
-        paddingTop: RFValue(70),
+        paddingTop: RFValue(55),
     },
     column: {
         justifyContent: "space-between",
         alignItems: "center",
     },
+    playerImageIcon: {
+        fontSize: 55,
+    },
     playerImage: {
-        fontSize: 40,
+        width: 55,
+        height: 55,
+        borderRadius: 100,
+        marginBottom: 5,
     },
 });
 

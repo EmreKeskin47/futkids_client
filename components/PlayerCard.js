@@ -3,26 +3,28 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { Card, CardItem } from "native-base";
 import Colors from "../constants/Colors";
 import PlayerSummary from "../components/PlayerSummary";
-import { Ionicons } from "@expo/vector-icons";
 import { RFPercentage } from "react-native-responsive-fontsize";
 import { ActivityIndicator } from "react-native";
 
 const PlayerCard = (props) => {
     const { playerID, name, position, overall, image } = props.cardData;
+    const imageAlt = require("../assets/messi2.jpeg");
+
     return (
         <View style={{ padding: 20 }}>
             <Card style={styles.cardBackground}>
                 <CardItem header bordered style={styles.cardHeader}>
                     <View style={styles.imageContainer}>
                         <View>
-                            {image == "" ? (
-                                <Ionicons
-                                    name="person-circle-sharp"
-                                    style={styles.playerImageIcon}
+                            {image != "" ? (
+                                <Image
+                                    source={{ uri: image }}
+                                    style={styles.playerImage}
+                                    defaultSource={imageAlt}
                                 />
                             ) : (
                                 <Image
-                                    source={{ uri: image }}
+                                    source={imageAlt}
                                     style={styles.playerImage}
                                 />
                             )}
@@ -73,9 +75,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         borderRadius: 8,
         marginTop: 10,
-    },
-    playerImageIcon: {
-        fontSize: 80,
     },
     playerImage: {
         width: 80,

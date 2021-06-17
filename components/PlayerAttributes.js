@@ -16,58 +16,40 @@ const PlayerAttributes = (props) => {
 
     return (
         <SafeAreaView style={styles.root}>
-            <Carousel
-                width={375}
-                height={300}
-                delay={2000}
-                indicatorSize={20}
-                indicatorColor="yellow"
-                height={350}
-            >
-                <View style={styles.row}>
-                    <View>
-                        <Text style={styles.itemL}>Hız</Text>
-                        <CustomProgressBar progress={pace} />
-                    </View>
+            <View style={styles.row}>
+                <View>
+                    <Text style={styles.itemL}>Hız</Text>
+                    <CustomProgressBar progress={pace} />
                 </View>
-                <View style={styles.row}>
-                    <View>
-                        <Text style={styles.itemL}>Şut</Text>
-                        <CustomProgressBar progress={shooting} />
-                    </View>
+                <View>
+                    <Text style={styles.itemL}>Şut</Text>
+                    <CustomProgressBar progress={shooting} />
                 </View>
-                <View style={styles.row}>
-                    <View>
-                        <Text style={styles.itemL}>Paslaşma</Text>
-                        <CustomProgressBar progress={passing} />
-                    </View>
+                <View>
+                    <Text style={styles.itemL}>Paslaşma</Text>
+                    <CustomProgressBar progress={passing} />
                 </View>
-                <View style={styles.row}>
-                    <View>
-                        <Text style={styles.itemL}>Top Sürme</Text>
-                        <CustomProgressBar progress={dribbling} />
-                    </View>
+            </View>
+            <View style={styles.row}>
+                <View>
+                    <Text style={styles.itemL}>Top Sürme</Text>
+                    <CustomProgressBar progress={dribbling} />
                 </View>
-
-                <View style={styles.row}>
-                    <View>
-                        <Text style={styles.itemL}>Defans</Text>
-                        <CustomProgressBar progress={defending} />
-                    </View>
+                <View>
+                    <Text style={styles.itemL}>Defans</Text>
+                    <CustomProgressBar progress={defending} />
                 </View>
-                <View style={styles.row}>
-                    <View>
-                        <Text style={styles.itemL}>Fiziksel</Text>
-                        <CustomProgressBar progress={physical} />
-                    </View>
+            </View>
+            <View style={styles.row}>
+                <View>
+                    <Text style={styles.itemL}>Fiziksel</Text>
+                    <CustomProgressBar progress={physical} />
                 </View>
-                <View style={styles.row}>
-                    <View>
-                        <Text style={styles.itemL}>Kalecilik</Text>
-                        <CustomProgressBar progress={goalKeeper} />
-                    </View>
+                <View>
+                    <Text style={styles.itemL}>Kalecilik</Text>
+                    <CustomProgressBar progress={goalKeeper} />
                 </View>
-            </Carousel>
+            </View>
         </SafeAreaView>
     );
 };
@@ -85,16 +67,16 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         justifyContent: "space-around",
-        paddingBottom: 30,
+        paddingBottom: 5,
         marginBottom: 0,
     },
 
     itemL: {
-        fontSize: 22,
+        fontSize: 12,
         fontWeight: "bold",
         color: "white",
         textAlign: "center",
-        paddingVertical: 20,
+        paddingVertical: 10,
     },
 });
 

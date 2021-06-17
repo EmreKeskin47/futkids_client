@@ -308,7 +308,9 @@ const PlayerForm = (props) => {
                                     name,
                                     position,
                                     overall,
-                                    "",
+                                    "https://firebasestorage.googleapis.com/v0/b/futkids-client.appspot.com/o/players%2" +
+                                        playerCard.playerID +
+                                        "?alt=media",
                                     kitNumber,
                                     foot,
                                     age
@@ -352,7 +354,9 @@ const PlayerForm = (props) => {
                                     name,
                                     position,
                                     overall,
-                                    "",
+                                    "https://firebasestorage.googleapis.com/v0/b/futkids-client.appspot.com/o/players%2" +
+                                        playerCard.playerID +
+                                        "?alt=media",
                                     kitNumber,
                                     foot,
                                     age

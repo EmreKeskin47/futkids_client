@@ -249,7 +249,7 @@ export const UserNavigator = () => {
             />
             <UserStackNavigator.Screen
                 name="Oyuncu Profili"
-                component={EditProfilePicture}
+                component={PlayerProfilePage}
             />
         </UserStackNavigator.Navigator>
     );

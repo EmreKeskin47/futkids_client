@@ -130,7 +130,6 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
             const data = await profileData.add({
                 name: name,
                 email: email,
-                image: "",
                 playerID: resData.data._id,
             });
 

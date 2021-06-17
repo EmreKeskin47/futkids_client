@@ -8,8 +8,8 @@ const CustomProgressBar = (props) => {
     if (progress) {
         return (
             <AnimatedCircularProgress
-                size={200}
-                width={50}
+                size={70}
+                width={20}
                 fill={progress}
                 tintColor={
                     progress < 50
@@ -19,9 +19,10 @@ const CustomProgressBar = (props) => {
                         : "orange"
                 }
                 backgroundColor="#3d5875"
+                style={{ marginHorizontal: 20 }}
             >
                 {(fill) => (
-                    <Text style={{ color: "white", fontSize: 26 }}>
+                    <Text style={{ color: "white", fontSize: 16 }}>
                         {progress}
                     </Text>
                 )}

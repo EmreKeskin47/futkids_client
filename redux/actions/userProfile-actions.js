@@ -28,7 +28,3 @@ export const getPlayer = (email) => {
             });
     };
 };
-
-export const updatePlayerImage = (id) => {
-    playerCardActions.updateImage(id);
-};

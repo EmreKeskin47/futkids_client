@@ -26,7 +26,6 @@ const EditProfilePicture = (props) => {
             }
         })();
     }, []);
-    playerProfileActions.updatePlayerImage(playerID);
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -43,25 +42,23 @@ const EditProfilePicture = (props) => {
     const uploadImage = async (uri, imageName) => {
         const response = await fetch(uri);
         const blob = await response.blob();
-
         var ref = firebase
             .storage()
             .ref()
             .child("players/" + imageName);
-
         return ref.put(blob);
     };
 
     const onSave = () => {
         uploadImage(image, playerID)
             .then(() => {
-                dispatch(playerProfileActions.updatePlayerImage(playerID));
                 Alert.alert("Başarıyla kaydedildi");
-                props.navigation.goBack();
+                props.navigation.push("Profilim");
             })
             .catch((error) => {
                 Alert.alert(error);
-            });
+            }),
+            () => {};
     };
 
     return (
