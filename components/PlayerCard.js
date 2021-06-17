@@ -9,7 +9,6 @@ import { ActivityIndicator } from "react-native";
 const PlayerCard = (props) => {
     const { playerID, name, position, overall, image } = props.cardData;
     const imageAlt = require("../assets/messi2.jpeg");
-
     return (
         <View style={{ padding: 20 }}>
             <Card style={styles.cardBackground}>

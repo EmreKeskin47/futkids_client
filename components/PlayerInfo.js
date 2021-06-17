@@ -1,22 +1,22 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 
 const PlayerInfo = (props) => {
     const { name, position, overall, kitNumber, foot, age, image } =
         props.playerCard;
+    const imageAlt = require("../assets/messi2.jpeg");
 
     return (
         <View style={styles.topContainer}>
-            {image == "" ? (
-                <Ionicons
-                    name="person-circle-sharp"
-                    style={styles.profilePictureIcon}
+            {image != "" ? (
+                <Image
+                    source={{ uri: image }}
+                    style={styles.playerImage}
+                    defaultSource={imageAlt}
                 />
             ) : (
-                <Image source={{ uri: image }} style={styles.playerImage} />
+                <Image source={imageAlt} style={styles.playerImage} />
             )}
-
             <View style={styles.column}>
                 <View style={styles.columnInside}>
                     <Text style={styles.itemL}>İsim</Text>
@@ -87,10 +87,6 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "yellow",
         marginRight: 10,
-    },
-    profilePictureIcon: {
-        fontSize: 150,
-        marginTop: 55,
     },
     playerImage: {
         width: 120,

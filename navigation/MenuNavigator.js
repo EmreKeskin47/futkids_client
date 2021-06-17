@@ -318,7 +318,7 @@ export const MenuNavigatorUser = () => {
             />
             <MenuDrawerNavigatorUser.Screen
                 name="Profilim"
-                component={MyProfile}
+                component={UserProfileNavigator}
             />
         </MenuDrawerNavigatorUser.Navigator>
     );

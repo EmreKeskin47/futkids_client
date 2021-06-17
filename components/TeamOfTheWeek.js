@@ -7,7 +7,6 @@ import {
     SafeAreaView,
     Image,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 const TeamOfTheWeek = ({ team, subs }) => {
@@ -19,6 +18,7 @@ const TeamOfTheWeek = ({ team, subs }) => {
     const [mid, setMid] = useState([]);
     const [def, setDef] = useState([]);
     const [gk, setGk] = useState([]);
+    const imageAlt = require("../assets/messi2.jpeg");
 
     for (var i = 0; i < totw.length; i++) {
         var item = totw[i];
@@ -56,17 +56,19 @@ const TeamOfTheWeek = ({ team, subs }) => {
                     <View style={styles.row}>
                         {att[0] != undefined && (
                             <View style={styles.column}>
-                                {att[0].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
-                                    />
-                                ) : (
+                                {att[0].image != "" ? (
                                     <Image
                                         source={{ uri: att[0].image }}
                                         style={styles.playerImage}
+                                        defaultSource={imageAlt}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={imageAlt}
+                                        style={styles.playerImage}
                                     />
                                 )}
+
                                 <Text style={styles.playerName}>
                                     {att[0].name}
                                 </Text>
@@ -78,14 +80,15 @@ const TeamOfTheWeek = ({ team, subs }) => {
 
                         {att[1] != undefined && (
                             <View style={styles.column}>
-                                {att[1].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
+                                {att[1].image != "" ? (
+                                    <Image
+                                        source={{ uri: att[1].image }}
+                                        style={styles.playerImage}
+                                        defaultSource={imageAlt}
                                     />
                                 ) : (
                                     <Image
-                                        source={{ uri: att[1].image }}
+                                        source={imageAlt}
                                         style={styles.playerImage}
                                     />
                                 )}
@@ -103,17 +106,19 @@ const TeamOfTheWeek = ({ team, subs }) => {
                     <View style={styles.row}>
                         {mid[0] != undefined && (
                             <View style={styles.column}>
-                                {mid[0].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
-                                    />
-                                ) : (
+                                {mid[0].image != "" ? (
                                     <Image
                                         source={{ uri: mid[0].image }}
                                         style={styles.playerImage}
+                                        defaultSource={imageAlt}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={imageAlt}
+                                        style={styles.playerImage}
                                     />
                                 )}
+
                                 <Text style={styles.playerName}>
                                     {mid[0].name}
                                 </Text>
@@ -124,17 +129,19 @@ const TeamOfTheWeek = ({ team, subs }) => {
                         )}
                         {mid[1] != undefined && (
                             <View style={styles.column}>
-                                {mid[1].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
-                                    />
-                                ) : (
+                                {mid[1].image != "" ? (
                                     <Image
                                         source={{ uri: mid[1].image }}
                                         style={styles.playerImage}
+                                        defaultSource={imageAlt}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={imageAlt}
+                                        style={styles.playerImage}
                                     />
                                 )}
+
                                 <Text style={styles.playerName}>
                                     {mid[1].name}
                                 </Text>
@@ -145,17 +152,19 @@ const TeamOfTheWeek = ({ team, subs }) => {
                         )}
                         {mid[2] != undefined && (
                             <View style={styles.column}>
-                                {mid[2].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
-                                    />
-                                ) : (
+                                {mid[2].image != "" ? (
                                     <Image
                                         source={{ uri: mid[2].image }}
                                         style={styles.playerImage}
+                                        defaultSource={imageAlt}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={imageAlt}
+                                        style={styles.playerImage}
                                     />
                                 )}
+
                                 <Text style={styles.playerName}>
                                     {mid[2].name}
                                 </Text>
@@ -166,17 +175,19 @@ const TeamOfTheWeek = ({ team, subs }) => {
                         )}
                         {mid[3] != undefined && (
                             <View style={styles.column}>
-                                {mid[3].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
-                                    />
-                                ) : (
+                                {mid[3].image != "" ? (
                                     <Image
                                         source={{ uri: mid[3].image }}
                                         style={styles.playerImage}
+                                        defaultSource={imageAlt}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={imageAlt}
+                                        style={styles.playerImage}
                                     />
                                 )}
+
                                 <Text style={styles.playerName}>
                                     {mid[3].name}
                                 </Text>
@@ -191,17 +202,19 @@ const TeamOfTheWeek = ({ team, subs }) => {
                     <View style={styles.row}>
                         {def[0] != undefined && (
                             <View style={styles.column}>
-                                {def[0].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
-                                    />
-                                ) : (
+                                {def[0].image != "" ? (
                                     <Image
                                         source={{ uri: def[0].image }}
                                         style={styles.playerImage}
+                                        defaultSource={imageAlt}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={imageAlt}
+                                        style={styles.playerImage}
                                     />
                                 )}
+
                                 <Text style={styles.playerName}>
                                     {def[0].name}
                                 </Text>
@@ -212,17 +225,19 @@ const TeamOfTheWeek = ({ team, subs }) => {
                         )}
                         {def[1] != undefined && (
                             <View style={styles.column}>
-                                {def[1].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
-                                    />
-                                ) : (
+                                {def[1].image != "" ? (
                                     <Image
                                         source={{ uri: def[1].image }}
                                         style={styles.playerImage}
+                                        defaultSource={imageAlt}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={imageAlt}
+                                        style={styles.playerImage}
                                     />
                                 )}
+
                                 <Text style={styles.playerName}>
                                     {def[1].name}
                                 </Text>
@@ -233,17 +248,19 @@ const TeamOfTheWeek = ({ team, subs }) => {
                         )}
                         {def[2] != undefined && (
                             <View style={styles.column}>
-                                {def[2].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
-                                    />
-                                ) : (
+                                {def[2].image != "" ? (
                                     <Image
                                         source={{ uri: def[2].image }}
                                         style={styles.playerImage}
+                                        defaultSource={imageAlt}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={imageAlt}
+                                        style={styles.playerImage}
                                     />
                                 )}
+
                                 <Text style={styles.playerName}>
                                     {def[2].name}
                                 </Text>
@@ -254,17 +271,19 @@ const TeamOfTheWeek = ({ team, subs }) => {
                         )}
                         {def[3] != undefined && (
                             <View style={styles.column}>
-                                {def[3].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
-                                    />
-                                ) : (
+                                {def[3].image != "" ? (
                                     <Image
                                         source={{ uri: def[3].image }}
                                         style={styles.playerImage}
+                                        defaultSource={imageAlt}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={imageAlt}
+                                        style={styles.playerImage}
                                     />
                                 )}
+
                                 <Text style={styles.playerName}>
                                     {def[3].name}
                                 </Text>
@@ -279,17 +298,19 @@ const TeamOfTheWeek = ({ team, subs }) => {
                     <View style={styles.row}>
                         {gk[0] != undefined && (
                             <View style={styles.column}>
-                                {gk[0].image == "" ? (
-                                    <Ionicons
-                                        name="person-circle-sharp"
-                                        style={styles.playerImageIcon}
-                                    />
-                                ) : (
+                                {gk[0].image != "" ? (
                                     <Image
                                         source={{ uri: gk[0].image }}
                                         style={styles.playerImage}
+                                        defaultSource={imageAlt}
+                                    />
+                                ) : (
+                                    <Image
+                                        source={imageAlt}
+                                        style={styles.playerImage}
                                     />
                                 )}
+
                                 <Text style={styles.playerName}>
                                     {gk[0].name}
                                 </Text>
@@ -333,9 +354,6 @@ const styles = StyleSheet.create({
     column: {
         justifyContent: "space-between",
         alignItems: "center",
-    },
-    playerImageIcon: {
-        fontSize: 55,
     },
     playerImage: {
         width: 55,
