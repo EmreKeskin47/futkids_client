@@ -36,6 +36,7 @@ const VotePage = () => {
     );
   };
 
+  //Bu metodu yazan laz
   const clicked = () => {
     const email = firebase.auth().currentUser.email;
     const vote = db.collection("oy");
