@@ -8,41 +8,40 @@ import store from "./redux/store";
 import { auth } from "./constants/firebase/config";
 
 const fetchFonts = () => {
-    return Font.loadAsync({
-        "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
-        "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
-    });
+  return Font.loadAsync({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+  });
 };
 
 export default function App() {
-    const [fontLoaded, setFontLoaded] = useState(false);
-    const [isLoadingComplete, setIsLoadingComplete] = useState(false);
-    const [isAuthenticationReady, setIsAuthenticationReady] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [fontLoaded, setFontLoaded] = useState(false);
+  const [isLoadingComplete, setIsLoadingComplete] = useState(false);
+  const [isAuthenticationReady, setIsAuthenticationReady] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    onAuthStateChanged = (user) => {
-        setIsAuthenticationReady(true);
-        setIsAuthenticated(!!user);
-    };
+  onAuthStateChanged = (user) => {
+    setIsAuthenticationReady(true);
+    setIsAuthenticated(!!user);
+  };
 
-    auth.onAuthStateChanged(onAuthStateChanged);
+  auth.onAuthStateChanged(onAuthStateChanged);
 
-    if (!fontLoaded || !isAuthenticationReady) {
-        return (
-            <AppLoading
-                startAsync={fetchFonts}
-                onError={console.warn}
-                onFinish={() => {
-                    setFontLoaded(true);
-                }}
-            />
-        );
-    }
-
+  if (!fontLoaded || !isAuthenticationReady) {
     return (
-        <Provider store={store}>
-            {isAuthenticated ? <AppNavigator /> : <RootNavigation />}
-            {/* <RootNavigation /> */}
-        </Provider>
+      <AppLoading
+        startAsync={fetchFonts}
+        onError={console.warn}
+        onFinish={() => {
+          setFontLoaded(true);
+        }}
+      />
     );
+  }
+
+  return (
+    <Provider store={store}>
+      {isAuthenticated ? <AppNavigator /> : <RootNavigation />}
+    </Provider>
+  );
 }

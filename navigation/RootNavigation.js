@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../screens/auth/LoginPage";
 import SignUp from "../screens/auth/SignUpPage";
 import ForgotPassword from "../screens/auth/ForgotPassword";
+import AppNavigator from "./AppNavigator";
 
 const Stack = createStackNavigator();
 
@@ -19,7 +20,7 @@ const RootNavigation = (props) => {
         <Stack.Screen name={"Login"} component={Login} />
         <Stack.Screen name={"SignUp"} component={SignUp} />
         <Stack.Screen name={"ForgotPassword"} component={ForgotPassword} />
-        <Stack.Screen name={"Futkids"} component={MenuNavigator} />
+        <Stack.Screen name={"Futkids"} component={AppNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );

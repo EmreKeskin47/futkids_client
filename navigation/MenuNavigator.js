@@ -273,8 +273,8 @@ export const UserProfileNavigator = () => {
     );
 };
 
-const MenuDrawerNavigator = createDrawerNavigator();
-export const MenuNavigator = () => {
+const MenuDrawerNavigatorUser = createDrawerNavigator();
+export const MenuNavigatorUser = () => {
     const dispatch = useDispatch();
     dispatch(playerProfileActions.getPlayer(firebase.auth().currentUser.email));
     var username = useSelector((state) => state.playerProfileStore.user.name);
@@ -282,7 +282,7 @@ export const MenuNavigator = () => {
         firebase.auth().signOut();
     };
     return (
-        <MenuDrawerNavigator.Navigator
+        <MenuDrawerNavigatorUser.Navigator
             screenOptions={defaultNavOptions}
             drawerContent={(props) => {
                 return (
@@ -295,40 +295,87 @@ export const MenuNavigator = () => {
             }}
         >
             {/* <MenuDrawerNavigator.Screen name="Giris" component={AuthNavigator} /> */}
-            <MenuDrawerNavigator.Screen
+            <MenuDrawerNavigatorUser.Screen
                 name="Ana Sayfa"
                 component={HomePageNavigator}
             />
-            <MenuDrawerNavigator.Screen
-                name="Admin"
-                component={PlayersAdminNavigator}
-            />
-            <MenuDrawerNavigator.Screen
+            <MenuDrawerNavigatorUser.Screen
                 name="Kullanıcı"
                 component={UserNavigator}
             />
             {/* <MenuDrawerNavigator.Screen name="Giriş" component={AuthNavigator} /> */}
-            <MenuDrawerNavigator.Screen
+            <MenuDrawerNavigatorUser.Screen
                 name="Haftanın Takımı"
                 component={StadiumNavigator}
             />
-            <MenuDrawerNavigator.Screen
+            <MenuDrawerNavigatorUser.Screen
                 name="Oy Ver"
                 component={VoteNavigator}
             />
-            <MenuDrawerNavigator.Screen
+            <MenuDrawerNavigatorUser.Screen
                 name="Canlı Yayın"
                 component={LiveTvNavigator}
             />
-            <MenuDrawerNavigator.Screen
+            <MenuDrawerNavigatorUser.Screen
+                name="Profilim"
+                component={MyProfile}
+            />
+        </MenuDrawerNavigatorUser.Navigator>
+    );
+};
+
+const MenuDrawerNavigatorAdmin = createDrawerNavigator();
+export const MenuNavigatorAdmin = () => {
+    const dispatch = useDispatch();
+    dispatch(playerProfileActions.getPlayer(firebase.auth().currentUser.email));
+    var username = useSelector((state) => state.playerProfileStore.user.name);
+    const Logout = () => {
+        firebase.auth().signOut();
+    };
+    return (
+        <MenuDrawerNavigatorAdmin.Navigator
+            screenOptions={defaultNavOptions}
+            drawerContent={(props) => {
+                return (
+                    <DrawerContentScrollView {...props}>
+                        <DrawerItemList {...props} />
+                        {/* <DrawerItem label={username} style={styles.logout} /> */}
+                        <DrawerItem label="Çıkış" onPress={Logout} />
+                    </DrawerContentScrollView>
+                );
+            }}
+        >
+            {/* <MenuDrawerNavigator.Screen name="Giris" component={AuthNavigator} /> */}
+            <MenuDrawerNavigatorAdmin.Screen
+                name="Ana Sayfa"
+                component={HomePageNavigator}
+            />
+            <MenuDrawerNavigatorAdmin.Screen
+                name="Admin"
+                component={PlayersAdminNavigator}
+            />
+            <MenuDrawerNavigatorAdmin.Screen
+                name="Kullanıcı"
+                component={UserNavigator}
+            />
+            {/* <MenuDrawerNavigator.Screen name="Giriş" component={AuthNavigator} /> */}
+            <MenuDrawerNavigatorAdmin.Screen
+                name="Haftanın Takımı"
+                component={StadiumNavigator}
+            />
+            <MenuDrawerNavigatorAdmin.Screen
+                name="Oy Ver"
+                component={VoteNavigator}
+            />
+            <MenuDrawerNavigatorAdmin.Screen
+                name="Canlı Yayın"
+                component={LiveTvNavigator}
+            />
+            <MenuDrawerNavigatorAdmin.Screen
                 name="Admin Haber"
                 component={PostsAdminNavigator}
             />
-            <MenuDrawerNavigator.Screen
-                name="Profilim"
-                component={UserProfileNavigator}
-            />
-        </MenuDrawerNavigator.Navigator>
+        </MenuDrawerNavigatorAdmin.Navigator>
     );
 };
 
