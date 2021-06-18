@@ -25,9 +25,6 @@ const AppNavigator = (props) => {
         .doc(email)
         .get()
         .then((item) => {
-            console.log(item);
-            console.log("-------------------");
-            console.log(item.data());
             if (item && item.data().email == email) {
                 setIsAdmin(true);
             }
