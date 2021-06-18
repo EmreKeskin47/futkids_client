@@ -4,6 +4,7 @@ import {
     GET_ALL_ATTRIBUTES,
     GET_ATTRIBUTES_OF_PLAYER,
     UPDATE_PLAYER_ATTRIBUTE,
+    PROFILE_ATTRIBUTES,
 } from "../actions/playerAttribute-action";
 
 import PlayerAttribute from "../../models/PlayerAttribute";
@@ -11,6 +12,7 @@ import PlayerAttribute from "../../models/PlayerAttribute";
 const initialState = {
     playerAttributes: [],
     selectedPlayerAttribute: {},
+    profileAttribute: {},
 };
 
 export default (state = initialState, action) => {
@@ -21,13 +23,15 @@ export default (state = initialState, action) => {
         case GET_ATTRIBUTES_OF_PLAYER:
             state.selectedPlayerAttribute = action.selectedPlayerAttribute;
             return state;
+        case PROFILE_ATTRIBUTES:
+            state.profileAttribute = action.profileAttribute;
+            return state;
         case CREATE_PLAYER_ATTRIBUTE:
             state.playerAttributes = state.playerAttributes.concat(
                 action.newAttribute
             );
             state.selectedPlayerAttribute = action.newAttribute;
             return state;
-
         case DELETE_PLAYER_ATTRIBUTE:
             state.playerAttributes = state.playerAttributes.filter(
                 (attr) => attr.id !== action.pid

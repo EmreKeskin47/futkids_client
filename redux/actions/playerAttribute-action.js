@@ -3,6 +3,7 @@ export const CREATE_PLAYER_ATTRIBUTE = "CREATE_PLAYER_ATTRIBUTE";
 export const UPDATE_PLAYER_ATTRIBUTE = "UPDATE_PLAYER_ATTRIBUTE";
 export const DELETE_PLAYER_ATTRIBUTE = "DELETE_PLAYER_ATTRIBUTE";
 export const GET_ALL_ATTRIBUTES = "GET_ALL_ATTRIBUTES";
+export const PROFILE_ATTRIBUTES = "PROFILE_ATTRIBUTES";
 
 import API from "../../constants/ApiUrl";
 
@@ -187,5 +188,35 @@ export const deletePlayerAttribute = (playerID) => {
             throw new Error("Can not DELETE player ");
         }
         dispatch({ type: DELETE_PLAYER_ATTRIBUTE, pid: playerID });
+    };
+};
+
+//Getting attributes of profile
+export const fetchProfileAttributes = (playerID) => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch(`${BASE_URL}/${playerID}`);
+            if (!response.ok) {
+                throw new Error("Can not GET attributes of the profile");
+            }
+
+            const resData = await response.json();
+            const loadedAttribute = new PlayerAttribute(
+                resData._id,
+                resData.playerID,
+                resData.pace,
+                resData.shooting,
+                resData.passing,
+                resData.dribbling,
+                resData.defending,
+                resData.physical,
+                resData.goalKeeper
+            );
+
+            dispatch({
+                type: PROFILE_ATTRIBUTES,
+                profileAttribute: loadedAttribute,
+            });
+        } catch (err) {}
     };
 };

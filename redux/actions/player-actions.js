@@ -52,7 +52,7 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
         try {
             let playerCardID = "";
             let playerAttributeID = "";
-            const { name, position, overall, image, kitNumber, foot, age } =
+            const { name, position, overall, kitNumber, foot, age } =
                 playerCard;
 
             const {
@@ -89,7 +89,9 @@ export const createPlayer = (email, playerCard, playerAttribute) => {
                     name,
                     position,
                     overall,
-                    image,
+                    "https://firebasestorage.googleapis.com/v0/b/futkids-client.appspot.com/o/players%2" +
+                        resData.data._id +
+                        "?alt=media",
                     kitNumber,
                     foot,
                     age

@@ -3,6 +3,7 @@ export const GET_STATISTICS_OF_PLAYER = "GET_STATISTICS_OF_PLAYER";
 export const CREATE_PLAYER_STATISTICS = "CREATE_PLAYER_STATISTICS";
 export const UPDATE_PLAYER_STATISTICS = "UPDATE_PLAYER_STATISTICS";
 export const DELETE_PLAYER_STATISTICS = "DELETE_PLAYER_STATISTICS";
+export const PROFILE_STATISTICS = "PROFILE_STATISTICS";
 
 import API from "../../constants/ApiUrl";
 import PlayerStatistics from "../../models/PlayerStatistics";
@@ -186,5 +187,23 @@ export const deletePlayerStatistic = (playerID) => {
             throw new Error("Can not DELETE player statistics");
         }
         dispatch({ type: DELETE_PLAYER_STATISTICS, pid: playerID });
+    };
+};
+
+//Getting statistics of specified player
+export const getStatsOfProfile = (playerID) => {
+    return async (dispatch) => {
+        try {
+            const response = await fetch(`${BASE_URL}/${playerID}`);
+            if (!response.ok) {
+                throw new Error("Can not GET statistics of the player");
+            }
+
+            const resData = await response.json();
+            dispatch({
+                type: PROFILE_STATISTICS,
+                profileStatistics: resData,
+            });
+        } catch (err) {}
     };
 };

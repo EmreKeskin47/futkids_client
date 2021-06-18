@@ -4,6 +4,7 @@ export const DELETE_PLAYER_CARD = "DELETE_PLAYER_CARD";
 export const UPDATE_PLAYER_CARD = "UPDATE_PLAYER_CARD";
 export const GET_PLAYER_CARD = "GET_PLAYER_CARD";
 export const WEEKLY_VOTE = "WWEKLY_VOTE";
+export const PROFILE_CARD = "PROFILE_CARD";
 
 import PlayerCard from "../../models/PlayerCard";
 import API from "../../constants/ApiUrl";
@@ -201,6 +202,21 @@ export const weeklyVote = (playerID, voteWeight) => {
         dispatch({
             type: WEEKLY_VOTE,
             res: resData,
+        });
+    };
+};
+
+//Getting card details of the player with the given PlayerID
+export const getProfileCardInfo = (playerID) => {
+    return async (dispatch) => {
+        const response = await fetch(`${BASE_URL}/${playerID}`);
+        if (!response.ok) {
+            throw new Error("Can not GET detailed player card info");
+        }
+        const resData = await response.json();
+        dispatch({
+            type: PROFILE_CARD,
+            profileCardData: resData,
         });
     };
 };

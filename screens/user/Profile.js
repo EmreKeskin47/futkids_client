@@ -25,9 +25,9 @@ const MyProfile = ({ route, navigation }) => {
     );
 
     useEffect(() => {
-        dispatch(playerCardActions.getPlayerCardInfo(playerID));
-        dispatch(playerAttributeActions.fetchPlayerAttributes(playerID));
-        dispatch(playerStaticsActions.getStatsOfPlayer(playerID));
+        dispatch(playerCardActions.getProfileCardInfo(playerID));
+        dispatch(playerAttributeActions.fetchProfileAttributes(playerID));
+        dispatch(playerStaticsActions.getStatsOfProfile(playerID));
     }, [dispatch, playerID]);
 
     if (playerID == "") {
@@ -38,15 +38,13 @@ const MyProfile = ({ route, navigation }) => {
         );
     } else {
         const playerCard = useSelector(
-            (state) => state.playerCardStore.selectedPlayerCard
+            (state) => state.playerCardStore.profileCardData
         );
-
         const attr = useSelector(
-            (state) => state.playerAttributeStore.selectedPlayerAttribute
+            (state) => state.playerAttributeStore.profileAttribute
         );
-
         const stats = useSelector(
-            (state) => state.playerStatisticsStore.selectedPlayerStatistics
+            (state) => state.playerStatisticsStore.profileStatistics
         );
         return (
             <View style={styles.root}>

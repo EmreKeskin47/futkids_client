@@ -4,12 +4,14 @@ import {
     UPDATE_PLAYER_STATISTICS,
     DELETE_PLAYER_STATISTICS,
     FETCH_PLAYER_STATISTICS,
+    PROFILE_STATISTICS,
 } from "../actions/playerStatistics-action";
 import PlayerStatistics from "../../models/PlayerStatistics";
 
 const initialState = {
     playerStats: [],
     selectedPlayerStatistics: {},
+    profileStatistics: {},
 };
 
 export default (state = initialState, action) => {
@@ -47,6 +49,9 @@ export default (state = initialState, action) => {
             return state;
         case GET_STATISTICS_OF_PLAYER:
             state.selectedPlayerStatistics = action.selectedPlayerStatistics;
+            return state;
+        case PROFILE_STATISTICS:
+            state.profileStatistics = action.profileStatistics;
             return state;
     }
     return state;

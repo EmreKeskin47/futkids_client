@@ -6,11 +6,13 @@ import {
     GET_PLAYER_CARD,
     UPDATE_PLAYER_CARD,
     WEEKLY_VOTE,
+    PROFILE_CARD,
 } from "../actions/playerCard-action";
 
 const initialState = {
     playerCards: [],
     selectedPlayerCard: {},
+    profileCardData: {},
 };
 
 export default (state = initialState, action) => {
@@ -21,13 +23,14 @@ export default (state = initialState, action) => {
         case ADD_PLAYER_CARD:
             state.playerCards = state.playerCards.concat(action.newPlayerCard);
             return state;
-
+        case PROFILE_CARD:
+            state.profileCardData = action.profileCardData;
+            return state;
         case DELETE_PLAYER_CARD:
             state.playerCards = state.playerCards.filter(
                 (player) => player.id !== action.pid
             );
             return state;
-
         case UPDATE_PLAYER_CARD:
             const playerIndex = state.playerCards.findIndex(
                 (player) => player.id === action.pid
