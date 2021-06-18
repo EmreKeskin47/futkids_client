@@ -16,7 +16,6 @@ import * as playerStaticsActions from "../../redux/actions/playerStatistics-acti
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/HeaderButton";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
 
 const MyProfile = ({ route, navigation }) => {
     const image = require("../../assets/background-image.jpg");
@@ -24,34 +23,29 @@ const MyProfile = ({ route, navigation }) => {
     var playerID = useSelector(
         (state) => state.playerProfileStore.user.playerID
     );
-    const [exist, setExists] = useState(false);
 
     useEffect(() => {
         dispatch(playerCardActions.getProfileCardInfo(playerID));
         dispatch(playerAttributeActions.fetchProfileAttributes(playerID));
         dispatch(playerStaticsActions.getStatsOfProfile(playerID));
-        setExists(playerID != "");
     }, [dispatch, playerID]);
+    const playerCard = useSelector(
+        (state) => state.playerCardStore.profileCardData
+    );
+    const attr = useSelector(
+        (state) => state.playerAttributeStore.profileAttribute
+    );
+    const stats = useSelector(
+        (state) => state.playerStatisticsStore.profileStatistics
+    );
 
-    if (!exists) {
+    if (playerID == "" || playerCard == {}) {
         return (
             <View style={styles.notFound}>
                 <Text>Profiliniz bulunamadı</Text>
             </View>
         );
     } else {
-        const playerCard = useSelector(
-            (state) => state.playerCardStore.profileCardData
-        );
-        if (playerCard == {}) {
-            setExists(false);
-        }
-        const attr = useSelector(
-            (state) => state.playerAttributeStore.profileAttribute
-        );
-        const stats = useSelector(
-            (state) => state.playerStatisticsStore.profileStatistics
-        );
         return (
             <View style={styles.root}>
                 <ScrollView>
