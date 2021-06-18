@@ -6,7 +6,7 @@ import * as playerCardActions from "../actions/playerCard-action";
 export const getPlayer = (email) => {
     return async (dispatch) => {
         db.collection("/user-profile")
-            .where("email", "==", email + " ")
+            .where("email", "==", email)
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {

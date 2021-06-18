@@ -12,41 +12,48 @@ import { db } from "../constants/firebase/config";
 
 const Stack = createStackNavigator();
 const AppNavigator = (props) => {
-  const dispatch = useDispatch();
-  dispatch(playerCardActions.fetchPlayerCards());
-  dispatch(playerAttributeActions.getAllAttributes());
-  dispatch(playerStatisticsActions.fetchPlayerStatistics());
+    const dispatch = useDispatch();
+    dispatch(playerCardActions.fetchPlayerCards());
+    dispatch(playerAttributeActions.getAllAttributes());
+    dispatch(playerStatisticsActions.fetchPlayerStatistics());
 
-  const [isAdmin, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
 
-  const email = firebase.auth().currentUser.email;
-  const admin = db.collection("admin");
-  admin
-    .doc(email)
-    .get()
-    .then((item) => {
-      if (item) {
-        if (item.data().email == email) {
-          setIsAdmin(true);
-        }
-      }
-    });
+    const email = firebase.auth().currentUser.email;
+    const admin = db.collection("admin");
+    admin
+        .doc(email)
+        .get()
+        .then((item) => {
+            console.log(item);
+            console.log("-------------------");
+            console.log(item.data());
+            if (item && item.data().email == email) {
+                setIsAdmin(true);
+            }
+        });
 
-  return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        {isAdmin ? (
-          <Stack.Screen name={"FutkidsAdmin"} component={MenuNavigatorAdmin} />
-        ) : (
-          <Stack.Screen name={"Futkids"} component={MenuNavigatorUser} />
-        )}
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator
+                screenOptions={{
+                    headerShown: false,
+                }}
+            >
+                {isAdmin ? (
+                    <Stack.Screen
+                        name={"FutkidsAdmin"}
+                        component={MenuNavigatorAdmin}
+                    />
+                ) : (
+                    <Stack.Screen
+                        name={"Futkids"}
+                        component={MenuNavigatorUser}
+                    />
+                )}
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 };
 
 export default AppNavigator;
