@@ -16,6 +16,7 @@ import * as playerStaticsActions from "../../redux/actions/playerStatistics-acti
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/HeaderButton";
 import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
 
 const MyProfile = ({ route, navigation }) => {
     const image = require("../../assets/background-image.jpg");
@@ -23,14 +24,16 @@ const MyProfile = ({ route, navigation }) => {
     var playerID = useSelector(
         (state) => state.playerProfileStore.user.playerID
     );
+    const [exist, setExists] = useState(false);
 
     useEffect(() => {
         dispatch(playerCardActions.getProfileCardInfo(playerID));
         dispatch(playerAttributeActions.fetchProfileAttributes(playerID));
         dispatch(playerStaticsActions.getStatsOfProfile(playerID));
+        setExists(playerID != "");
     }, [dispatch, playerID]);
 
-    if (playerID == "" || playerCard == {}) {
+    if (!exists) {
         return (
             <View style={styles.notFound}>
                 <Text>Profiliniz bulunamadı</Text>
@@ -40,6 +43,9 @@ const MyProfile = ({ route, navigation }) => {
         const playerCard = useSelector(
             (state) => state.playerCardStore.profileCardData
         );
+        if (playerCard == {}) {
+            setExists(false);
+        }
         const attr = useSelector(
             (state) => state.playerAttributeStore.profileAttribute
         );
