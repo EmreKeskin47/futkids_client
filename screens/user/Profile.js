@@ -30,7 +30,7 @@ const MyProfile = ({ route, navigation }) => {
         dispatch(playerStaticsActions.getStatsOfProfile(playerID));
     }, [dispatch, playerID]);
 
-    if (playerID == "") {
+    if (playerID == "" || playerCard == {}) {
         return (
             <View style={styles.notFound}>
                 <Text>Profiliniz bulunamadı</Text>
