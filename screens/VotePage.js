@@ -39,45 +39,55 @@ const VotePage = () => {
   //Bu metodu yazan laz
   const clicked = () => {
     const email = firebase.auth().currentUser.email;
+    console.log(email);
     const vote = db.collection("oy");
-    vote
-      .doc(email)
-      .get()
-      .then((item) => {
-        if (item) {
-          if (
-            (item.data().att && position == "ATT") ||
-            (item.data().mid && position == "MID") ||
-            (item.data().def && position == "DEF") ||
-            (item.data().gk && position == "GK")
-          ) {
-            Alert.alert(
-              "Bu pozisyonda bir oyuncuya zaten oy verdiniz",
-              "Daha da veremen",
-              [{ text: "OK" }],
-              { cancelable: false }
-            );
-          } else {
-            vote.doc(email).set({
-              email: email,
-              att: item.data().att ? true : position == "ATT",
-              mid: item.data().mid ? true : position == "MID",
-              def: item.data().def ? true : position == "DEF",
-              gk: item.data().gk ? true : position == "GK",
-            });
-            voteForPlayer();
-          }
-        } else {
-          vote.doc(email).set({
-            email: email,
-            att: position == "ATT",
-            mid: position == "MID",
-            def: position == "DEF",
-            gk: position == "GK",
-          });
-          voteForPlayer();
-        }
-      });
+    vote.doc(email).set({
+      email: email,
+      att: position == "ATT",
+      mid: position == "MID",
+      def: position == "DEF",
+      gk: position == "GK",
+    });
+    voteForPlayer();
+
+    //   vote
+    //     .doc(email)
+    //     .get()
+    //     .then((item) => {
+    //       if (item) {
+    //         if (
+    //           (item.data().att && position == "ATT") ||
+    //           (item.data().mid && position == "MID") ||
+    //           (item.data().def && position == "DEF") ||
+    //           (item.data().gk && position == "GK")
+    //         ) {
+    //           Alert.alert(
+    //             "Bu pozisyonda bir oyuncuya zaten oy verdiniz",
+    //             "Daha da veremen",
+    //             [{ text: "OK" }],
+    //             { cancelable: false }
+    //           );
+    //         } else {
+    //           vote.doc(email).set({
+    //             email: email,
+    //             att: item.data().att ? true : position == "ATT",
+    //             mid: item.data().mid ? true : position == "MID",
+    //             def: item.data().def ? true : position == "DEF",
+    //             gk: item.data().gk ? true : position == "GK",
+    //           });
+    //           voteForPlayer();
+    //         }
+    //       } else {
+    //         vote.doc(email).set({
+    //           email: email,
+    //           att: position == "ATT",
+    //           mid: position == "MID",
+    //           def: position == "DEF",
+    //           gk: position == "GK",
+    //         });
+    //         voteForPlayer();
+    //       }
+    //     });
   };
   return (
     <SafeAreaView style={styles.container}>
