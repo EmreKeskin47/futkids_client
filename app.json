@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "futkids_client",
-    "slug": "futkids_client",
+    "name": "futkids_client_simon",
+    "slug": "futkids_client_simon",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
