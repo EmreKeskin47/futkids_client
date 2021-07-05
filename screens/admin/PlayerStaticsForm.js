@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
-import { TextInput } from "react-native-paper";
 import Colors from "../../constants/Colors";
-import { ScrollView } from "react-native-gesture-handler";
 import { useDispatch, useSelector } from "react-redux";
 import * as playerStatisticsActions from "../../redux/actions/playerStatistics-action";
 import { Picker } from "@react-native-community/picker";
 
 const PlayerStaticsForm = (props) => {
     const dispatch = useDispatch();
-    const formOptions = Array.from(Array(10).keys());
+    const formOptions = Array.from(Array(11).keys());
+    const statOptions = Array.from(Array(101).keys());
 
     const playerStatistics = useSelector(
         (state) => state.playerStatisticsStore.selectedPlayerStatistics
@@ -37,55 +36,149 @@ const PlayerStaticsForm = (props) => {
 
     return (
         <View style={styles.container}>
-            <ScrollView>
-                <TextInput
-                    label=" Goller"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setGoals(text)}
-                    value={goals}
-                />
-                <TextInput
-                    label="Asistler"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setAssists(text)}
-                    value={assists}
-                />
-                <TextInput
-                    label="Kırmızı Kartlar"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setRed(text)}
-                    value={red}
-                />
-                <TextInput
-                    label="Sarı Kartlar"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setYellow(text)}
-                    value={yellow}
-                />
-                <TextInput
-                    label="Maçın Oyuncusu"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setMotm(text)}
-                    value={motm}
-                />
-                <TextInput
-                    label="Gol Yenmeyen Maçlar"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setCleanSheet(text)}
-                    value={cleanSheet}
-                />
+            <View style={{ flexDirection: "row" }}>
+                <View style={styles.threePicker}>
+                    <Text style={styles.attrPickerLabel}>Goller</Text>
+                    <Picker
+                        selectedValue={goals}
+                        itemStyle={styles.picker}
+                        onValueChange={(text) => setGoals(text)}
+                    >
+                        {statOptions.map((i) => {
+                            return (
+                                <Picker.Item
+                                    key={i}
+                                    value={i + ""}
+                                    label={i + ""}
+                                />
+                            );
+                        })}
+                    </Picker>
+                </View>
 
-                <TextInput
-                    label="Oynanan Maçlar"
-                    style={styles.inputStyle}
-                    onChangeText={(text) => setPlayedMatches(text)}
-                    value={playedMatches}
-                />
-                <View>
+                <View style={styles.threePicker}>
+                    <Text style={styles.attrPickerLabel}>Asistler</Text>
+                    <Picker
+                        selectedValue={assists}
+                        itemStyle={styles.picker}
+                        onValueChange={(text) => setAssists(text)}
+                    >
+                        {statOptions.map((i) => {
+                            return (
+                                <Picker.Item
+                                    key={i}
+                                    value={i + ""}
+                                    label={i + ""}
+                                />
+                            );
+                        })}
+                    </Picker>
+                </View>
+
+                <View style={styles.threePicker}>
+                    <Text style={styles.attrPickerLabel}>Kırmızı Kart</Text>
+                    <Picker
+                        selectedValue={red}
+                        itemStyle={styles.picker}
+                        onValueChange={(text) => setRed(text)}
+                    >
+                        {statOptions.map((i) => {
+                            return (
+                                <Picker.Item
+                                    key={i}
+                                    value={i + ""}
+                                    label={i + ""}
+                                />
+                            );
+                        })}
+                    </Picker>
+                </View>
+            </View>
+
+            <View style={{ flexDirection: "row" }}>
+                <View style={styles.threePicker}>
+                    <Text style={styles.attrPickerLabel}>Sarı Kart</Text>
+                    <Picker
+                        selectedValue={yellow}
+                        itemStyle={styles.picker}
+                        onValueChange={(text) => setYellow(text)}
+                    >
+                        {statOptions.map((i) => {
+                            return (
+                                <Picker.Item
+                                    key={i}
+                                    value={i + ""}
+                                    label={i + ""}
+                                />
+                            );
+                        })}
+                    </Picker>
+                </View>
+
+                <View style={styles.threePicker}>
+                    <Text style={styles.attrPickerLabel}>Maçın Adamı</Text>
+                    <Picker
+                        selectedValue={motm}
+                        itemStyle={styles.picker}
+                        onValueChange={(text) => setMotm(text)}
+                    >
+                        {statOptions.map((i) => {
+                            return (
+                                <Picker.Item
+                                    key={i}
+                                    value={i + ""}
+                                    label={i + ""}
+                                />
+                            );
+                        })}
+                    </Picker>
+                </View>
+
+                <View style={styles.threePicker}>
+                    <Text style={styles.attrPickerLabel}>Clean Sheet</Text>
+                    <Picker
+                        selectedValue={cleanSheet}
+                        itemStyle={styles.picker}
+                        onValueChange={(text) => setCleanSheet(text)}
+                    >
+                        {statOptions.map((i) => {
+                            return (
+                                <Picker.Item
+                                    key={i}
+                                    value={i + ""}
+                                    label={i + ""}
+                                />
+                            );
+                        })}
+                    </Picker>
+                </View>
+            </View>
+
+            <View style={{ flexDirection: "row" }}>
+                <View style={styles.threePicker}>
+                    <Text style={styles.attrPickerLabel}>Oynanan Maç</Text>
+                    <Picker
+                        selectedValue={playedMatches}
+                        itemStyle={styles.picker}
+                        onValueChange={(text) => setPlayedMatches(text)}
+                    >
+                        {statOptions.map((i) => {
+                            return (
+                                <Picker.Item
+                                    key={i}
+                                    value={i + ""}
+                                    label={i + ""}
+                                />
+                            );
+                        })}
+                    </Picker>
+                </View>
+
+                <View style={styles.threePicker}>
                     <Text style={styles.attrPickerLabel}>Form</Text>
                     <Picker
                         selectedValue={form}
-                        itemStyle={{ color: "white" }}
+                        itemStyle={styles.picker}
                         onValueChange={(text) => setForm(text)}
                     >
                         {formOptions.map((i) => {
@@ -99,29 +192,31 @@ const PlayerStaticsForm = (props) => {
                         })}
                     </Picker>
                 </View>
-                <View style={styles.button}>
-                    <Button
-                        title="Değişiklikleri Kaydet"
-                        color="#fff"
-                        onPress={() => {
-                            dispatch(
-                                playerStatisticsActions.updatePlayerStatistics(
-                                    props.route.params.id,
-                                    goals,
-                                    assists,
-                                    red,
-                                    yellow,
-                                    motm,
-                                    cleanSheet,
-                                    form,
-                                    playedMatches
-                                )
-                            );
-                            props.navigation.push("Admin Page");
-                        }}
-                    />
-                </View>
-            </ScrollView>
+            </View>
+
+            <View style={styles.button}>
+                <Button
+                    title="İstatistikleri Kaydet"
+                    color="#fff"
+                    style={styles.button}
+                    onPress={() => {
+                        dispatch(
+                            playerStatisticsActions.updatePlayerStatistics(
+                                props.route.params.id,
+                                goals,
+                                assists,
+                                red,
+                                yellow,
+                                motm,
+                                cleanSheet,
+                                form,
+                                playedMatches
+                            )
+                        );
+                        props.navigation.push("Admin Page");
+                    }}
+                />
+            </View>
         </View>
     );
 };
@@ -131,27 +226,24 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.primary,
         alignItems: "center",
-        justifyContent: "center",
-        paddingVertical: 35,
-    },
-    inputStyle: {
-        marginTop: 20,
-        width: 300,
-    },
-    formText: {
-        alignItems: "center",
-        justifyContent: "center",
-        color: "#fff",
-        fontSize: 20,
-    },
-    text: {
-        color: "#fff",
-        fontSize: 25,
     },
     button: {
-        paddingVertical: 40,
+        paddingTop: 50,
     },
-    attrPickerLabel: { textAlign: "center", color: "white", paddingTop: 30 },
+    attrPickerLabel: {
+        textAlign: "center",
+        color: "white",
+        paddingTop: 10,
+    },
+    threePicker: {
+        width: "28%",
+        paddingTop: "10%",
+        height: 180,
+    },
+    picker: {
+        color: "white",
+        height: 150,
+    },
 });
 
 export default PlayerStaticsForm;

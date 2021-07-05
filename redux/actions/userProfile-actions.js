@@ -1,7 +1,6 @@
 export const GET_PROFILE = "GET_PROFILE";
 import { db } from "../../constants/firebase/config";
 import { UserProfile } from "../../models/UserProfile";
-import * as playerCardActions from "../actions/playerCard-action";
 
 export const getPlayer = (email) => {
     return async (dispatch) => {

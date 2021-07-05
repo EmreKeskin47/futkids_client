@@ -30,9 +30,7 @@ const PostList = (props) => {
                         <CardItem>
                             <Left>
                                 <Thumbnail
-                                    source={{
-                                        uri: "https://picsum.photos/700",
-                                    }}
+                                    source={require("../assets/messi2.jpeg")}
                                 />
                                 <Body>
                                     <Text>{item.title}</Text>
