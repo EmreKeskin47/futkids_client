@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView } from "react-native";
 import CustomProgressBar from "./CustomProgressBar";
-import Carousel from "react-native-carousel-view";
 
 const PlayerAttributes = (props) => {
     const {
