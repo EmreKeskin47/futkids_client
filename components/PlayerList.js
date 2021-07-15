@@ -18,12 +18,16 @@ const PlayerList = (props) => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [position, setPosition] = useState("");
+  const [age, setAge] = useState(0);
   const [name, setName] = useState("");
 
   const attrList = useSelector(
     (state) => state.playerAttributeStore.playerAttributes
   );
   var playerCards = useSelector((state) => state.playerCardStore.playerCards);
+
+  //Get the current year
+  const year = new Date().getFullYear();
 
   const getPlayerListOnRefresh = () => {
     dispatch(playerAttributeActions.getAllAttributes())
@@ -88,6 +92,109 @@ const PlayerList = (props) => {
             }}
           />
         </View>
+        {/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
+
+        <View style={styles.buttons}>
+          <TouchableOpacity
+            style={{
+              marginTop: position == "GK" ? -5 : 0,
+              height: 40,
+            }}
+            onPress={() => setPosition("GK")}
+          >
+            <Text
+              style={{
+                color: position == "GK" ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              07/08
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: position == "DEF" ? -5 : 0,
+              height: 40,
+            }}
+            onPress={() => setPosition("DEF")}
+          >
+            <Text
+              style={{
+                color: position == "DEF" ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              09/10
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: position == "MID" ? -5 : 0,
+              height: 40,
+            }}
+            onPress={() => setPosition("MID")}
+          >
+            <Text
+              style={{
+                color: position == "MID" ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              11/12
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: position == "ATT" ? -5 : 0,
+              height: 40,
+            }}
+            onPress={() => setPosition("ATT")}
+          >
+            <Text
+              style={{
+                color: position == "ATT" ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              13/14
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: position == "ATT" ? -5 : 0,
+              height: 40,
+            }}
+            onPress={() => setPosition("ATT")}
+          >
+            <Text
+              style={{
+                color: position == "ATT" ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              15/16
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: position == "" ? -5 : 0,
+              height: 40,
+            }}
+            size={20}
+            onPress={() => setPosition("")}
+          >
+            <Text
+              style={{
+                color: position == "" ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              HEPSİ
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK */}
         <FlatList
           data={
             position
