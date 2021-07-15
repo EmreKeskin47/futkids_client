@@ -19,6 +19,7 @@ const PlayerList = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [position, setPosition] = useState("");
   const [age, setAge] = useState(0);
+  const [sage, setSage] = useState(0);
   const [name, setName] = useState("");
 
   const attrList = useSelector(
@@ -92,116 +93,13 @@ const PlayerList = (props) => {
             }}
           />
         </View>
-        {/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */}
-
-        <View style={styles.buttons}>
-          <TouchableOpacity
-            style={{
-              marginTop: position == "GK" ? -5 : 0,
-              height: 40,
-            }}
-            onPress={() => setPosition("GK")}
-          >
-            <Text
-              style={{
-                color: position == "GK" ? Colors.accent : Colors.primary,
-                height: 40,
-              }}
-            >
-              07/08
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              marginTop: position == "DEF" ? -5 : 0,
-              height: 40,
-            }}
-            onPress={() => setPosition("DEF")}
-          >
-            <Text
-              style={{
-                color: position == "DEF" ? Colors.accent : Colors.primary,
-                height: 40,
-              }}
-            >
-              09/10
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              marginTop: position == "MID" ? -5 : 0,
-              height: 40,
-            }}
-            onPress={() => setPosition("MID")}
-          >
-            <Text
-              style={{
-                color: position == "MID" ? Colors.accent : Colors.primary,
-                height: 40,
-              }}
-            >
-              11/12
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              marginTop: position == "ATT" ? -5 : 0,
-              height: 40,
-            }}
-            onPress={() => setPosition("ATT")}
-          >
-            <Text
-              style={{
-                color: position == "ATT" ? Colors.accent : Colors.primary,
-                height: 40,
-              }}
-            >
-              13/14
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              marginTop: position == "ATT" ? -5 : 0,
-              height: 40,
-            }}
-            onPress={() => setPosition("ATT")}
-          >
-            <Text
-              style={{
-                color: position == "ATT" ? Colors.accent : Colors.primary,
-                height: 40,
-              }}
-            >
-              15/16
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              marginTop: position == "" ? -5 : 0,
-              height: 40,
-            }}
-            size={20}
-            onPress={() => setPosition("")}
-          >
-            <Text
-              style={{
-                color: position == "" ? Colors.accent : Colors.primary,
-                height: 40,
-              }}
-            >
-              HEPSİ
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK */}
         <FlatList
           data={
             position
               ? playerCards.filter(
                   (item) =>
                     item.name.toLowerCase().includes(name) &&
-                    item.position == position
+                    item.position == position && (item.age == age || item.age == sage) 
                 )
               : playerCards.filter((item) =>
                   item.name.toLowerCase().includes(name)
@@ -216,6 +114,137 @@ const PlayerList = (props) => {
           refreshing={isLoading}
         />
         <View style={styles.buttons}>
+        <TouchableOpacity
+            style={{
+              marginTop: age == (year - 2007 || year - 2008) ? -5 : 0,
+              height: 40,
+            }}
+            onPress={() => {
+              setAge(year - 2007);
+              setSage(year - 2008);
+              console.log(age);
+              console.log(sage);
+            }}
+          >
+            <Text
+              style={{
+                color: age == (year - 2007 || year - 2008) ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              07/08
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: age == (year - 2009 || year - 2010) ? -5 : 0,
+              height: 40,
+            }}
+            onPress={() => {
+              setAge(year - 2009);
+              setSage(year - 2010);
+              console.log(age);
+              console.log(age);
+            }}
+          >
+            <Text
+              style={{
+                color: age == (year - 2009 || year - 2010) ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              09/10
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: age == (year - 2011 || year - 2012) ? -5 : 0,
+              height: 40,
+            }}
+            onPress={() => {
+              setAge(year - 2011);
+              setSage(year - 2012);
+              console.log(age);
+              console.log(sage);
+            }}
+          >
+            <Text
+              style={{
+                color: age == (year - 2011 || year - 2012) ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              11/12
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: age == (year - 2013 || year - 2014) ? -5 : 0,
+              height: 40,
+            }}
+            onPress={() => {
+              setAge(year - 2013);
+              setSage(year - 2014);
+              console.log(age);
+              console.log(sage);
+            }}
+          >
+            <Text
+              style={{
+                color: age == (year - 2013 || year - 2014) ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              13/14
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: age == (year - 2015 || year - 2016) ? -5 : 0,
+              height: 40,
+            }}
+            onPress={() => {
+              setAge(year - 2015);
+              setSage(year - 2016);
+              console.log(age);
+              console.log(sage);
+            }}
+          >
+            <Text
+              style={{
+                color: age == (year - 2015 || year - 2016) ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              15/16
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              marginTop: age == 0 ? -5 : 0,
+              height: 40,
+            }}
+            size={20}
+            onPress={() => {
+                setAge(0);
+                setSage(0);
+                console.log(age);
+                console.log(sage);
+              }
+            }
+          >
+            <Text
+              style={{
+                color: age == 0 ? Colors.accent : Colors.primary,
+                height: 40,
+              }}
+            >
+              HEPSİ
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {/* <View style={styles.buttons}>
           <TouchableOpacity
             style={{
               marginTop: position == "GK" ? -5 : 0,
@@ -297,7 +326,7 @@ const PlayerList = (props) => {
               HEPSİ
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </KeyboardAvoidingView>
     );
   }
