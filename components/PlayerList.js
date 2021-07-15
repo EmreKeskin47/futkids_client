@@ -99,7 +99,7 @@ const PlayerList = (props) => {
               ? playerCards.filter(
                   (item) =>
                     item.name.toLowerCase().includes(name) &&
-                    item.position == position && (item.age == age || item.age == sage) 
+                    item.position == position
                 )
               : playerCards.filter((item) =>
                   item.name.toLowerCase().includes(name)
@@ -113,7 +113,7 @@ const PlayerList = (props) => {
           onRefresh={() => onRefresh()}
           refreshing={isLoading}
         />
-        <View style={styles.buttons}>
+        {/* <View style={styles.buttons}>
         <TouchableOpacity
             style={{
               marginTop: age == (year - 2007 || year - 2008) ? -5 : 0,
@@ -144,7 +144,7 @@ const PlayerList = (props) => {
               setAge(year - 2009);
               setSage(year - 2010);
               console.log(age);
-              console.log(age);
+              console.log(sage);
             }}
           >
             <Text
@@ -242,9 +242,9 @@ const PlayerList = (props) => {
               HEPSİ
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
-        {/* <View style={styles.buttons}>
+         <View style={styles.buttons}>
           <TouchableOpacity
             style={{
               marginTop: position == "GK" ? -5 : 0,
@@ -282,7 +282,7 @@ const PlayerList = (props) => {
               marginTop: position == "MID" ? -5 : 0,
               height: 40,
             }}
-            onPress={() => setPosition("MID")}
+            onPress={() => {setPosition("MID")}}
           >
             <Text
               style={{
@@ -326,7 +326,7 @@ const PlayerList = (props) => {
               HEPSİ
             </Text>
           </TouchableOpacity>
-        </View> */}
+        </View> 
       </KeyboardAvoidingView>
     );
   }
